@@ -7,15 +7,13 @@
 /assets/
 /composer.json
 /config.php
-/crawler.cronjobs.php
 /data/
 /error.php
 /favicon.ico
 /includes/
 /index.html
 /index.php
-/location.update.php
-/market.update.php
+
 /mysqldumper7.2/
 /robots.php
 /robots.txt
