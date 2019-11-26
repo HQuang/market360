@@ -14,7 +14,7 @@
     	<!-- BEGIN: paymentloop -->
         <div class="col-sm-12 col-md-8">
             <div class="payport-item">
-                <a title="{DATA_PAYMENT.name}" href="{DATA_PAYMENT.url}" class="im"><img src="{DATA_PAYMENT.images_button}" alt="{DATA_PAYMENT.name}"/></a>
+                <a title="{DATA_PAYMENT.name}" href="{DATA_PAYMENT.url}" class="im"><img src="{DATA_PAYMENT.images_button}" alt="{DATA_PAYMENT.name}" class="img-responsive" /></a>
                 <h3 class="text-center"><a title="{DATA_PAYMENT.name}" href="{DATA_PAYMENT.url}">{DATA_PAYMENT.name}</a></h3>
             </div>
         </div>

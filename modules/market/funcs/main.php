@@ -7,7 +7,6 @@
  * @Createdate Sun, 20 Nov 2016 07:31:04 GMT
  */
 if (!defined('NV_IS_MOD_MARKET')) die('Stop!!!');
-
 $page_title = $module_info['site_title'];
 $key_words = $module_info['keywords'];
 
@@ -57,6 +56,7 @@ if ($sorts == 0) {
 if (empty($contents)) {
     // hien thi tat ca
     if ($array_config['homedata'] == 1) {
+
         $db->sqlreset()
             ->select('COUNT(*)')
             ->from(NV_PREFIXLANG . '_' . $module_data . '_rows t1')

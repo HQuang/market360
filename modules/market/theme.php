@@ -133,6 +133,7 @@ function nv_theme_market_viewcat($array_data, $array_subcat_data, $viewtype, $pa
     $xtpl->assign('LANG', $lang_module);
     $xtpl->assign('CAT', $array_market_cat[$catid]);
 
+
     if (nv_function_exists('nv_theme_market_' . $viewtype)) {
         $xtpl->assign('DATA', call_user_func('nv_theme_market_' . $viewtype, $array_data, $page));
     } else {
@@ -172,6 +173,10 @@ function nv_theme_market_viewcat($array_data, $array_subcat_data, $viewtype, $pa
     if (!empty($array_market_cat[$catid]['description_html'])) {
         $xtpl->parse('main.description_html');
     }
+    if ($array_config['refresh_allow']) {
+        $xtpl->parse('main.refresh');
+    }
+
 
     if (!empty($array_subcat_data)) {
         foreach ($array_subcat_data as $subcat) {
@@ -526,14 +531,14 @@ function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
 
     $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
+
+//     var_dump($array_data);die;
     $xtpl->assign('DATA', $array_data);
     $xtpl->assign('SELFURL', $client_info['selfurl']);
     $xtpl->assign('MONEY_UNIT', $array_config['money_unit']);
     $xtpl->assign('TEMPLATE', $module_info['template']);
     if (!empty($array_data['images'])) {
-// die('1');
         foreach ($array_data['images'] as $image) {
-//             var_dump($image);die;
             $xtpl->assign('IMAGE', $image);
             $xtpl->parse('main.image.loop');
             $xtpl->parse('main.image1.loop');

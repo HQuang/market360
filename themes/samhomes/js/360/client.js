@@ -829,53 +829,9 @@ function doRating(id, val) {
     return false;
 }
 
-function saveItem(pid) {
-    $.ajax({
-        method: 'POST',
-        url: BASE_URL+'/my/save',
-        dataType: 'JSON',
-        data: {'pid':pid}
-    }).done(function(res) {
-        if(res.status == -1)
-            showLogin();
-        else if(res.status == 1) {
-            notifyMessage(res.message);
-            if ($('.saved.saved_'+res.id).length > 0) {
-                $('.saved.saved_' + res.id).empty();
-                $('.saved.saved_' + res.id).append('<button type="button"><i class="fa fa-heart">&nbsp;</i></button>');
-            }
-            if ($(".div_save_post").length > 0) {
-                $(".div_save_post").empty();
-                $(".div_save_post").append('<button type="button" class="btn btn-info btn-block btn-sm"><span>&nbsp;<i class="fa fa-heart"></i>&nbsp;</span></button>');
-            }
-        } else if (res.status == 0) {
-            notifyMessage(res.message);
-            if ($('.saved.saved_'+res.id).length > 0) {
-                $('.saved.saved_' + res.id).html('<button type="button" onclick="return saveItem('+res.id+')" class=""><i class="fa fa-heart-o">&nbsp;</i></button>');
-            }
-            if ($(".div_save_post").length > 0) {
-                $(".div_save_post").html('<button type="button" onclick="return saveItem('+res.id+')" class="btn btn-default btn-block btn-sm"><span class="hidden-xs">&nbsp;<i class="fa fa-heart"></i>&nbsp;</span> <span class="visible-xs"><i class="fa fa-heart"></i>&nbsp;Lưu tin đăng</span></button>');
-            }
-        }
-    });
-    return false;
-}
 
-function saveTinChinhChu(id) {
-    $.ajax({
-        method: 'POST',
-        url: BASE_URL+'/my/savetinchinhchu',
-        dataType: 'JSON',
-        data: {'id':id}
-    }).done(function(res) {
-        if(res.status == 1) {
-            notifyMessage(res.message);
-            $('#tbl_chinhchu .action_'+res.id).empty();
-            $('#tbl_chinhchu .action_'+res.id).append('<a href="#" class="hvr-icon-bob btn btn-info" style="margin-right: 0"><i class="fa fa-heart hvr-icon"></i> <span>Đã lưu</span></a>');
-        }
-    });
-    return false;
-}
+
+
 function reportAgency(id) {
     $.ajax({
         method: 'POST',

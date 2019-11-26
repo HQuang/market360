@@ -1,0 +1,15 @@
+//         Kiem tra luu tin
+        $_row['is_user'] = 0;
+        $_row['style_save'] = $_row['style_saved'] = '';
+        if (defined('NV_IS_USER')) {
+
+            $_row['is_user'] = 1;
+            $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $_row['id'] . ' AND userid=' . $user_info['userid'])->fetchColumn();
+            if ($count) {
+                $_row['style_save'] = 'style="display: none"';
+            } else {
+                $_row['style_saved'] = 'style="display: none"';
+            }
+        } else {
+            $_row['style_saved'] = 'style="display: none"';
+        }

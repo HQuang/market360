@@ -20,6 +20,14 @@
                 <a href="{ROW.location_link}" title="{ROW.location}">{ROW.location}</a>
             </p>
             <!-- END: location -->
+            <div class="saved saved_176667 hidden-xs">
+                <button type="button" onclick="nv_save_rows({ROW.id}, 'add', {ROW.is_user}); return !1;" {ROW.style_save}>
+                    <i class="fa fa-heart-o">&nbsp;</i>
+                </button>
+                <button type="button" onclick="nv_save_rows({ROW.id}, 'remove', {ROW.is_user}); return !1;" {ROW.style_saved}>
+                    <i class="fa fa-minus-circle">&nbsp;</i>
+                </button>
+            </div>
         </div>
         <div class="body">
             <p>{ROW.description}</p>
@@ -43,4 +51,13 @@
 <!-- BEGIN: page -->
 <div class="text-center clear">{PAGE}</div>
 <!-- END: page -->
+<script>
+var LANG = [];
+LANG.error_save_login = '{LANG.error_save_login}';
+LANG.auction_register_confirm = '{LANG.auction_register_confirm}';
+LANG.auction_cancel = '{LANG.auction_cancel}';
+LANG.auction_register_success = '{LANG.auction_register_success}';
+LANG.auction_cancel_succes = '{LANG.auction_cancel_succes}';
+LANG.auction_cancel_confirm = '{LANG.auction_cancel_confirm}';
+</script>
 <!-- END: main -->

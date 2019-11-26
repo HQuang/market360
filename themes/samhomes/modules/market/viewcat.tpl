@@ -1,11 +1,5 @@
 <!-- BEGIN: main -->
 <div id="search_view_mode">
-    <div class="row">
-        <div class="col-sm-24">
-            <span>Tìm được 41,680 kết quả</span>
-            <h1 style="padding: 0"></h1>
-        </div>
-    </div>
     <div class="row" id="tab_product_index">
         <div class="col-sm-12 col-md-14 col-xs-24 no-padding tab-left">
             <div class="col-sm-8 col-xs-8 active text-center">

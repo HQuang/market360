@@ -64,6 +64,21 @@ if (empty($contents)) {
     $array_field_config = array();
     $array_custom_field_title = array();
     while ($_row = $sth->fetch()) {
+
+        $_row['is_user'] = 0;
+        $_row['style_save'] = $_row['style_saved'] = '';
+        if (defined('NV_IS_USER')) {
+
+            $_row['is_user'] = 1;
+            $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $_row['id'] . ' AND userid=' . $user_info['userid'])->fetchColumn();
+            if ($count) {
+                $_row['style_save'] = 'style="display: none"';
+            } else {
+                $_row['style_saved'] = 'style="display: none"';
+            }
+        } else {
+            $_row['style_saved'] = 'style="display: none"';
+        }
         if (nv_user_in_groups($_row['groupview'])) {
             if (!empty($data = nv_market_data($_row, $module_name))) {
                 // custom field
@@ -103,8 +118,10 @@ if (empty($contents)) {
                 }
 
                 $array_data[$_row['id']] = $data;
+
             }
         }
+
     }
 
     if (!empty($array_field_config)) {

@@ -20,7 +20,9 @@
 <div id="body_content" class="custom_page_product_index" role="main">
     <div class="container">
         <div class="row">
-            <div class="col-sm-16 col-md-18">{MODULE_CONTENT}</div>
+            <div class="col-sm-16 col-md-18">
+            [CONTENT_TWO]
+            {MODULE_CONTENT}</div>
             <div class="col-sm-8 col-md-6 hidden-xs">
                 <div id="boxLocations">[RIGHT]</div>
             </div>
