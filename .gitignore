@@ -28,5 +28,35 @@ themes/mobile_default/
 themes/thienan/
 
 
+/banners/
+/bookhouse/
+/comment/
+/contact/
+/feeds/
+/freecontent/
+/location/
 
+modules/.htaccess
+modules/index.html
+modules/menu/
+modules/messenger/
+modules/news/
+modules/newsnotice/
+modules/page/
+modules/seek/
+modules/slider/
+modules/statistics/
+modules/two-step-verification/
+modules/users/
+modules/videoclips/
+modules/voting/
+modules/wallet/
+
+modules/banners/
+modules/bookhouse/
+modules/comment/
+modules/contact/
+modules/feeds/
+modules/freecontent/
+modules/location/
 

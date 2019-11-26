@@ -1,0 +1,55 @@
+<p>{BLOCK_DATA.text}</P>
+<form class="form-inline" action="{ACTION}" method="post">
+    <input class="form-control" type="text" name="email" id="{MODULE_NAME}_email" style="width: 238px" />
+    <input class="btn btn-primary" type="submit" value="&gt;&gt;" name="do" />
+</form>
+<!-- BEGIN: main -->
+<div class="box_register_alert">
+    <form  id="frmRegisterNewsletter" class="row" action="{ACTION}" method="post">
+        <div class="col-sm-24 col-md-12 title_group p-lr">
+            <h2 class="title st1">{BLOCK_TITLE}</h2>
+            <p>{BLOCK_DATA.text}</p>
+        </div>
+        <div class="col-sm-24 col-md-12 p-lr">
+            <div class="row">
+                <div class="col-xs-24">
+                    <div class="form-group">
+                        <input type="text" name="email" class="form-control input-lg " placeholder="Nhập địa chỉ email của bạn.." id="{MODULE_NAME}_email">
+                        <input class="btn btn-primary btn-lg " id="btnRegisterEmail" type="submit" value="Nhận tin miễn phí" name="do" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('input[name=do]').click(function() {
+            var email = $('input[name=email]').val();
+            
+            if (email == '') {
+                alert('{LANG.error_email_empty}');
+                $('#{MODULE_NAME}_email').focus();
+            } else if (!nv_email_check(document.getElementById('{MODULE_NAME}_email'))) {
+                alert('{LANG.error_email_type}');
+                $('#{MODULE_NAME}_email').focus();
+            } else {
+                $.ajax({
+                    type : "get",
+                    url : '{NV_BASE_SITEURL}' + 'index.php?' + '{NV_NAME_VARIABLE}=newsnotice&{NV_OP_VARIABLE}=checkmail',
+                    data : "email=" + email,
+                    success : function(a) {
+                        if (a > 0) {
+                            alert('{LANG.error_existed_email}');
+                            $('#{MODULE_NAME}_email').focus();
+                        } else {
+                            window.location.href = '{NV_BASE_SITEURL}' + 'index.php?' + '{NV_NAME_VARIABLE}=newsnotice&status=success&email=' + email;
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+    });
+</script>
+<!-- END: main -->
