@@ -1,3 +1,6 @@
+#main_menu_nav > li.current > a{
+				    color: #fb6b26;
+}
 #tab_product_index a.text_content {
     color: darkgrey;
     text-decoration: none;

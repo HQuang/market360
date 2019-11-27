@@ -25,8 +25,13 @@
                         <div class="item " itemtype="https://schema.org/House">
                             <a itemprop="url" href="{ROW.link}" title="{ROW.title}">
                                 <div class="image">
+
+                                <div class="ribbon ribbon-top-right"><span>{BLOCKCAT.description}</span></div>
+
                                     <img alt="{ROW.title}" width="320" height="240" src="{ROW.thumb}">
-                                    <div class="photo">3</div>
+                                    <!-- BEGIN: count_image -->
+                                    <div class="photo">{ROW.count_image}</div>
+                                    <!-- END: count_image -->
                                 </div>
                             </a>
                             <div class="block-info">

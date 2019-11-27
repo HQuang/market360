@@ -15,11 +15,15 @@
         <div class="item " itemtype="https://schema.org/House">
             <a itemprop="url" href="{ROW.link}">
                 <div class="image">
+                
                     <div class="ribbon ribbon-top-right">
-                        <span>VIP</span>
+                        <span>{BLOCKCAT.description}</span>
                     </div>
+
                     <img src="{ROW.thumb}" alt="{ROW.title}" width='320' height='240' />
-                    <div class="photo">6</div>
+                    <!-- BEGIN: count_image -->
+                    <div class="photo">{ROW.count_image}</div>
+                    <!-- END: count_image -->
                 </div>
             </a>
             <div class="block-info">

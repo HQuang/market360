@@ -125,6 +125,7 @@ if (!nv_function_exists('nv_block_market_groups')) {
         if (!empty($list)) {
 
 
+
             $template = 'block_post_1.tpl';
             if ($block_config['template'] == 1) {
                 $template = 'block_post_2.tpl';
@@ -160,7 +161,7 @@ if (!nv_function_exists('nv_block_market_groups')) {
             $xtpl->assign('WIDTH', $home_image_size[0]);
             $xtpl->assign('HEIGHT', $home_image_size[1]);
 
-            $sql = 'SELECT bid, title, alias FROM ' . NV_PREFIXLANG . '_' . $site_mods[$module]['module_data'] . '_block_cat WHERE bid = '. $block_config['blockid'].'  ORDER BY weight ASC';
+            $sql = 'SELECT bid, title, description, alias FROM ' . NV_PREFIXLANG . '_' . $site_mods[$module]['module_data'] . '_block_cat  ORDER BY weight ASC';
             $listcat = $nv_Cache->db($sql, '', $module);
             foreach ($listcat as $cat) {
                 $xtpl->assign('BLOCK_LINK', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module . '&amp;' . NV_OP_VARIABLE . '=' . $site_mods[$module]['alias']['groups'] . '/' . $cat['alias']);
@@ -173,6 +174,7 @@ if (!nv_function_exists('nv_block_market_groups')) {
             foreach ($list as $l) {
                 if (nv_user_in_groups($l['groupview'])) {
                     if (!empty($data = nv_market_data($l, $module))) {
+                        $data['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_images WHERE rowsid=' . $data['id'] )->fetchColumn();
                         $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
                         $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);
                         $lang_module['price'] = $lang_module['pricetype_cat_title_' . $array_market_cat[$l['catid']]['pricetype']];
@@ -181,6 +183,14 @@ if (!nv_function_exists('nv_block_market_groups')) {
 
                         if (!empty($data['color'])) {
                             $xtpl->parse('main.loop.color');
+                        }
+                        if ($data['count_image'] > 1) {
+                            $xtpl->parse('main.loop.count_image');
+                        }
+                        if (!is_array($listcat[$block_config['blockid']])) {
+                            $listcat[$block_config['blockid']]['alias'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module . "&amp;" . NV_OP_VARIABLE . "=" . $site_mods[$module]['alias']['groups'] . "/" . $cat['alias'];
+                            $listcat[$block_config['blockid']] = $cat;
+                            $xtpl->assign('BLOCKCAT', $listcat[$block_config['blockid']]);
                         }
 
                         $xtpl->parse('main.loop');
