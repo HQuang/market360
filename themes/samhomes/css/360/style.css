@@ -206,7 +206,7 @@ ul.slimmenu li a:hover { background-color: transparent;}
 .house_listing .value ul li { display: inline-block; text-align: left;  padding:2px 0; white-space: nowrap; margin-right: 4px; }
 .house_listing .price { color:#ed1c24; font-weight: bold; font-size:11pt;}
 .house_listing .date { color:#666; }
-.house_listing .photo {font-size:11px; position:absolute;background:url(themes/photo.svg) no-repeat; background-size:cover; width:28px; height:22px; color:#fff; bottom:7px; right:5px; text-align:center; line-height:22px;}
+.house_listing .photo {font-size:11px;position:absolute;background: url(../../images/photo.svg) no-repeat;background-size:cover;width:28px;height:22px;color:#fff;bottom:7px;right:5px;text-align:center;line-height:22px;}
 .house_listing .chinh_chu { position: absolute; left:0; bottom:0; background-color:#f74a27; color:#fff; border-top-right-radius: 10px; padding-left:15px; padding-right:15px; }
 .house_listing .adshot h3 a {color: #ed1c24;background: url(../../images/p-hot.gif) no-repeat top right;padding-right: 25px;}
 .house_listing.small .image { width:130px; height:120px; }
