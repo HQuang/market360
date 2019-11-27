@@ -70,6 +70,36 @@
                         </div>
                     </div>
                     <div id="utility">
+                        <!-- BEGIN: wid -->
+                        <div class="row">
+                            <div class="col-xs-24">
+                                <h3 class="title">{LANG.utility}</h3>
+                            </div>
+                            <!-- BEGIN: loop -->
+                            <div class="col-xs-12 col-sm-8 col-md-6 box-utility">
+                                <div class="thumbnail">
+                                    <img src="https://cdn.samhomes.vn/htdocs/css/themes/fountain.png" alt="">
+                                </div>
+                                <span>{WID.title}</span>
+                            </div>
+                            <!-- END: loop -->
+                        </div>
+                        <!-- END: wid -->
+                        <!-- BEGIN: faci -->
+                        <div class="row">
+                            <div class="col-xs-24">
+                                <h3 class="title">{LANG.convenient}</h3>
+                            </div>
+                            <!-- BEGIN: loop -->
+                            <div class="col-xs-12 col-sm-8 col-md-6 box-utility">
+                                <div class="thumbnail">
+                                    <img src="https://cdn.samhomes.vn/htdocs//css/themes/parquet.png" alt="">
+                                </div>
+                                <span>{FACI.title}</span>
+                            </div>      
+                            <!-- END: loop -->                     
+                        </div>
+                        <!-- END: faci -->
                         <!-- BEGIN: field -->
                         <div class="row">
                             <div class="col-xs-24">
@@ -370,7 +400,7 @@
                                     <!-- BEGIN: refresh -->
                                     <a id="refresh" class="btn btn-warning" href="javascript:void(0)" onclick="nv_refresh_popup({DATA.id}); return !1;" title="{LANG.refresh}"><em class="fa fa-refresh fa-lg text-success">&nbsp;</em>{LANG.refresh}</a>
                                     <!-- END: refresh -->
-                                    <a  class="btn btn-default btn-xs save_button_{DATA.id}" {DATA.style_save} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'add', {DATA.is_user}); return !1;" title="{LANG.save}"><em class="fa fa-floppy-o fa-lg text-success">&nbsp;</em>{LANG.save}</a> <a  class="btn btn-default btn-xs saved_button_{DATA.id}" {DATA.style_saved} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'remove', {DATA.is_user}); return !1;" title="{LANG.save_remove}"><em class="fa fa-minus-circle fa-lg text-danger">&nbsp;</em>{LANG.save_remove}</a>
+                                    <a class="btn btn-default btn-xs save_button_{DATA.id}" {DATA.style_save} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'add', {DATA.is_user}); return !1;" title="{LANG.save}"><em class="fa fa-floppy-o fa-lg text-success">&nbsp;</em>{LANG.save}</a> <a class="btn btn-default btn-xs saved_button_{DATA.id}" {DATA.style_saved} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'remove', {DATA.is_user}); return !1;" title="{LANG.save_remove}"><em class="fa fa-minus-circle fa-lg text-danger">&nbsp;</em>{LANG.save_remove}</a>
                                     <!-- BEGIN: admin -->
                                     <a href="{DATA.link_edit}" class="btn btn-default btn-xs"><em class="fa fa-edit">&nbsp;</em>{LANG.edit}</a> <a href="{DATA.link_delete}" class="btn btn-default btn-xs" onclick="return confirm(nv_is_del_confirm[0]);"><em class="fa fa-trash-o">&nbsp;</em>{LANG.delete}</a>
                                     <!-- END: admin -->

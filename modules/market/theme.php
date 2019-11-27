@@ -338,7 +338,7 @@ function nv_theme_market_viewlist($array_data, $page = '')
  */
 function nv_theme_market_viewgrid($array_data, $page = '')
 {
-    global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $array_config, $themeConfig, $array_market_cat;
+    global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $array_config, $themeConfig, $array_market_cat, $block_cat;
 
     $xtpl = new XTemplate('viewgrid.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
@@ -358,6 +358,11 @@ function nv_theme_market_viewgrid($array_data, $page = '')
             $xtpl->assign('LANG', $lang_module);
 
             $xtpl->assign('ROW', $data);
+
+            //             if (!is_array($block_cat[$data['groupid']])) {
+            //                 $block_cat[$data['groupid']] = $cat;
+            //                 $xtpl->assign('BLOCKCAT', $block_cat[$data['groupid']]);
+            //             }
 
             if ($data['count_image'] > 1) {
                 $xtpl->parse('main.loop.count_image');
@@ -530,16 +535,32 @@ function nv_theme_market_viewlist_simple($array_data, $page = '')
  */
 function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
 {
-    global $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $client_info, $array_config, $site_mods;
+    global $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $client_info, $array_config, $site_mods, $array_wid, $array_faci;
 
     $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
 
-    //     var_dump($array_data);die;
+//         var_dump($array_wid);die;
     $xtpl->assign('DATA', $array_data);
     $xtpl->assign('SELFURL', $client_info['selfurl']);
     $xtpl->assign('MONEY_UNIT', $array_config['money_unit']);
     $xtpl->assign('TEMPLATE', $module_info['template']);
+    if (!empty($array_wid)) {
+        foreach ($array_wid as $wid) {
+            $xtpl->assign('WID', $wid);
+            $xtpl->parse('main.wid.loop');
+        }
+        $xtpl->parse('main.wid');
+    }
+
+    if (!empty($array_faci)) {
+        foreach ($array_faci as $faci) {
+            $xtpl->assign('FACI', $faci);
+            $xtpl->parse('main.faci.loop');
+        }
+        $xtpl->parse('main.faci');
+    }
+
     if (!empty($array_data['images'])) {
         foreach ($array_data['images'] as $image) {
             $xtpl->assign('IMAGE', $image);
