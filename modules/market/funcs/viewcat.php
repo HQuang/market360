@@ -65,6 +65,9 @@ if (empty($contents)) {
     $array_custom_field_title = array();
     while ($_row = $sth->fetch()) {
 
+//         Đếm số lượng ảnh
+        $_row['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_images WHERE rowsid=' . $_row['id'] )->fetchColumn();
+        //         lưu tin
         $_row['is_user'] = 0;
         $_row['style_save'] = $_row['style_saved'] = '';
         if (defined('NV_IS_USER')) {
@@ -79,6 +82,7 @@ if (empty($contents)) {
         } else {
             $_row['style_saved'] = 'style="display: none"';
         }
+        //         lưu tin
         if (nv_user_in_groups($_row['groupview'])) {
             if (!empty($data = nv_market_data($_row, $module_name))) {
                 // custom field
@@ -118,10 +122,8 @@ if (empty($contents)) {
                 }
 
                 $array_data[$_row['id']] = $data;
-
             }
         }
-
     }
 
     if (!empty($array_field_config)) {

@@ -72,7 +72,7 @@ function nv_theme_market_main($array_data, $viewtype, $page, $sort = 0)
  * @return
  *
  */
-function nv_theme_market_main_cat($array_data, $viewtype,  $sort = 0)
+function nv_theme_market_main_cat($array_data, $viewtype, $sort = 0)
 {
     global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $array_market_cat;
 
@@ -133,7 +133,6 @@ function nv_theme_market_viewcat($array_data, $array_subcat_data, $viewtype, $pa
     $xtpl->assign('LANG', $lang_module);
     $xtpl->assign('CAT', $array_market_cat[$catid]);
 
-
     if (nv_function_exists('nv_theme_market_' . $viewtype)) {
         $xtpl->assign('DATA', call_user_func('nv_theme_market_' . $viewtype, $array_data, $page));
     } else {
@@ -169,14 +168,12 @@ function nv_theme_market_viewcat($array_data, $array_subcat_data, $viewtype, $pa
         $xtpl->parse('main.displays');
     }
 
-
     if (!empty($array_market_cat[$catid]['description_html'])) {
         $xtpl->parse('main.description_html');
     }
     if ($array_config['refresh_allow']) {
         $xtpl->parse('main.refresh');
     }
-
 
     if (!empty($array_subcat_data)) {
         foreach ($array_subcat_data as $subcat) {
@@ -258,13 +255,15 @@ function nv_theme_market_viewlist($array_data, $page = '')
 
             $xtpl->assign('ROW', $data);
 
+            if ($data['count_image'] > 1) {
+                $xtpl->parse('main.loop.count_image');
+            }
             if (!empty($data['price'])) {
                 $xtpl->parse('main.loop.price');
             }
             if (!empty($data['location'])) {
                 $xtpl->parse('main.loop.location');
             }
-
 
             if (!empty($data['type'])) {
                 $xtpl->parse('main.loop.type');
@@ -359,6 +358,10 @@ function nv_theme_market_viewgrid($array_data, $page = '')
             $xtpl->assign('LANG', $lang_module);
 
             $xtpl->assign('ROW', $data);
+
+            if ($data['count_image'] > 1) {
+                $xtpl->parse('main.loop.count_image');
+            }
             if (!empty($data['price'])) {
                 $xtpl->parse('main.loop.price');
             }
@@ -532,7 +535,7 @@ function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
     $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
 
-//     var_dump($array_data);die;
+    //     var_dump($array_data);die;
     $xtpl->assign('DATA', $array_data);
     $xtpl->assign('SELFURL', $client_info['selfurl']);
     $xtpl->assign('MONEY_UNIT', $array_config['money_unit']);

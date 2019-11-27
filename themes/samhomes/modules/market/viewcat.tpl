@@ -33,11 +33,11 @@
         <!-- END: displays -->
     </div>
 </div>
-
-    <div id="page_listing">
-        <div class="house_listing view_new">{DATA}</div>
+<div id="page_listing">
+    <div class="house_listing view_new">
+    {DATA}
     </div>
-
+</div>
 <!-- END: main -->
 <!-- BEGIN: subcat -->
 <!-- BEGIN: loop -->

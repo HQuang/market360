@@ -416,7 +416,36 @@
                     </h2>
                 </div>
             </div>
-            {OTHER}
+            <div class="house_listing owl-carousel owl-theme" id="house_insterested">{OTHER}</div>
+            <script type="text/javascript">
+    $(document).ready(function() {
+        $('#house_insterested').each(function() {
+            $(this).owlCarousel({
+                nav : true,
+                dots : false,
+                autoplay : false,
+                autoplayTimeout : 3000,
+                animateOut : 'fadeOut',
+                autoHeight : true,
+                navText : [ "<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>" ],
+                responsive : {
+                    0 : {
+                        autoWidth : true
+                    },
+                    480 : {
+                        items : 2
+                    },
+                    768 : {
+                        items : 3
+                    },
+                    1200 : {
+                        items : 4
+                    }
+                }
+            });
+        });
+    });
+</script>
         </div>
     </section>
     <!-- END: other -->

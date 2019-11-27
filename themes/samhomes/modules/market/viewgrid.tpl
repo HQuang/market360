@@ -7,7 +7,9 @@
                 <span>VIP</span>
             </div>
             <img src="{ROW.thumb}" alt="{ROW.thumbalt}" width='320' height='240' />
-            <div class="photo">3</div>
+            <!-- BEGIN: count_image -->
+            <div class="photo">{ROW.count_image}</div>
+            <!-- END: count_image -->
         </div>
     </a>
     <div class="block-info">
