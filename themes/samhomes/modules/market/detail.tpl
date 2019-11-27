@@ -78,7 +78,7 @@
                             <!-- BEGIN: loop -->
                             <div class="col-xs-12 col-sm-8 col-md-6 box-utility">
                                 <div class="thumbnail">
-                                    <img src="https://cdn.samhomes.vn/htdocs/css/themes/fountain.png" alt="">
+                                    <img src="{WID.icon}" alt="">
                                 </div>
                                 <span>{WID.title}</span>
                             </div>
@@ -93,7 +93,7 @@
                             <!-- BEGIN: loop -->
                             <div class="col-xs-12 col-sm-8 col-md-6 box-utility">
                                 <div class="thumbnail">
-                                    <img src="https://cdn.samhomes.vn/htdocs//css/themes/parquet.png" alt="">
+                                    <img src="{FACI.icon}" alt="">
                                 </div>
                                 <span>{FACI.title}</span>
                             </div>      
@@ -107,7 +107,7 @@
                             </div>
                             <div class="col-xs-24 box-utility">
                                 <div class="thumbnail">
-                                    <img src="https://cdn.samhomes.vn/htdocs/css/themes/garage.png" alt="">
+                                    <img src="" alt="">
                                 </div>
                                 <span>{FIELD.value}</span>
                             </div>

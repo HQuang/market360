@@ -540,13 +540,18 @@ function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
     $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
 
-//         var_dump($array_wid);die;
     $xtpl->assign('DATA', $array_data);
     $xtpl->assign('SELFURL', $client_info['selfurl']);
     $xtpl->assign('MONEY_UNIT', $array_config['money_unit']);
     $xtpl->assign('TEMPLATE', $module_info['template']);
     if (!empty($array_wid)) {
         foreach ($array_wid as $wid) {
+
+            if ( $wid['icon']) {
+                $wid['icon'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_file . '/' . $wid['icon'];
+            }else {
+                $wid['icon'] = '';
+            }
             $xtpl->assign('WID', $wid);
             $xtpl->parse('main.wid.loop');
         }
@@ -555,6 +560,13 @@ function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
 
     if (!empty($array_faci)) {
         foreach ($array_faci as $faci) {
+            if ( $faci['icon']) {
+                $faci['icon'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_file . '/' . $faci['icon'];
+            }else {
+                $faci['icon'] = '';
+            }
+
+
             $xtpl->assign('FACI', $faci);
             $xtpl->parse('main.faci.loop');
         }

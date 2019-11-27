@@ -4,7 +4,7 @@
     <a itemprop="url" href="{ROW.link}" title="{ROW.title}">
         <div class="image">
             <div class="ribbon ribbon-top-right">
-                <span>VIP</span>
+                <span>{ROW.groupid}</span>
             </div>
             <img src="{ROW.thumb}" alt="{ROW.thumbalt}" width='320' height='240' />
             <!-- BEGIN: count_image -->

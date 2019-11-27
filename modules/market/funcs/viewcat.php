@@ -53,7 +53,7 @@ if (empty($contents)) {
     $sth->execute();
     $num_items = $sth->fetchColumn();
 
-    $db->select('id, title, description, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
+    $db->select('id, title, description, groupid, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
         ->order('prior DESC, ordertime DESC')
         ->limit($per_page)
         ->offset(($page - 1) * $per_page);
@@ -63,10 +63,14 @@ if (empty($contents)) {
 
     $array_field_config = array();
     $array_custom_field_title = array();
+
+//     $block_cat = $nv_Cache->db('SELECT  bid, title, description, alias FROM ' . NV_PREFIXLANG . '_' . $module_data . '_block_cat', '', $module);
     while ($_row = $sth->fetch()) {
 
-//         Đếm số lượng ảnh
-        $_row['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_images WHERE rowsid=' . $_row['id'] )->fetchColumn();
+        //         Đếm số lượng ảnh
+        $_row['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_images WHERE rowsid=' . $_row['id'])->fetchColumn();
+        //         Nhận diện nhóm tin
+
         //         lưu tin
         $_row['is_user'] = 0;
         $_row['style_save'] = $_row['style_saved'] = '';
