@@ -34,7 +34,7 @@
 <script src="{NV_BASE_SITEURL}themes/default/js/users.js"></script>
 <!-- END: main -->
 <!-- BEGIN: signed -->
-<li class="dropdown" id="mnuGuest"><a href="#" title="{LANG.edituser}" rel="nofollow"><i class="fa fa-user-circle" aria-hidden="true"></i> {USER.full_name}</a>
+<li class="dropdown" id="mnuGuest"><a href="#" title="{LANG.edituser}" rel="nofollow"><span class="one-line"><i class="fa fa-user-circle" aria-hidden="true"></i> {USER.full_name}</span></a>
     <ul class="dropdown-menu dropdown-menu-right">
         <li><a href="{URL_HREF}editinfo"> Thông Tin Cá Nhân</a></li>
         <li><a href="/wallet/main/"> Nạp tiền</a></li>

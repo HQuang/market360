@@ -490,6 +490,9 @@ function nv_theme_market_viewlist_simple($array_data, $page = '')
             if (!empty($data['location'])) {
                 $xtpl->parse('main.loop.location');
             }
+            if ($data['count_image'] > 1) {
+                $xtpl->parse('main.loop.count_image');
+            }
 
             if ($data['contact_fullname'] or $data['contact_email'] or $data['contact_phone'] or $data['contact_address']) {
                 if ($data['contact_fullname']) {
@@ -822,8 +825,13 @@ function nv_theme_market_saved($array_data, $page)
     $xtpl->assign('ACTION_URL', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=ajax');
     $xtpl->assign('CHECKSS', md5($global_config['sitekey'] . '-' . $user_info['userid'] . '-' . NV_CACHE_PREFIX));
 
+//     var_dump($array_data);die;
+    require_once NV_ROOTDIR . '/modules/location/location.class.php';
+    $location = new Location();
     if (!empty($array_data)) {
         foreach ($array_data as $data) {
+            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
+            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);
             $xtpl->assign('DATA', $data);
             $xtpl->parse('main.loop');
         }

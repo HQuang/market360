@@ -42,7 +42,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-6">
+				<div class="col-xs-24 col-md-6">
 					<div class="form-group">
 						<input class="btn btn-primary" type="submit" value="{LANG.search_submit}" />
 						<!-- BEGIN: userpost -->
@@ -59,7 +59,7 @@
 	<!-- END: maxpostlimit -->
 
 	<form action="{NV_BASE_SITEURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post">
-		<div class="table-responsive">
+		<div class="table-responsive userarea_body">
 			<table class="table table-striped table-bordered table-hover table-middle">
 				<thead>
 					<tr>
@@ -82,8 +82,7 @@
 					<tr id="row_{VIEW.id}">
 						<td class="text-center"><input class="post" type="checkbox" onclick="nv_UncheckAll(this.form, 'idcheck[]', 'check_all[]', this.checked);" value="{VIEW.id}" name="idcheck[]"></td>
 						<td>{VIEW.code}</td>
-						<td><a href="{VIEW.link_view}" target="_blank"><strong>{VIEW.title}</strong></a> <!-- BEGIN: group_info --> <label class="label pointer" style="background-color: {GROUP_INFO.color"
-								<!-- BEGIN: exptime -->title="{GROUP_INFO.exptime}"<!-- END: exptime -->>{GROUP_INFO.title}
+						<td><a href="{VIEW.link_view}" target="_blank"><strong>{VIEW.title}</strong></a> <!-- BEGIN: group_info --> <label class="label pointer" style="padding: 2px;background-color: {GROUP_INFO.color}"						<!-- BEGIN: exptime -->title="{GROUP_INFO.exptime}"<!-- END: exptime -->>{GROUP_INFO.title}
 						</label> <!-- END: group_info --> <span class="help-block default-info"><em class="fa fa-clock-o">&nbsp;</em>{VIEW.addtime}&nbsp;&nbsp;&nbsp;<em class="fa fa-folder-o">&nbsp;</em>{VIEW.cat}</span> <span class="help-block">
 								<ul class="list-inline">
 									<!-- BEGIN: refresh_buy -->

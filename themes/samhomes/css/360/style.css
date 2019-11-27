@@ -466,7 +466,7 @@ calc(100% - 2.5em) 0.5em;  background-size: 5px 5px, 5px 5px,1px 1.5em; backgrou
 #posting_nav .dropdown-menu li { display: block;border-bottom: 1px solid #ddd;}
 
 .qty a { color:#333; background-color: #ccc; padding:3px 6px; text-align: center; font-weight: bold; text-decoration: none; }
-.table a.btn { font-size:8pt; background-color: #e9e9e9; color:#333; padding:2px 15px; border-radius: 15px; display: inline-block; margin-bottom: 5px; margin-right: 10px; text-align: left; }
+.table a.btn {font-size:8pt;background-color: #e9e9e9;color:#333;padding:2px 15px;border-radius: 15px;display: inline-block;margin-bottom: 5px;margin-right: 10px;text-align: left;}
 .table a.btn span { border-left: 1px solid #cecece; padding-left: 10px; }
 .table a.btn:hover { background-color: #ccc; }
 .table.house_listing a.btn { padding:1px 12px; font-size:7.5pt;}

@@ -101,6 +101,22 @@ $sth->execute();
 
 $array_json = array();
 while ($row = $sth->fetch()) {
+
+    $row['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_images WHERE rowsid=' . $row['id'])->fetchColumn();
+    $row['is_user'] = 0;
+    $row['style_save'] = $row['style_saved'] = '';
+    if (defined('NV_IS_USER')) {
+
+        $row['is_user'] = 1;
+        $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $row['id'] . ' AND userid=' . $user_info['userid'])->fetchColumn();
+        if ($count) {
+            $row['style_save'] = 'style="display: none"';
+        } else {
+            $row['style_saved'] = 'style="display: none"';
+        }
+    } else {
+        $row['style_saved'] = 'style="display: none"';
+    }
     if (nv_user_in_groups($row['groupview'])) {
         if (!empty($data = nv_market_data($row, $module_name))) {
             $array_data[$row['id']] = $data;

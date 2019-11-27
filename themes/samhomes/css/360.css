@@ -1,3 +1,11 @@
+#my_full_page .table>tbody>tr>td {
+				/* vertical-align: middle; */
+}
+.userarea_body .btn-default{
+				padding: 6px !important;
+				margin: 0;
+}
+
 #main_menu_nav>li.current>a {
 				color: #fb6b26;
 }
@@ -162,8 +170,13 @@ label {
 				background-color: #fcf8e3;
 				border-color: #faebcc;
 }
-.search .alert-info,
-.search .alert-info a{background-color: #d3a02a;color: #ffffff;border-color: #d3a02a;}
+
+.search .alert-info, .search .alert-info a {
+				background-color: #d3a02a;
+				color: #ffffff;
+				border-color: #d3a02a;
+}
+
 .socialicon div>a {
 				margin-bottom: 10px;
 }
@@ -248,9 +261,9 @@ label {
 				.p-xs-b5 {
 								padding-bottom: 5px;
 				}
-				.p-xs-lr0{
-				padding-left: 0;
-				padding-right: 0;
+				.p-xs-lr0 {
+								padding-left: 0;
+								padding-right: 0;
 				}
 }
 
