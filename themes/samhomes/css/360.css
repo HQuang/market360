@@ -1,49 +1,59 @@
-#main_menu_nav > li.current > a{
-				    color: #fb6b26;
+#main_menu_nav>li.current>a {
+				color: #fb6b26;
 }
+
 #tab_product_index a.text_content {
-    color: darkgrey;
-    text-decoration: none;
-    font-size: 15px;
-    padding: 15px 0;
+				color: darkgrey;
+				text-decoration: none;
+				font-size: 15px;
 }
+
 #tab_product_index .active a.text_content, #tab_product_index a.text_content:hover {
-    color: #fb6b26;
-    border-bottom: 2px solid #ffcc66;
+				color: #fb6b26;
+				border-bottom: 2px solid #ffcc66;
 }
 
 #tab_product_index {
-    margin: 10px 0;
-    background-color: white;
+				margin: 10px 0;
+				background-color: white;
 }
+
 .iconLayout-list {
-    background-image: url(../images/salemaket_4.png);
-    background-repeat: no-repeat;
-    background-size: 20px;
-    font-size: 0;
-    width: 33px;
-    height: 31px;
-    background-position: center;
+				background-image: url(../images/salemaket_4.png);
+				background-repeat: no-repeat;
+				background-size: 20px;
+				font-size: 0;
+				width: 33px;
+				height: 31px;
+				background-position: center;
 }
+
 .iconLayout-grid {
-    background-image: url(../images/salemaket_5.png);
-    background-repeat: no-repeat;
-    background-size: 20px;
-    font-size: 0;
-    width: 32px;
-    height: 31px;
-    background-position: center;
+				background-image: url(../images/salemaket_5.png);
+				background-repeat: no-repeat;
+				background-size: 20px;
+				font-size: 0;
+				width: 32px;
+				height: 31px;
+				background-position: center;
 }
+
 .iconLayout-grid.selected, .iconLayout-list.selected {
-    border: 3px solid #4caf50;
+				border: 3px solid #4caf50;
 }
-.sale_type_1 > div.owl-stage-outer.owl-height{height: 150px !important;} 
-.news_column h2{
+
+.sale_type_1>div.owl-stage-outer.owl-height {
+				height: 150px !important;
+}
+
+.news_column h2 {
 				font-weight: 600;
 }
-#boxLocations ul img{
+
+#boxLocations ul img {
 				margin-right: 10px;
 }
+
 #my_action_content .panel-primary>.panel-heading {
 				background-color: #d3a02a;
 				border-color: #d3a02a;
@@ -152,7 +162,8 @@ label {
 				background-color: #fcf8e3;
 				border-color: #faebcc;
 }
-
+.search .alert-info,
+.search .alert-info a{background-color: #d3a02a;color: #ffffff;border-color: #d3a02a;}
 .socialicon div>a {
 				margin-bottom: 10px;
 }
@@ -162,7 +173,8 @@ label {
 }
 
 #box_product_search .province {
-				padding-right: 0px
+				padding-right: 0px;
+				padding-left: 0;
 }
 
 .wallet-button {
@@ -233,6 +245,13 @@ label {
 								display: flex;
 								justify-content: center;
 				}
+				.p-xs-b5 {
+								padding-bottom: 5px;
+				}
+				.p-xs-lr0{
+				padding-left: 0;
+				padding-right: 0;
+				}
 }
 
 @media only screen and (max-width:639px) {
@@ -253,9 +272,6 @@ label {
 				}
 				.col-min-12 {
 								width: 50%;
-				}
-				#user_menu .btn-primary {
-								
 				}
 }
 
@@ -338,6 +354,7 @@ label {
 .m-t10 {
 				margin-top: 10px;
 }
+
 .m-t15 {
 				margin-top: 15px;
 }
@@ -348,6 +365,11 @@ label {
 
 .m-0 {
 				margin: 0;
+}
+
+.m-tb15 {
+				margin-top: 15px;
+				margin-bottom: 15px;
 }
 
 .w-100 {

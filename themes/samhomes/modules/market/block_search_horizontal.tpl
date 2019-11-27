@@ -16,13 +16,13 @@
                     <input type="hidden" name="{NV_NAME_VARIABLE}" value="{MODULE_NAME}" />
                     <input type="hidden" name="{NV_OP_VARIABLE}" value="search" />
                     <!-- END: no_rewrite -->
-                    <div class="col-xs-6 col-min-24 p-lr0">
+                    <div class="col-xs-6 col-min-24 p-lr0 p-xs-b5">
                         <div class="input-keyword">
                             <input type="text" class="form-control" name="q" value="{SEARCH.q}" placeholder="{LANG.keywords_input}" />
                         </div>
                     </div>
                     <div class="col-xs-8 col-min-24">{LOCATION}</div>
-                    <div class="col-xs-3 col-min-24 p-lr0">
+                    <div class="col-xs-3 col-min-24 p-lr0 p-xs-b5">
                         <div class="form-group">
                             <select name="type" class="form-control">
                                 <!-- BEGIN: type -->
@@ -31,7 +31,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-4 col-min-24">
+                    <div class="col-xs-4 col-min-24 p-xs-lr0 p-xs-b5">
                         <select name="catid" class="form-control select2">
                             <option value="0">---{LANG.cat_select}---</option>
                             <!-- BEGIN: cat -->

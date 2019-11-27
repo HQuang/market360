@@ -109,8 +109,7 @@ ul.slimmenu li a:hover { background-color: transparent;}
 .option .option-split .form-control { background-color: #fff; border:0; -webkit-appearance:none;}
 .dropdown-wrapper { position: relative;}
 
-#search_view_mode .dropdown {padding: 15px 0;}
-@media (max-width: 767px) {#search_view_mode .dropdown {float: left !important;}}
+
 @media (min-width: 768px) {#search_view_mode h1 {padding: 21px 0;}}
 .btn .caret {margin-left: 10px;}
 .dropdown-menu {top: 74%;min-width: 100%;}
@@ -1338,10 +1337,11 @@ footer .desfot, footer .contactfooter {text-align: justify}
 #page_listing .house_listing.view_new .item.gird-group-item .image {display: block;margin-right: 0;width: 100%;height: 130px;overflow: hidden;position: relative;background: url(themes/logo_blur.png) no-repeat center;background-size: cover;background-color: #fff;box-shadow: 2px 2px 6px rgba(0, 0, 0, .18);border-top-left-radius: 3px;border-top-right-radius: 3px;}
 #page_listing .house_listing.view_new .item.gird-group-item .block-info {box-shadow: 2px 2px 6px rgba(0, 0, 0, .18);background-color: #fff;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;}
 #page_listing .header {position: relative;}
-#page_listing .header .line2 {margin-right: 23px}
-#page_listing .saved {position: absolute;top: 0;right: -7px}
-#page_listing .saved button {padding: 0;border: none;background-color: transparent}
-#page_listing .saved button .fa {font-size: 18px;color: #fb6b26}
+.header_group ,#page_listing .header .line2 {margin-right: 23px}
+.saved_176667 {position: absolute;top: 10px;right: 5px;}
+#page_listing .saved_176667 {top: 0px;right: -7px;}
+.saved_176667 button {padding: 0;border: none;background-color: transparent}
+.saved_176667 button .fa {font-size: 18px;color: #fb6b26}
 #body_content #posting_success .content-body {background-color: #fff;padding: 15px 15px}
 #overlay-mn {display: none;width: 100%;height: 100%;position: fixed;top: 40px !important;z-index: 9998;right: 0;}
 #menu_mobile nav.open {transform: translateX(0);box-shadow: 2px 2px 6px rgba(0, 0, 0, .18)}
@@ -1460,7 +1460,7 @@ body.custom_page_layout_product_tinchinhchu  #scrollTopButton.affix { background
     #posting_package .packages {height:340px;}
     #search_view_mode .row {display: flex;align-items: center}
     #search_view_mode .search-right .dropdown{display: inline-block;float: right;}
-    #search_view_mode .search-right .view-list-gird{display: inline-block;float: right;padding: 15px 0;margin-left: 4px;}
+    #search_view_mode .search-right .view-list-gird{}
     #posting_success .row .col-xs-12 {padding:0 5px}
     #posting_success .row .col-xs-12:first-child {padding-left: 15px}
 
@@ -1547,7 +1547,7 @@ body.custom_page_layout_product_tinchinhchu  #scrollTopButton.affix { background
     #mobile_nav_header .btn { color:#000;padding:5px 15px; font-size: 9pt;}
     #mobile_nav_header .navbar-toggle {margin-top:0; margin-bottom: 0;}
     #mobile_nav_header .navbar-nav > li > a > .fa { font-size:20pt; margin-top: -10px;}
-    #box_product_search .input-keyword {margin-bottom: 5px; display: inline-block; width: 100%;}
+    #box_product_search .input-keyword, .search-light .district,.search-light .province {padding-bottom: 5px;width: 100%;padding-left: 0;padding-right: 0;}
     #box_product_search .input-group-btn { padding-left: 0; padding-right: 4px;}
     #box_product_search .input-group-btn { position: unset;}
     #box_product_search .dropdown-menu { top: unset; width: 100%; left: 0; }

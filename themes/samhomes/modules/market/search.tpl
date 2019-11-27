@@ -15,13 +15,13 @@
         <div class="col-xs-24"><div id="page_listing" class="m-t15"> <div class="house_listing view_new"> {DATA} </div> </div></div>
         <!-- END: maps_top -->
         <!-- BEGIN: maps_right -->
-        <div class="col-sm-14 col-xs-24"><div id="page_listing" class="m-t15"> <div class="house_listing view_new"> {DATA} </div> </div></div>
+        <div class="col-sm-14 col-xs-24"><div id="page_listing" > <div class="house_listing view_new"> {DATA} </div> </div></div>
         <div class="col-sm-10 col-xs-24">
             <div class="m-bottom" id="company-map" style="width: 100%; height: 500px"></div>
         </div>
         <!-- END: maps_right -->
         <!-- BEGIN: maps_bottom -->
-        <div class="col-xs-24"><div id="page_listing" class="m-t15"> <div class="house_listing view_new"> {DATA} </div> </div></div>
+        <div class="col-xs-24"><div id="page_listing"> <div class="house_listing view_new"> {DATA} </div> </div></div>
         <div class="col-xs-24">
             <div class="m-bottom" id="company-map" style="width: 100%; height: 500px"></div>
         </div>
@@ -30,7 +30,7 @@
         <div class="col-sm-10 col-xs-24">
             <div class="m-bottom" id="company-map" style="width: 100%; height: 500px"></div>
         </div>
-        <div class="col-sm-14 col-xs-24"><div id="page_listing" class="m-t15"> <div class="house_listing view_new"> {DATA} </div> </div></div>
+        <div class="col-sm-14 col-xs-24"><div id="page_listing"> <div class="house_listing view_new"> {DATA} </div> </div></div>
         <!-- END: maps_left -->
     <!-- END: maps -->
     <!-- BEGIN: page -->

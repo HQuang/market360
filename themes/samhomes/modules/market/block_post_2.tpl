@@ -27,13 +27,21 @@
                 </div>
             </a>
             <div class="block-info">
-                <div class="header">
+                <div class="header header_group">
                     <h3 class="line2">
                         <a href="{ROW.link}">{ROW.title}</a>
                     </h3>
                     <p>
                         <a href="{ROW.location_link}">{ROW.location}</a>
                     </p>
+                    <div class="saved saved_176667 hidden-xs">
+                            <button type="button" onclick="nv_save_rows({ROW.id}, 'add', {ROW.is_user}); return !1;" {ROW.style_save} class="save_button_{ROW.id}">
+                                <i class="fa fa-heart-o">&nbsp;</i>
+                            </button>
+                            <button type="button" onclick="nv_save_rows({ROW.id}, 'remove', {ROW.is_user}); return !1;" {ROW.style_saved} class="saved_button_{ROW.id}">
+                                <i class="fa fa-minus-circle">&nbsp;</i>
+                            </button>
+                        </div>
                 </div>
                 <div class="body">
                     <p>{ROW.description}</p>
@@ -89,48 +97,3 @@
     });
 </script>
 <!-- END: main -->
-<link rel="stylesheet" href="{NV_BASE_SITEURL}themes/{TEMPLATE}/js/owlcarousel/assets/owl.carousel.min.css">
-<link rel="stylesheet" href="{NV_BASE_SITEURL}themes/{TEMPLATE}/js/owlcarousel/assets/owl.theme.default.min.css">
-<div class="block-articles">
-    <ul class="list-unstyled qc_doitac  owl-carousel">
-        <!-- BEGIN: loop -->
-        <li class="item">
-            <div class="entry">
-                <a href="{ROW.link}"> <img src="{ROW.thumb}" data-src="{ROW.thumb}" alt="{ROW.title}"></a>
-                <div class="summary">
-                    <a href="{ROW.link}" title="{ROW.title}"><div class="title">{ROW.title}</div></a>
-                    <div class="price">{LANG.price}: {ROW.price}</div>
-                    <div class="location">{ROW.location}</div>
-                    <div class="location">{ROW.addtime}</div>
-                </div>
-            </div>
-        </li>
-        <!-- END: loop -->
-    </ul>
-</div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.qc_doitac').owlCarousel({
-            loop : true,
-            margin : 10,
-            navText : [ '<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>' ],
-            responsive : {
-                0 : {
-                    items : 1
-                },
-                600 : {
-                    items : 3
-                },
-                1000 : {
-                    items : 4
-                }
-            }
-        })
-        $('.owl-carousel').find('.owl-nav').removeClass('disabled');
-        $('.owl-carousel').on('changed.owl.carousel', function(event) {
-            $(this).find('.owl-nav').removeClass('disabled');
-        });
-    });
-    $(".qc_doitac-inner .item:first").addClass("active");
-</script>
-<script src="{NV_BASE_SITEURL}themes/{TEMPLATE}/js/owlcarousel/owl.carousel.min.js"></script>

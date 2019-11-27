@@ -82,7 +82,7 @@ if (!nv_function_exists('nv_block_market_groups')) {
 
     function nv_block_market_groups($block_config)
     {
-        global $db_config, $lang_module, $module_array_cat, $array_market_cat, $module_info, $site_mods, $module_config, $global_config, $nv_Cache, $db, $module_name, $module_data, $module_file, $module_upload, $my_head;
+        global $db_config, $lang_module, $module_array_cat, $array_market_cat, $module_info, $site_mods, $module_config, $global_config, $nv_Cache, $db, $module_name, $module_data, $module_file, $module_upload, $my_head, $user_info;
 
         $module = $block_config['module'];
         $mod_data = $site_mods[$module]['module_data'];
@@ -174,6 +174,25 @@ if (!nv_function_exists('nv_block_market_groups')) {
             foreach ($list as $l) {
                 if (nv_user_in_groups($l['groupview'])) {
                     if (!empty($data = nv_market_data($l, $module))) {
+
+                            $data['is_user'] = 0;
+
+                            $data['style_save'] = $data['style_saved'] = '';
+                            if (defined('NV_IS_USER')) {
+
+                                $data['is_user'] = 1;
+//                                 die('1');
+// var_dump('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $data['id'] . ' AND userid=' . $user_info['userid']);die;
+                                $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $data['id'] . ' AND userid=' . $user_info['userid'])->fetchColumn();
+                                if ($count) {
+                                    $data['style_save'] = 'style="display: none"';
+                                } else {
+                                    $data['style_saved'] = 'style="display: none"';
+                                }
+                            } else {
+                                $data['style_saved'] = 'style="display: none"';
+                            }
+
                         $data['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_images WHERE rowsid=' . $data['id'] )->fetchColumn();
                         $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
                         $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);

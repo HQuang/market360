@@ -50,6 +50,8 @@
 {BLOCK}
 <!-- END: block -->
 
+
+<!-- END: loop -->
 <script>
 var LANG = [];
 LANG.error_save_login = '{LANG.error_save_login}';
@@ -59,7 +61,6 @@ LANG.auction_register_success = '{LANG.auction_register_success}';
 LANG.auction_cancel_succes = '{LANG.auction_cancel_succes}';
 LANG.auction_cancel_confirm = '{LANG.auction_cancel_confirm}';
 </script>
-<!-- END: loop -->
 <!-- BEGIN: page -->
 <div class="text-center clear">{PAGE}</div>
 <!-- END: page -->
