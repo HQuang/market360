@@ -97,11 +97,11 @@ function nv_save_rows(id, mod, is_user) {
                 alert(r_split[1]);
             } else {
                 if (mod == 'add') {
-                    $('#save').hide();
-                    $('#saved').show();
+                    $('.save_button_' + id + '').hide();
+                    $('.saved_button_' + id + '').show();
                 } else {
-                    $('#saved').hide();
-                    $('#save').show();
+                    $('.saved_button_' + id + '').hide();
+                    $('.save_button_' + id + '').show();
                 }
                 alert(r_split[1]);
             }

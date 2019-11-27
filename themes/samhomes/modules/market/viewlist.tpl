@@ -23,10 +23,10 @@
             </p>
             <!-- END: location -->
             <div class="saved saved_176667 hidden-xs">
-                <button type="button" onclick="nv_save_rows({ROW.id}, 'add', {ROW.is_user}); return !1;" {ROW.style_save}>
+                <button type="button" onclick="nv_save_rows({ROW.id}, 'add', {ROW.is_user}); return !1;" {ROW.style_save}  class="save_button_{ROW.id}">
                     <i class="fa fa-heart-o">&nbsp;</i>
                 </button>
-                <button type="button" onclick="nv_save_rows({ROW.id}, 'remove', {ROW.is_user}); return !1;" {ROW.style_saved}>
+                <button type="button" onclick="nv_save_rows({ROW.id}, 'remove', {ROW.is_user}); return !1;" {ROW.style_saved}  class="saved_button_{ROW.id}">
                     <i class="fa fa-minus-circle">&nbsp;</i>
                 </button>
             </div>
