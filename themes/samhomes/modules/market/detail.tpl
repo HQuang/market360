@@ -390,31 +390,39 @@
                     {BLOCK_1}
                 </div>
                 <div class="col-sm-6 col-xs-24">
-                    <!-- BEGIN: contact -->
                     <div class="formBooking">
                         <div class="form-group lbl-title">{LANG.contact_info}</div>
-                        <!-- BEGIN: fullname -->
+                        <!-- BEGIN: contact -->
                         <div class="form-group" style="font-size: 14px">
-                            <i class="fa fa-user"></i> {DATA.contact_fullname}
+                            <i class="fa fa-user"></i>
+                            <!-- BEGIN: fullname -->
+                            {DATA.contact_fullname}
+                            <!-- END: fullname -->
                         </div>
-                        <!-- END: fullname -->
                         <!-- BEGIN: phone -->
                         <div class="form-group">
-                            <a href="tel:{DATA.contact_phone}" class="btn btn-primary btn-block btn-sm" id="btn_get_phone"><i class="fa fa-phone"></i> <span>{DATA.contact_phone}</span></a>
+                            <a href="tel:{DATA.contact_phone}" class="btn btn-primary btn-block btn-sm" id="btn_get_phone"><i class="fa fa-phone"></i> <span>
+                                    {DATA.contact_phone}
+                            </span></a>
+                        </div>
+                        <div class="form-group">
+                            <a href="sms:{DATA.contact_phone}" class="btn btn-primary btn-block btn-sm" id="btn_get_phone"><i class="fa fa-envelope"></i> <span>
+                                    {DATA.contact_phone}
+                            </span></a>
                         </div>
                         <!-- END: phone -->
-                        <!-- BEGIN: email -->
                         <div class=" div_chat">
+                            <!-- BEGIN: email -->
                             <a href="mailto:{DATA.contact_email}" class="btn btn-info btn-block btn-sm"><i class="fa fa-envelope"></i>&nbsp;{LANG.sendmail}</a>
+                            <!-- END: email -->
                         </div>
-                        <!-- END: email -->
-                        <!-- BEGIN: address -->
                         <div class="">
-                            <a href="#" class="btn btn-default btn-block" style="white-space: inherit;"> <i class="fa fa-map-pin"></i> Địa chỉ <b style="color: #ed1c24"> {DATA.contact_address} </b></a>
+                            <a href="#" class="btn btn-default btn-block" style="white-space: inherit;"> <i class="fa fa-map-pin"></i> Địa chỉ <b style="color: #ed1c24">
+                                    <!-- BEGIN: address --> {DATA.contact_address} <!-- END: address -->
+                            </b></a>
                         </div>
-                        <!-- END: address -->
+                        <!-- END: contact -->
                     </div>
-                    <!-- END: contact -->
                     <div class="m-t10"></div>
                     [CONTENT_FIFTEEN]
                 </div>

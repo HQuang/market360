@@ -26,11 +26,11 @@
     {ADMINTOOLBAR}
 </footer>
 <div class="hot-linkly hidden-xs">[CONTENT_SIX]</div>
-<div id="toggle-product" class="open hidden-xs">
+<div id="toggle-product" class="open hidden-xs ">
     <div class="affix">
         <i class="fa fa-chevron-down rotate-icon" aria-hidden="true"></i>
     </div>
-    <div id="popup_slideup"></div>
+    <div id="popup_slideup">[FOOTER_LEFT]</div>
 </div>
 <a id="scrollTopButton" href="#top" data-spy="affix" data-offset-top="50" data-interval=5000><i class="fa fa-angle-up" aria-hidden="true"></i></a>
 <!--     <div id="divPopupRegisterInquiry"></div> -->

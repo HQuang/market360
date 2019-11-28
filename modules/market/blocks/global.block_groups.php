@@ -24,7 +24,9 @@ if (!nv_function_exists('nv_block_market_groups')) {
             '1' => $lang_block['template_1'],
             '2' => $lang_block['template_2'],
             '3' => $lang_block['template_3'],
-            '4' => $lang_block['template_4']
+            '4' => $lang_block['template_4'],
+            '5' => $lang_block['template_5']
+
         );
 
         $html = '';
@@ -139,6 +141,9 @@ if (!nv_function_exists('nv_block_market_groups')) {
             if ($block_config['template'] == 4) {
                 $template = 'block_post_5.tpl';
             }
+            if ($block_config['template'] == 5) {
+                $template = 'block_post_6.tpl';
+            }
 
             if (file_exists(NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/market/' . $template)) {
                 $block_theme = $global_config['module_theme'];
@@ -181,8 +186,6 @@ if (!nv_function_exists('nv_block_market_groups')) {
                             if (defined('NV_IS_USER')) {
 
                                 $data['is_user'] = 1;
-//                                 die('1');
-// var_dump('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $data['id'] . ' AND userid=' . $user_info['userid']);die;
                                 $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $data['id'] . ' AND userid=' . $user_info['userid'])->fetchColumn();
                                 if ($count) {
                                     $data['style_save'] = 'style="display: none"';
