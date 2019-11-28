@@ -104,6 +104,20 @@ $array_field_config = array();
 while ($_row = $result->fetch()) {
     if (nv_user_in_groups($_row['groupview'])) {
         if (!empty($data = nv_market_data($_row, $module_name))) {
+
+            $data['is_user'] = 0;
+            $data['style_save'] = $data['style_saved'] = '';
+            if (defined('NV_IS_USER')) {
+                $data['is_user'] = 1;
+                $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $data['id'] . ' AND userid=' . $user_info['userid'])->fetchColumn();
+                if ($count) {
+                    $data['style_save'] = 'style="display: none"';
+                } else {
+                    $data['style_saved'] = 'style="display: none"';
+                }
+            } else {
+                $data['style_saved'] = 'style="display: none"';
+            }
             // custom field
             $data['custom_field'] = array();
             if (!isset($array_custom_field_title[$_row['catid']])) {

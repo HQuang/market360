@@ -96,8 +96,8 @@
                                     <img src="{FACI.icon}" alt="">
                                 </div>
                                 <span>{FACI.title}</span>
-                            </div>      
-                            <!-- END: loop -->                     
+                            </div>
+                            <!-- END: loop -->
                         </div>
                         <!-- END: faci -->
                         <!-- BEGIN: field -->
@@ -353,6 +353,49 @@
                             <!-- END: maps_content -->
                         </div>
                     </div>
+                    <div class="m-t20"></div>
+                    <div class="alert alert-warning">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-sm-16 col-md-20">Vui lòng hỗ trợ chúng tôi báo sai phạm nếu tin đăng không đúng như nội dung đăng tải</div>
+                            <div class="col-sm-8 col-md-4">
+                                <div id="feedback">
+                                    <div class="dropdown">
+                                        <form id="frmFeeback" method="post" onsubmit="return doFeedback(this)">
+                                            <button class="btn btn-primary btn-block btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                                                <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Phản hồi
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><label class="title"><input type="checkbox" id="fb_1" name="fb[]" value="1">Bất động sản đã bán/cho thuê</label></li>
+                                                <li><label class="title"><input type="checkbox" id="fb_2" name="fb[]" value="2">Nội dung không đúng với thực tế</label></li>
+                                                <li><label class="title"><input type="checkbox" id="fb_3" name="fb[]" value="3">Giá không đúng</label></li>
+                                                <li><label class="title"><input type="checkbox" id="fb_4" name="fb[]" value="4">Không liên lạc được</label></li>
+                                                <li><label class="title"><input type="checkbox" id="fb_5" name="fb[]" value="5">Tin không có thật</label></li>
+                                                <li><label class="title"><input type="checkbox" id="fb_6" name="fb[]" value="6">Địa chỉ bất động sản không đúng</label></li>
+                                                <li><label class="title"><input type="checkbox" id="fb_7" name="fb[]" value="7">Trùng với tin rao khác</label></li>
+                                                <li><input type="hidden" name="hid" value="170096">
+                                                    <button type="submit" name="action" class="btn btn-primary btn-sm" value="save" style="padding: 7px 20px;">Gửi đi</button></li>
+                                            </ul>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-b10">
+                        <div class="socialicon clearfix">
+                            <div class="pull-left">
+                                <!-- BEGIN: refresh -->
+                                <a id="refresh" class="btn btn-warning" href="javascript:void(0)" onclick="nv_refresh_popup({DATA.id}); return !1;" title="{LANG.refresh}"><em class="fa fa-refresh fa-lg text-success">&nbsp;</em>{LANG.refresh}</a>
+                                <!-- END: refresh -->
+                                <a class="btn btn-default btn-xs save_button_{DATA.id}" {DATA.style_save} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'add', {DATA.is_user}); return !1;" title="{LANG.save}"><em class="fa fa-floppy-o fa-lg text-success">&nbsp;</em>{LANG.save}</a> <a class="btn btn-default btn-xs saved_button_{DATA.id}" {DATA.style_saved} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'remove', {DATA.is_user}); return !1;" title="{LANG.save_remove}"><em class="fa fa-minus-circle fa-lg text-danger">&nbsp;</em>{LANG.save_remove}</a>
+                                <!-- BEGIN: admin -->
+                                <a href="{DATA.link_edit}" class="btn btn-default btn-xs"><em class="fa fa-edit">&nbsp;</em>{LANG.edit}</a> <a href="{DATA.link_delete}" class="btn btn-default btn-xs" onclick="return confirm(nv_is_del_confirm[0]);"><em class="fa fa-trash-o">&nbsp;</em>{LANG.delete}</a>
+                                <!-- END: admin -->
+                            <div class="fb-like pull-left line-25" data-href="{SELFURL}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
                     <!-- BEGIN: keywords -->
                     <div class="tags">
                         <b> <i class="fa fa-tags"></i>{LANG.keywords}:
@@ -392,45 +435,6 @@
                     </div>
                     <!-- END: contact -->
                     <div class="m-t10"></div>
-                    <div class="formBooking">
-                        <div class="m-b10">
-                            <div class="socialicon clearfix">
-                                <div class="fb-like pull-left" data-href="{SELFURL}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true">&nbsp;</div>
-                                <div class="pull-right">
-                                    <!-- BEGIN: refresh -->
-                                    <a id="refresh" class="btn btn-warning" href="javascript:void(0)" onclick="nv_refresh_popup({DATA.id}); return !1;" title="{LANG.refresh}"><em class="fa fa-refresh fa-lg text-success">&nbsp;</em>{LANG.refresh}</a>
-                                    <!-- END: refresh -->
-                                    <a class="btn btn-default btn-xs save_button_{DATA.id}" {DATA.style_save} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'add', {DATA.is_user}); return !1;" title="{LANG.save}"><em class="fa fa-floppy-o fa-lg text-success">&nbsp;</em>{LANG.save}</a> <a class="btn btn-default btn-xs saved_button_{DATA.id}" {DATA.style_saved} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'remove', {DATA.is_user}); return !1;" title="{LANG.save_remove}"><em class="fa fa-minus-circle fa-lg text-danger">&nbsp;</em>{LANG.save_remove}</a>
-                                    <!-- BEGIN: admin -->
-                                    <a href="{DATA.link_edit}" class="btn btn-default btn-xs"><em class="fa fa-edit">&nbsp;</em>{LANG.edit}</a> <a href="{DATA.link_delete}" class="btn btn-default btn-xs" onclick="return confirm(nv_is_del_confirm[0]);"><em class="fa fa-trash-o">&nbsp;</em>{LANG.delete}</a>
-                                    <!-- END: admin -->
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="form-group clear">
-                            <div id="feedback">
-                                <div class="dropdown">
-                                    <form id="frmFeeback2" method="post" onsubmit="return doFeedback(this)">
-                                        <button class="btn btn-block btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="white-space: normal">
-                                            <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Báo cáo sai phạm
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><label class="title"><input type="checkbox" id="fb_1" name="fb[]" value="1">Bất động sản đã bán/cho thuê</label></li>
-                                            <li><label class="title"><input type="checkbox" id="fb_2" name="fb[]" value="2">Nội dung không đúng với thực tế</label></li>
-                                            <li><label class="title"><input type="checkbox" id="fb_3" name="fb[]" value="3">Giá không đúng</label></li>
-                                            <li><label class="title"><input type="checkbox" id="fb_4" name="fb[]" value="4">Không liên lạc được</label></li>
-                                            <li><label class="title"><input type="checkbox" id="fb_5" name="fb[]" value="5">Tin không có thật</label></li>
-                                            <li><label class="title"><input type="checkbox" id="fb_6" name="fb[]" value="6">Địa chỉ bất động sản không đúng</label></li>
-                                            <li><label class="title"><input type="checkbox" id="fb_7" name="fb[]" value="7">Trùng với tin rao khác</label></li>
-                                            <li><input type="hidden" name="hid" value="107895">
-                                                <button type="submit" name="action" class="btn btn-primary btn-sm" value="save">Gửi đi</button></li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     [CONTENT_FIFTEEN]
                 </div>
             </div>
