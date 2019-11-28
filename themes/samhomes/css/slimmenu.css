@@ -112,7 +112,7 @@ ul.slimmenu li a:hover, ul.slimmenu li a:focus, ul.slimmenu li.current {
 ul.slimmenu li .sub-collapser {
 	background: none;
 	position: absolute;
-    right: 0;
+	right: 0;
 	top: 0;
 	width: 28px;
 	height: 100%;
@@ -220,6 +220,17 @@ ul.slimmenu.collapsed li > ul {
 		border-radius: 0px;
 		box-shadow: none;
 		border: none;
+	}
+	ul.slimmenu li .sub-collapser:before {
+								font-family: 'FontAwesome';
+								content: "\f055";
+								margin-right: 0;
+								line-height: 37px;
+								color: #FFF;
+								font-size: 15px;
+	}
+	ul.slimmenu li .sub-collapser.expanded:before {
+								content: "\f056";
 	}
 
 }

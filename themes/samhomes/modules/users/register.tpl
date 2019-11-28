@@ -1,7 +1,7 @@
 <!-- BEGIN: main -->
 <div class="row centered margin-top-lg margin-bottom-lg">
 <div style="min-width:300px">
-    <div class="page panel panel-default box-shadow bg-lavender">
+    <div class="page panel panel-default box-shadow">
         <div class="panel-body">
             <h2 class="text-center margin-bottom-lg">{LANG.register}</h2>
             {FILE "register_form.tpl"}

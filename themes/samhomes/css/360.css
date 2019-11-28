@@ -1,7 +1,8 @@
 #my_full_page .table>tbody>tr>td {
-				/* vertical-align: middle; */
+				vertical-align: middle;
 }
-.userarea_body .btn-default{
+
+.userarea_body .btn-default {
 				padding: 6px !important;
 				margin: 0;
 }
@@ -93,7 +94,7 @@ p.login-more a {
 				margin: 5px 10px;
 }
 
-.modal-dialog .nv-info {
+.modal-dialog .nv-info, .login-box .nv-info {
 				border: 0;
 				background: 0;
 }
@@ -247,26 +248,52 @@ label {
 @media only screen and (max-width:991px) {
 }
 
-@media only screen and (max-width:767px) {
-				#my_actions .menu-header {
-								padding-top: 25px;
-				}
-				#user_menu .btn-primary, #user_menu {
-								margin: 0;
-				}
-				#user_menu {
-								display: flex;
-								justify-content: center;
-				}
-				.p-xs-b5 {
-								padding-bottom: 5px;
-				}
-				.p-xs-lr0 {
-								padding-left: 0;
-								padding-right: 0;
-				}
+@media
+only
+screen
+and
+(max-width:767px)
+{
+#my_actions .menu-header {
+				padding-top: 25px;
 }
 
+#user_menu .btn-primary, #user_menu {
+				margin: 0;
+}
+
+#user_menu {
+				display: flex;
+				justify-content: center;
+}
+
+.p-xs-b5 {
+				padding-bottom: 5px;
+}
+
+.p-xs-lr0 {
+				padding-left: 0;
+				padding-right: 0;
+}
+
+#user_menu .btn-primary {
+				padding: 5px 4px !important;
+				border-radius: 5px;
+				margin-bottom: 4px;
+}
+
+#user_menu>li>a {
+				font-size: 10px;
+}
+
+.search-light .district, .search-light .province {
+				padding-bottom: 5px;
+				width: 50%;
+				padding-left: 0;
+				padding-right: 0;
+}
+
+}
 @media only screen and (max-width:639px) {
 }
 
@@ -285,6 +312,9 @@ label {
 				}
 				.col-min-12 {
 								width: 50%;
+				}
+				#box_product_search .input-keyword, .search-light .district, .search-light .province {
+								width: 100%;
 				}
 }
 
@@ -311,12 +341,15 @@ label {
 }
 
 @media only screen and (min-width:1200px) {
+				#banner_home {
+								height: 480px;
+				}
 }
 
 @media ( min-width :0px) and (max-width:479px) {
 }
 
-@media ( min-width :550px) and (max-width:991px) {
+@media ( max-width : 991px) and (min-width: 320px) {
 				#user_menu {
 								right: 43px;
 								top: 5px;
@@ -330,6 +363,11 @@ label {
 }
 
 @media ( min-width :1200px) and (max-width:1366px) {
+}
+
+.select2-container--bootstrap {
+				max-width: 100%;
+				min-width: 100%;
 }
 
 .p-lr {
@@ -372,6 +410,10 @@ label {
 				margin-top: 15px;
 }
 
+.m-t20 {
+				margin-top: 20px;
+}
+
 .m-b20 {
 				margin-bottom: 20px;
 }
@@ -399,6 +441,10 @@ label {
 
 .justify-content {
 				justify-content: center;
+}
+
+.line-25 {
+				line-height: 25px;
 }
 
 .one-line, .two-line, .three-line, .four-line, .five-line {

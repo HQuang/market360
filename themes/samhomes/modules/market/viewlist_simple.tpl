@@ -10,7 +10,7 @@
         </div>
     </a>
     <div class="block-info">
-        <div class="header">
+        <div class="header header_group">
             <h3 class="line2">
                 <a href="{ROW.link}" title="{ROW.title}">{ROW.title}</a>
             </h3>
