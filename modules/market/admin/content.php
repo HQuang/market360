@@ -409,7 +409,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
         $new_id = 0;
         $maps = !empty($row['maps']) ? serialize($row['maps']) : '';
         if (empty($row['id'])) {
-            $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_rows (code, title, alias, wid, faci, catid, groupid, area_p, area_d, address, typeid, description, pricetype, price, price1, unitid, addtime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, userid, ordertime) VALUES (:code, :title, :alias, :wid, :faci, :catid, :groupid, :area_p, :area_d, :address, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, :userid, ' . NV_CURRENTTIME . ')';
+            $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_rows (code, title, alias, wid, faci, catid, groupid, area_p, area_d, address, typeid, description, pricetype, price, price1, unitid, addtime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, groupcomment, userid, ordertime) VALUES (:code, :title, :alias, :wid, :faci, :catid, :groupid, :area_p, :area_d, :address, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, :groupcomment, :userid, ' . NV_CURRENTTIME . ')';
             $data_insert = array();
             $data_insert['code'] = $row['code'];
             $data_insert['title'] = $row['title'];
@@ -434,6 +434,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
             $data_insert['auction_price_begin'] = $row['auction_price_begin'];
             $data_insert['auction_price_step'] = $row['auction_price_step'];
             $data_insert['groupview'] = $row['groupview'];
+            $data_insert['groupcomment'] = $row['groupcomment'];
             $data_insert['userid'] = $row['userid'];
             $new_id = $db->insert_id($_sql, 'id', $data_insert);
         } else {
@@ -444,7 +445,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $row['is_queue'] = 2;
             }
 
-            $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET title = :title, alias = :alias, wid = :wid, faci = :faci, catid = :catid, groupid = :groupid, area_p = :area_p, area_d = :area_d, address = :address, typeid = :typeid, description = :description, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, edittime = ' . NV_CURRENTTIME . ', exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, groupview = :groupview, userid = :userid, is_queue = :is_queue, ordertime = :ordertime WHERE id=' . $row['id']);
+            $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET title = :title, alias = :alias, wid = :wid, faci = :faci, catid = :catid, groupid = :groupid, area_p = :area_p, area_d = :area_d, address = :address, typeid = :typeid, description = :description, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, edittime = ' . NV_CURRENTTIME . ', exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, groupview = :groupview, groupcomment = :groupcomment, userid = :userid, is_queue = :is_queue, ordertime = :ordertime WHERE id=' . $row['id']);
             $stmt->bindParam(':title', $row['title'], PDO::PARAM_STR);
             $stmt->bindParam(':alias', $row['alias'], PDO::PARAM_STR);
             $stmt->bindParam(':wid', $wid, PDO::PARAM_INT);
@@ -467,6 +468,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
             $stmt->bindParam(':auction_price_begin', $row['auction_price_begin'], PDO::PARAM_STR);
             $stmt->bindParam(':auction_price_step', $row['auction_price_step'], PDO::PARAM_STR);
             $stmt->bindParam(':groupview', $row['groupview'], PDO::PARAM_STR);
+            $stmt->bindParam(':groupcomment', $row['groupcomment'], PDO::PARAM_STR);
             $stmt->bindParam(':userid', $row['userid'], PDO::PARAM_INT);
             $stmt->bindParam(':is_queue', $row['is_queue'], PDO::PARAM_INT);
             $stmt->bindParam(':ordertime', $row['ordertime'], PDO::PARAM_INT);

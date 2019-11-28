@@ -354,32 +354,13 @@
                         </div>
                     </div>
                     <div class="m-t20"></div>
-                    <div class="alert alert-warning">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-sm-16 col-md-20">Vui lòng hỗ trợ chúng tôi báo sai phạm nếu tin đăng không đúng như nội dung đăng tải</div>
-                            <div class="col-sm-8 col-md-4">
-                                <div id="feedback">
-                                    <div class="dropdown">
-                                        <form id="frmFeeback" method="post" onsubmit="return doFeedback(this)">
-                                            <button class="btn btn-primary btn-block btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
-                                                <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Phản hồi
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><label class="title"><input type="checkbox" id="fb_1" name="fb[]" value="1">Bất động sản đã bán/cho thuê</label></li>
-                                                <li><label class="title"><input type="checkbox" id="fb_2" name="fb[]" value="2">Nội dung không đúng với thực tế</label></li>
-                                                <li><label class="title"><input type="checkbox" id="fb_3" name="fb[]" value="3">Giá không đúng</label></li>
-                                                <li><label class="title"><input type="checkbox" id="fb_4" name="fb[]" value="4">Không liên lạc được</label></li>
-                                                <li><label class="title"><input type="checkbox" id="fb_5" name="fb[]" value="5">Tin không có thật</label></li>
-                                                <li><label class="title"><input type="checkbox" id="fb_6" name="fb[]" value="6">Địa chỉ bất động sản không đúng</label></li>
-                                                <li><label class="title"><input type="checkbox" id="fb_7" name="fb[]" value="7">Trùng với tin rao khác</label></li>
-                                                <li><input type="hidden" name="hid" value="170096">
-                                                    <button type="submit" name="action" class="btn btn-primary btn-sm" value="save" style="padding: 7px 20px;">Gửi đi</button></li>
-                                            </ul>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="alert alert-warning aleart-comment">
+                        <div class="row d-flex align-items-center m-b20">
+                            <div class="col-xs-24">Vui lòng hỗ trợ chúng tôi báo sai phạm nếu tin đăng không đúng như nội dung đăng tải</div>
                         </div>
+                        <!-- BEGIN: comment_content -->
+                        {COMMENT}
+                        <!-- END: comment_content -->
                     </div>
                     <div class="m-b10">
                         <div class="socialicon clearfix">
@@ -391,7 +372,7 @@
                                 <!-- BEGIN: admin -->
                                 <a href="{DATA.link_edit}" class="btn btn-default btn-xs"><em class="fa fa-edit">&nbsp;</em>{LANG.edit}</a> <a href="{DATA.link_delete}" class="btn btn-default btn-xs" onclick="return confirm(nv_is_del_confirm[0]);"><em class="fa fa-trash-o">&nbsp;</em>{LANG.delete}</a>
                                 <!-- END: admin -->
-                            <div class="fb-like pull-left line-25" data-href="{SELFURL}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true">&nbsp;</div>
+                                <div class="fb-like pull-left line-25" data-href="{SELFURL}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true">&nbsp;</div>
                             </div>
                         </div>
                         <div class="clearfix"></div>

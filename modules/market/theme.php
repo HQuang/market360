@@ -538,7 +538,7 @@ function nv_theme_market_viewlist_simple($array_data, $page = '')
  */
 function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
 {
-    global $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $client_info, $array_config, $site_mods, $array_wid, $array_faci;
+    global $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $client_info, $array_config, $site_mods, $content_comment, $array_wid, $array_faci;
 
     $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
@@ -592,6 +592,12 @@ function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
     if (!empty($array_data['contact_fullname'])) {
         $is_contact = 1;
         $xtpl->parse('main.contact.fullname');
+    }
+//     var_dump($content_comment);die;
+    if (!empty($content_comment)) {
+        $xtpl->assign('COMMENT', $content_comment);
+        $xtpl->parse('main.comment_title');
+        $xtpl->parse('main.comment_content');
     }
 
     if (!empty($array_data['contact_email'])) {

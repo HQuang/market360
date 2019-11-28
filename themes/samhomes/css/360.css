@@ -1,3 +1,17 @@
+.alert  #idcomment {
+				background: #fcf8e3;
+}
+.alert  #idcomment .row.clearfix.margin-bottom-lg {
+				display: none;
+}
+.aleart-comment{
+				position: relative;
+}
+#idcomment button{
+				position: absolute;
+				right: 25px;
+				top: 15px;
+}
 #my_full_page .table>tbody>tr>td {
 				vertical-align: middle;
 }
@@ -248,52 +262,40 @@ label {
 @media only screen and (max-width:991px) {
 }
 
-@media
-only
-screen
-and
-(max-width:767px)
-{
-#my_actions .menu-header {
-				padding-top: 25px;
+@media only screen and (max-width:767px) {
+				#my_actions .menu-header {
+								padding-top: 25px;
+				}
+				#user_menu .btn-primary, #user_menu {
+								margin: 0;
+				}
+				#user_menu {
+								display: flex;
+								justify-content: center;
+				}
+				.p-xs-b5 {
+								padding-bottom: 5px;
+				}
+				.p-xs-lr0 {
+								padding-left: 0;
+								padding-right: 0;
+				}
+				#user_menu .btn-primary {
+								padding: 5px 4px !important;
+								border-radius: 5px;
+								margin-bottom: 4px;
+				}
+				#user_menu>li>a {
+								font-size: 10px;
+				}
+				.search-light .district, .search-light .province {
+								padding-bottom: 5px;
+								width: 50%;
+								padding-left: 0;
+								padding-right: 0;
+				}
 }
 
-#user_menu .btn-primary, #user_menu {
-				margin: 0;
-}
-
-#user_menu {
-				display: flex;
-				justify-content: center;
-}
-
-.p-xs-b5 {
-				padding-bottom: 5px;
-}
-
-.p-xs-lr0 {
-				padding-left: 0;
-				padding-right: 0;
-}
-
-#user_menu .btn-primary {
-				padding: 5px 4px !important;
-				border-radius: 5px;
-				margin-bottom: 4px;
-}
-
-#user_menu>li>a {
-				font-size: 10px;
-}
-
-.search-light .district, .search-light .province {
-				padding-bottom: 5px;
-				width: 50%;
-				padding-left: 0;
-				padding-right: 0;
-}
-
-}
 @media only screen and (max-width:639px) {
 }
 

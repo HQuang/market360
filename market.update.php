@@ -30,6 +30,7 @@ while (list ($lang) = $language_query->fetch(3)) {
         );
         foreach ($data as $config_name => $config_value) {
             $_sql[] = "INSERT INTO " . $dataname . "." . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', " . $db->quote($mod) . ", " . $db->quote($config_name) . ", " . $db->quote($config_value) . ")";
+            $_sql[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . "(lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $module_name . "', 'activecomm', '1')";
         }
 
         $_sql[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $mod . "', 'refresh_allow', '0');";
@@ -199,6 +200,8 @@ while (list ($lang) = $language_query->fetch(3)) {
 
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD price1 DOUBLE UNSIGNED NOT NULL DEFAULT '0' AFTER price;";
 
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD groupcomment TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' AFTER countcomment;";
+
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_queue_edit CHANGE price price DOUBLE UNSIGNED NOT NULL DEFAULT '0';";
 
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_queue_edit ADD price1 DOUBLE UNSIGNED NOT NULL DEFAULT '0' AFTER price;";
@@ -209,6 +212,14 @@ while (list ($lang) = $language_query->fetch(3)) {
         $_sql[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $mod . "', 'block_viewlist', '6');";
 
         $_sql[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $mod . "', 'remove_link', '1');";
+
+        $_sql[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $mod . "', 'activecomm', '1');";
+
+        $_sql[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $mod . "', 'groupcomment', '-1');";
+
+        $_sql[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $mod . "', 'view_comm', '1');";
+
+        $_sql[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $mod . "', 'allowed_comm', '1');";
 
         $_sql[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_news( id int(11) unsigned NOT NULL AUTO_INCREMENT, catid smallint(4) unsigned NOT NULL, content text NOT NULL, addtime int(11) unsigned NOT NULL, PRIMARY KEY (id) ) ENGINE=MyISAM";
 

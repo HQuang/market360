@@ -213,6 +213,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   homeimgthumb tinyint(1) unsigned NOT NULL DEFAULT '0',
   countview int(11) unsigned NOT NULL DEFAULT '0',
   countcomment int(11) unsigned NOT NULL DEFAULT '0',
+  groupcomment tinyint(1) unsigned NOT NULL DEFAULT '6',
   addtime int(11) unsigned NOT NULL,
   edittime int(11) unsigned NOT NULL DEFAULT '0',
   exptime int(11) unsigned NOT NULL DEFAULT '0',
@@ -560,4 +561,9 @@ $data['map_position'] = 'top';
 
 foreach ($data as $config_name => $config_value) {
     $sql_create_module[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', " . $db->quote($module_name) . ", " . $db->quote($config_name) . ", " . $db->quote($config_value) . ")";
+    $sql_create_module[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . "(lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $module_name . "', 'activecomm', '1')";
+    $sql_create_module[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . "(lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $module_name . "', 'groupcomment', '-1')";
+    $sql_create_module[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . "(lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $module_name . "', 'view_comm', '1')";
+    $sql_create_module[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . "(lang, module, config_name, config_value) VALUES ('" . $lang . "', '" . $module_name . "', 'allowed_comm', '1')";
+
 }
