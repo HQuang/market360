@@ -68,7 +68,7 @@ if (empty($contents)) {
         $sth->execute();
         $num_items = $sth->fetchColumn();
 
-        $db->select('t1.id, title, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, description, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config, t2.contact_fullname, t2.contact_phone, t2.contact_email, t2.contact_address')
+        $db->select('t1.id, title, alias, catid, area_p, area_d, area_w, typeid, pricetype, price, price1, unitid, description, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config, t2.contact_fullname, t2.contact_phone, t2.contact_email, t2.contact_address')
         ->order($orderby)
             ->limit($per_page)
             ->offset(($page - 1) * $per_page);
@@ -181,7 +181,7 @@ if (empty($contents)) {
 
                     $sth->execute();
                     $num_items = $sth->fetchColumn();
-                    $db->select('t1.id, title, alias, catid, area_p, area_d, typeid, pricetype, price, price1, description, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config, t2.contact_fullname, t2.contact_phone, t2.contact_email, t2.contact_address')
+                    $db->select('t1.id, title, alias, catid, area_p, area_d, area_w, typeid, pricetype, price, price1, description, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config, t2.contact_fullname, t2.contact_phone, t2.contact_email, t2.contact_address')
                         ->order('prior DESC, ordertime DESC')
                         ->limit($per_page)
                         ->offset(($page - 1) * $per_page);

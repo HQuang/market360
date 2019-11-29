@@ -248,8 +248,8 @@ function nv_theme_market_viewlist($array_data, $page = '')
     if (!empty($array_data)) {
         $i = $j = 1;
         foreach ($array_data as $data) {
-            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
-            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);
+            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], $data['area_w'], ' » ');
+            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d'], $data['area_w']);
             $lang_module['price'] = $lang_module['pricetype_cat_title_' . $array_market_cat[$data['catid']]['pricetype']];
             $xtpl->assign('LANG', $lang_module);
 
@@ -352,8 +352,8 @@ function nv_theme_market_viewgrid($array_data, $page = '')
     if (!empty($array_data)) {
         $i = $j = 1;
         foreach ($array_data as $data) {
-            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
-            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);
+            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], $data['area_w'], ' » ');
+            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d'], $data['area_w'] );
             $lang_module['price'] = $lang_module['pricetype_cat_title_' . $array_market_cat[$data['catid']]['pricetype']];
             $xtpl->assign('LANG', $lang_module);
 
@@ -474,8 +474,8 @@ function nv_theme_market_viewlist_simple($array_data, $page = '')
     if (!empty($array_data)) {
         foreach ($array_data as $data) {
 
-            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
-            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);
+            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], $data['area_w'], ' » ');
+            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d'], $data['area_w']);
             $lang_module['price'] = $lang_module['pricetype_cat_title_' . $array_market_cat[$data['catid']]['pricetype']];
             $xtpl->assign('LANG', $lang_module);
 
@@ -836,8 +836,8 @@ function nv_theme_market_saved($array_data, $page)
     $location = new Location();
     if (!empty($array_data)) {
         foreach ($array_data as $data) {
-            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
-            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);
+            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], $data['area_w'], ' » ');
+            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d'], $data['area_w']);
             $xtpl->assign('DATA', $data);
             $xtpl->parse('main.loop');
         }

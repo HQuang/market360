@@ -151,6 +151,7 @@ if ($row['id'] > 0) {
     $row['groupid'] = '';
     $row['area_p'] = $array_config['province_default'];
     $row['area_d'] = 0;
+    $row['area_w'] = 0;
     $row['address'] = '';
     $row['typeid'] = 0;
     $row['description'] = '';
@@ -207,6 +208,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     $row['catid'] = $nv_Request->get_int('catid', 'post', 0);
     $row['area_p'] = $nv_Request->get_int('area_p', 'post', 0);
     $row['area_d'] = $nv_Request->get_int('area_d', 'post', 0);
+    $row['area_w'] = $nv_Request->get_int('area_w', 'post', 0);
     $row['address'] = $nv_Request->get_title('address', 'post', '');
     $row['typeid'] = $nv_Request->get_int('typeid', 'post', 0);
     $row['description'] = $nv_Request->get_textarea('description', '');
@@ -409,7 +411,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
         $new_id = 0;
         $maps = !empty($row['maps']) ? serialize($row['maps']) : '';
         if (empty($row['id'])) {
-            $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_rows (code, title, alias, wid, faci, catid, groupid, area_p, area_d, address, typeid, description, pricetype, price, price1, unitid, addtime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, groupcomment, userid, ordertime) VALUES (:code, :title, :alias, :wid, :faci, :catid, :groupid, :area_p, :area_d, :address, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, :groupcomment, :userid, ' . NV_CURRENTTIME . ')';
+            $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_rows (code, title, alias, wid, faci, catid, groupid, area_p, area_d, area_w, address, typeid, description, pricetype, price, price1, unitid, addtime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, groupcomment, userid, ordertime) VALUES (:code, :title, :alias, :wid, :faci, :catid, :groupid, :area_p, :area_d, :area_w, :address, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, :groupcomment, :userid, ' . NV_CURRENTTIME . ')';
             $data_insert = array();
             $data_insert['code'] = $row['code'];
             $data_insert['title'] = $row['title'];
@@ -420,6 +422,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
             $data_insert['groupid'] = $row['groupid'];
             $data_insert['area_p'] = $row['area_p'];
             $data_insert['area_d'] = $row['area_d'];
+            $data_insert['area_w'] = $row['area_w'];
             $data_insert['address'] = $row['address'];
             $data_insert['typeid'] = $row['typeid'];
             $data_insert['description'] = $row['description'];
@@ -445,7 +448,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $row['is_queue'] = 2;
             }
 
-            $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET title = :title, alias = :alias, wid = :wid, faci = :faci, catid = :catid, groupid = :groupid, area_p = :area_p, area_d = :area_d, address = :address, typeid = :typeid, description = :description, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, edittime = ' . NV_CURRENTTIME . ', exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, groupview = :groupview, groupcomment = :groupcomment, userid = :userid, is_queue = :is_queue, ordertime = :ordertime WHERE id=' . $row['id']);
+            $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET title = :title, alias = :alias, wid = :wid, faci = :faci, catid = :catid, groupid = :groupid, area_p = :area_p, area_d = :area_d, area_w = :area_w, address = :address, typeid = :typeid, description = :description, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, edittime = ' . NV_CURRENTTIME . ', exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, groupview = :groupview, groupcomment = :groupcomment, userid = :userid, is_queue = :is_queue, ordertime = :ordertime WHERE id=' . $row['id']);
             $stmt->bindParam(':title', $row['title'], PDO::PARAM_STR);
             $stmt->bindParam(':alias', $row['alias'], PDO::PARAM_STR);
             $stmt->bindParam(':wid', $wid, PDO::PARAM_INT);
@@ -454,6 +457,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
             $stmt->bindParam(':groupid', $row['groupid'], PDO::PARAM_STR);
             $stmt->bindParam(':area_p', $row['area_p'], PDO::PARAM_INT);
             $stmt->bindParam(':area_d', $row['area_d'], PDO::PARAM_INT);
+            $stmt->bindParam(':area_w', $row['area_w'], PDO::PARAM_INT);
             $stmt->bindParam(':address', $row['address'], PDO::PARAM_STR);
             $stmt->bindParam(':typeid', $row['typeid'], PDO::PARAM_INT);
             $stmt->bindParam(':description', $row['description'], PDO::PARAM_STR, strlen($row['description']));
@@ -710,12 +714,13 @@ if ($nv_Request->isset_request('submit', 'post')) {
             } else {
                 $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_queue_edit WHERE rowsid=' . $row['id'])->fetchColumn();
                 if ($count > 0) {
-                    $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_queue_edit SET title = :title, catid = :catid, area_p = :area_p, area_d = :area_d, address = :address, typeid = :typeid, description = :description, content = :content, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, note = :note, exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, contact_fullname = :contact_fullname, contact_email = :contact_email, contact_phone = :contact_phone, contact_address = :contact_address WHERE rowsid = :rowsid');
+                    $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_queue_edit SET title = :title, catid = :catid, area_p = :area_p, area_d = :area_d, area_w = :area_w, address = :address, typeid = :typeid, description = :description, content = :content, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, note = :note, exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, contact_fullname = :contact_fullname, contact_email = :contact_email, contact_phone = :contact_phone, contact_address = :contact_address WHERE rowsid = :rowsid');
                     $stmt->bindParam(':rowsid', $row['id'], PDO::PARAM_INT);
                     $stmt->bindParam(':title', $row['title'], PDO::PARAM_STR);
                     $stmt->bindParam(':catid', $row['catid'], PDO::PARAM_INT);
                     $stmt->bindParam(':area_p', $row['area_p'], PDO::PARAM_INT);
                     $stmt->bindParam(':area_d', $row['area_d'], PDO::PARAM_INT);
+                    $stmt->bindParam(':area_w', $row['area_w'], PDO::PARAM_INT);
                     $stmt->bindParam(':address', $row['address'], PDO::PARAM_STR);
                     $stmt->bindParam(':typeid', $row['typeid'], PDO::PARAM_INT);
                     $stmt->bindParam(':description', $row['description'], PDO::PARAM_STR, strlen($row['description']));
@@ -928,11 +933,15 @@ require_once NV_ROOTDIR . '/modules/location/location.class.php';
 $location = new Location();
 $location->set('SelectCountryid', $array_config['countryid']);
 $location->set('IsDistrict', 1);
+$location->set('IsWard', 1);
 $location->set('BlankTitleDistrict', 1);
+$location->set('BlankTitleWard', 1);
 $location->set('NameProvince', 'area_p');
 $location->set('NameDistrict', 'area_d');
+$location->set('NameWard', 'area_w');
 $location->set('SelectProvinceid', $row['area_p']);
 $location->set('SelectDistrictid', $row['area_d']);
+$location->set('SelectWardid', $row['area_w']);
 $xtpl->assign('LOCATION', $location->buildInput());
 
 if (!empty($array_type)) {

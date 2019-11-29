@@ -86,9 +86,7 @@
             <option value="0">---{LANG.ward_cc}---</option>
             <!-- END: blank_title -->
             <!-- BEGIN: loop -->
-            <option value="{WARD.wardid}"{WARD.selected}><!-- BEGIN: type -->{WARD.type}
-                <!-- END: type -->{WARD.title}
-            </option>
+            <option value="{WARD.wardid}"{WARD.selected}><!-- BEGIN: type -->{WARD.type}<!-- END: type --> {WARD.title}</option>
             <!-- END: loop -->
         </select>
     </div>
@@ -167,10 +165,36 @@ $(document).ready(function() {
 	});
 	
 	$('#wardid-{CONFIG.index}').change(function(){
+	    
+	    var provinceid_text = '';
+        if($( "#provinceid-{CONFIG.index} option:selected" ).val() != 0){
+            var provinceid_text = ', ' + $( "#provinceid-{CONFIG.index} option:selected" ).text();
+        }	    	    
+	    var districtid_text = '';
+        if($( "#districtid-{CONFIG.index} option:selected" ).val() != 0){
+            var districtid_text = ', ' + $( "#districtid-{CONFIG.index} option:selected" ).text();
+        }
+        
+    	$("[name='address']").val(', ' +  $("#wardid-{CONFIG.index} option:selected").text() + districtid_text + provinceid_text);
+	    
+		if( $('#wardid-{CONFIG.index}').length > 0 ){
+			$(this).val() != 0 && $.ajax({
+		        method: 'POST',
+		        url : nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=location',
+		        data : nv_location_build_query({CONFIG.index}),
+		        success : function( res ){
+		            $('#form-input-{CONFIG.index}').html( res );
+		        }
+		    });
+		}
+	    
+	    
 		if(typeof nv_location_change === 'function'){
-			nv_location_change('wardidid', $(this).val());
+			nv_location_change('wardid', $(this).val());
     	}		
 	});
+	
+	
 });
 
 if (typeof nv_location_build_query != 'function'){

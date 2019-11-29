@@ -24,7 +24,8 @@ $array_search_params = array(
     'typeid' => 0,
     'catid' => 0,
     'provinceid' => 0,
-    'districtid' => 0
+    'districtid' => 0,
+    'wardid' => 0
 );
 
 $array_displays = array(
@@ -51,6 +52,12 @@ if (!empty($url_string)) {
 
     if (preg_match('/-huyen-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m) || preg_match('/-quan-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m) || preg_match('/-thi-xa-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m) || preg_match('/-thanh-pho-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m)) {
         $array_search_params['districtid'] = $db->query('SELECT districtid FROM ' . $db_config['prefix'] . '_location_district WHERE alias=' . $db->quote($m[1]))
+            ->fetchColumn();
+        $url_string = str_replace($m[0], '', $url_string);
+        $op = 'search';
+    }
+    if (preg_match('/-xa-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m) || preg_match('/-phuong-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m) ||  preg_match('/-huyen-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m) || preg_match('/-quan-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m) || preg_match('/-thi-xa-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m) || preg_match('/-thanh-pho-([a-zA-Z0-9-]*)(\-?)(\-?)/i', $url_string, $m)) {
+        $array_search_params['wardid'] = $db->query('SELECT wardid FROM ' . $db_config['prefix'] . '_location_ward WHERE alias=' . $db->quote($m[1]))
             ->fetchColumn();
         $url_string = str_replace($m[0], '', $url_string);
         $op = 'search';

@@ -489,6 +489,7 @@ function nv_autoget_detail($rows_id, $acept = 0, $module = '')
                 $row['catid'] = $items_info['catid'];
                 $row['area_p'] = $items_info['area_p'];
                 $row['area_d'] = $items_info['area_d'];
+                $row['area_w'] = $items_info['area_w'];
                 $row['address'] = '';
                 $row['typeid'] = $items_info['typeid'];
                 $row['description'] = $news_hometext;
@@ -764,7 +765,7 @@ function nv_autoget_detail($rows_id, $acept = 0, $module = '')
                         $row['homeimgfile'] = '';
                     }
 
-                    $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $mod_data . '_rows (code, title, alias, catid, groupid, area_p, area_d, address, typeid, description, pricetype, price, price1, unitid, addtime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, userid, ordertime) VALUES (:code, :title, :alias, :catid, :groupid, :area_p, :area_d, :address, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, :userid, ' . NV_CURRENTTIME . ')';
+                    $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $mod_data . '_rows (code, title, alias, catid, groupid, area_p, area_d, area_w, address, typeid, description, pricetype, price, price1, unitid, addtime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, userid, ordertime) VALUES (:code, :title, :alias, :catid, :groupid, :area_p, :area_d, :area_w, :address, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, :userid, ' . NV_CURRENTTIME . ')';
                     $data_insert = array();
                     $data_insert['code'] = $row['code'];
                     $data_insert['title'] = $row['title'];
@@ -773,6 +774,7 @@ function nv_autoget_detail($rows_id, $acept = 0, $module = '')
                     $data_insert['groupid'] = $row['groupid'];
                     $data_insert['area_p'] = $row['area_p'];
                     $data_insert['area_d'] = $row['area_d'];
+                    $data_insert['area_w'] = $row['area_w'];
                     $data_insert['address'] = $row['address'];
                     $data_insert['typeid'] = $row['typeid'];
                     $data_insert['description'] = $row['description'];

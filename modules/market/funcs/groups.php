@@ -47,7 +47,7 @@ if (isset($array_op[1])) {
         $all_page = $db->query($db->sql())
             ->fetchColumn();
 
-        $db->select('t1.id, title, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
+        $db->select('t1.id, title, alias, catid, area_p, area_d, area_w, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
             ->order('t1.prior DESC, t1.ordertime DESC')
             ->limit($per_page)
             ->offset(($page - 1) * $per_page);

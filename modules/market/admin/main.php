@@ -237,7 +237,7 @@ if ($nv_Request->isset_request('export', 'get')) {
 
     while ($row = $sth->fetch()) {
         $row['type'] = $array_type[$row['typeid']]['title'];
-        $row['location'] = $location->locationString($row['area_p'], $row['area_d']);
+        $row['location'] = $location->locationString($row['area_p'], $row['area_d'], $row['area_w']);
         $row['cat'] = $array_market_cat[$row['catid']]['title'];
         $row['addtime'] = nv_date('H:i d/m/Y', $row['addtime']);
         $row['status'] = $lang_module['status_' . $row['status']];
@@ -371,7 +371,7 @@ if (! empty($generate_page)) {
 while ($view = $sth->fetch()) {
     $view['ck_status_admin'] = $view['status_admin'] == 1 ? 'checked="checked"' : '';
     $view['type'] = ! empty($view['typeid']) ? $array_type[$view['typeid']]['title'] : '';
-    $view['area'] = $location->locationString($view['area_p'], $view['area_d']);
+    $view['area'] = $location->locationString($view['area_p'], $view['area_d'], $view['area_w']);
     $view['cat'] = $array_market_cat[$view['catid']]['title'];
     $view['addtime'] = nv_date('H:i d/m/Y', $view['addtime']);
     $view['checkss'] = md5($global_config['sitekey'] . '-' . $view['userid'] . '-' . $view['id']);

@@ -49,8 +49,8 @@ $module_url = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_
 $rows['addtimef'] = nv_date('H:i d/m/Y', $rows['addtime']);
 $rows['cat'] = $array_market_cat[$rows['catid']]['title'];
 $rows['cat_link'] = $array_market_cat[$rows['catid']]['link'];
-$rows['location'] = $location->locationString($rows['area_p'], $rows['area_d'], 0, ' » ');
-$rows['location_link'] = nv_market_build_search_url($module_name, $rows['typeid'], $rows['catid'], $rows['area_p'], $rows['area_d']);
+$rows['location'] = $rows['address'];
+$rows['location_link'] = nv_market_build_search_url($module_name, $rows['typeid'], $rows['catid'], $rows['area_p'], $rows['area_d'], $rows['area_w']);
 $rows['type'] = !empty($rows['typeid']) ? $array_type[$rows['typeid']]['title'] : '';
 $rows['price'] = nv_market_get_price($rows['price'], $rows['price1'], $rows['catid'], $rows['pricetype'], $rows['unitid']);
 
@@ -121,7 +121,7 @@ if (defined('NV_IS_USER')) {
 // Tin cung chu de
 $rows_other = array();
 $array_catid = nv_GetCatidInParent($rows['catid']);
-$result = $db->query('SELECT t1.id, title, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config, t2.contact_fullname, t2.contact_phone, t2.contact_email, t2.contact_address FROM ' . NV_PREFIXLANG . '_' . $module_data . '_rows t1 INNER JOIN ' . NV_PREFIXLANG . '_' . $module_data . '_detail t2 ON t1.id = t2.id WHERE catid IN (' . implode(',', $array_catid) . ') AND t1.id!=' . $rows['id'] . ' AND status=1 AND status_admin=1 AND is_queue=0 AND (exptime=0 OR exptime >= ' . NV_CURRENTTIME . ') ORDER BY ordertime DESC LIMIT ' . $array_config['numother']);
+$result = $db->query('SELECT t1.id, title, alias, catid, area_p, area_d, area_w, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config, t2.contact_fullname, t2.contact_phone, t2.contact_email, t2.contact_address FROM ' . NV_PREFIXLANG . '_' . $module_data . '_rows t1 INNER JOIN ' . NV_PREFIXLANG . '_' . $module_data . '_detail t2 ON t1.id = t2.id WHERE catid IN (' . implode(',', $array_catid) . ') AND t1.id!=' . $rows['id'] . ' AND status=1 AND status_admin=1 AND is_queue=0 AND (exptime=0 OR exptime >= ' . NV_CURRENTTIME . ') ORDER BY ordertime DESC LIMIT ' . $array_config['numother']);
 
 $array_field_config = array();
 while ($_row = $result->fetch()) {

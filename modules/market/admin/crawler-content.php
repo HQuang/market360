@@ -58,6 +58,7 @@ if ($row['id'] > 0) {
     $row['typeid'] = 1;
     $row['area_p'] = 0;
     $row['area_d'] = 0;
+    $row['area_w'] = 0;
 }
 
 if ($nv_Request->isset_request('submit', 'post')) {
@@ -68,6 +69,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     $row['catid'] = $nv_Request->get_int('catid', 'post', 0);
     $row['area_p'] = $nv_Request->get_int('area_p', 'post', 0);
     $row['area_d'] = $nv_Request->get_int('area_d', 'post', 0);
+    $row['area_w'] = $nv_Request->get_int('area_w', 'post', 0);
     $row['queue'] = $nv_Request->get_int('queue', 'post', 0);
     $row['save_image'] = $nv_Request->get_int('save_image', 'post', 0);
     $row['auto_getkeyword'] = $nv_Request->get_int('auto_getkeyword', 'post', 0);
@@ -101,7 +103,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
         try {
             if (empty($row['id'])) {
                 $data_insert = array();
-                $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_crawler_items (title, url, groups_id, typeid, catid, area_p, area_d, queue, save_image, auto_getkeyword, auto_keyword, save_limit, auto_homeimage, remove_link, autolink, addtime, updatetime, status) VALUES (:title, :url, :groups_id, :typeid, :catid, :area_p, :area_d, :queue, :save_image, :auto_getkeyword, :auto_keyword, :save_limit, :auto_homeimage, :remove_link, :autolink, ' . NV_CURRENTTIME . ', 0, 1)';
+                $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_crawler_items (title, url, groups_id, typeid, catid, area_p, area_d, area_w, queue, save_image, auto_getkeyword, auto_keyword, save_limit, auto_homeimage, remove_link, autolink, addtime, updatetime, status) VALUES (:title, :url, :groups_id, :typeid, :catid, :area_p, :area_d, area_w, :queue, :save_image, :auto_getkeyword, :auto_keyword, :save_limit, :auto_homeimage, :remove_link, :autolink, ' . NV_CURRENTTIME . ', 0, 1)';
                 $data_insert['title'] = $row['title'];
                 $data_insert['url'] = $row['url'];
                 $data_insert['groups_id'] = $row['groups_id'];
@@ -109,6 +111,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $data_insert['catid'] = $row['catid'];
                 $data_insert['area_p'] = $row['area_p'];
                 $data_insert['area_d'] = $row['area_d'];
+                $data_insert['area_w'] = $row['area_w'];
                 $data_insert['queue'] = $row['queue'];
                 $data_insert['save_image'] = $row['save_image'];
                 $data_insert['auto_getkeyword'] = $row['auto_getkeyword'];
@@ -119,7 +122,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $data_insert['autolink'] = $row['autolink'];
                 $new_id = $db->insert_id($_sql, 'id', $data_insert);
             } else {
-                $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_crawler_items SET title = :title, url = :url, groups_id = :groups_id, typeid = :typeid, catid = :catid, area_p = :area_p, area_d = :area_d, queue = :queue, save_image = :save_image, auto_getkeyword = :auto_getkeyword, auto_keyword = :auto_keyword, save_limit = :save_limit, auto_homeimage = :auto_homeimage, remove_link = :remove_link, autolink = :autolink, updatetime = ' . NV_CURRENTTIME . ' WHERE id=' . $row['id']);
+                $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_crawler_items SET title = :title, url = :url, groups_id = :groups_id, typeid = :typeid, catid = :catid, area_p = :area_p, area_d = :area_d,  area_w = :area_w, queue = :queue, save_image = :save_image, auto_getkeyword = :auto_getkeyword, auto_keyword = :auto_keyword, save_limit = :save_limit, auto_homeimage = :auto_homeimage, remove_link = :remove_link, autolink = :autolink, updatetime = ' . NV_CURRENTTIME . ' WHERE id=' . $row['id']);
                 $stmt->bindParam(':title', $row['title'], PDO::PARAM_STR);
                 $stmt->bindParam(':url', $row['url'], PDO::PARAM_STR);
                 $stmt->bindParam(':groups_id', $row['groups_id'], PDO::PARAM_INT);
@@ -127,6 +130,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $stmt->bindParam(':catid', $row['catid'], PDO::PARAM_INT);
                 $stmt->bindParam(':area_p', $row['area_p'], PDO::PARAM_INT);
                 $stmt->bindParam(':area_d', $row['area_d'], PDO::PARAM_INT);
+                $stmt->bindParam(':area_w', $row['area_w'], PDO::PARAM_INT);
                 $stmt->bindParam(':queue', $row['queue'], PDO::PARAM_INT);
                 $stmt->bindParam(':save_image', $row['save_image'], PDO::PARAM_INT);
                 $stmt->bindParam(':auto_getkeyword', $row['auto_getkeyword'], PDO::PARAM_INT);
@@ -203,12 +207,17 @@ require_once NV_ROOTDIR . '/modules/location/location.class.php';
 $location = new Location();
 $location->set('SelectCountryid', $array_config['countryid']);
 $location->set('IsDistrict', 1);
+$location->set('IsWard', 1);
 $location->set('BlankTitleProvince', 1);
 $location->set('BlankTitleDistrict', 1);
+$location->set('BlankTitleWard', 1);
 $location->set('NameProvince', 'area_p');
 $location->set('NameDistrict', 'area_d');
+$location->set('NameWard', 'area_w');
 $location->set('SelectProvinceid', $row['area_p']);
 $location->set('SelectDistrictid', $row['area_d']);
+$location->set('SelectWardid', $row['area_w']);
+
 $xtpl->assign('LOCATION', $location->buildInput());
 
 if (!empty($error)) {

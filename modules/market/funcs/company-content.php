@@ -33,8 +33,8 @@ if (empty($row)) {
     $row['title'] = '';
     $row['alias'] = '';
     $row['provinceid'] = $array_config['province_default'];
-    ;
     $row['districtid'] = 0;
+    $row['wardid'] = 0;
     $row['address'] = '';
     $row['email'] = '';
     $row['fax'] = '';
@@ -58,6 +58,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     }
     $row['provinceid'] = $nv_Request->get_int('provinceid', 'post', 0);
     $row['districtid'] = $nv_Request->get_int('districtid', 'post', 0);
+    $row['wardid'] = $nv_Request->get_int('wardid', 'post', 0);
     $row['address'] = $nv_Request->get_title('address', 'post', '');
     $row['maps'] = $nv_Request->get_array('maps', 'post', array());
     $row['maps'] = serialize($row['maps']);
@@ -143,13 +144,14 @@ if ($nv_Request->isset_request('submit', 'post')) {
         try {
             $id_new = 0;
             if (empty($row['id'])) {
-                $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_company (userid, title, alias, provinceid, districtid, address, maps, taxcode, email, fax, website, image, agent, descripion, contact_fullname, contact_email, contact_phone) VALUES (:userid, :title, :alias, :provinceid, :districtid, :address, :maps, :taxcode, :email, :fax, :website, :image, :agent, :descripion, :contact_fullname, :contact_email, :contact_phone)';
+                $sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_company (userid, title, alias, provinceid, districtid, wardid, address, maps, taxcode, email, fax, website, image, agent, descripion, contact_fullname, contact_email, contact_phone) VALUES (:userid, :title, :alias, :provinceid, :districtid, :wardid, :address, :maps, :taxcode, :email, :fax, :website, :image, :agent, :descripion, :contact_fullname, :contact_email, :contact_phone)';
                 $data_insert = array();
                 $data_insert['userid'] = $user_info['userid'];
                 $data_insert['title'] = $row['title'];
                 $data_insert['alias'] = $row['alias'];
                 $data_insert['provinceid'] = $row['provinceid'];
                 $data_insert['districtid'] = $row['districtid'];
+                $data_insert['wardid'] = $row['wardid'];
                 $data_insert['address'] = $row['address'];
                 $data_insert['maps'] = $row['maps'];
                 $data_insert['taxcode'] = $row['taxcode'];
@@ -164,12 +166,13 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $data_insert['contact_phone'] = $row['contact_phone'];
                 $id_new = $db->insert_id($sql, 'id', $data_insert);
             } else {
-                $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_company SET title = :title, alias = :alias, provinceid = :provinceid, districtid = :districtid, address = :address, maps = :maps, taxcode = :taxcode, email = :email, fax = :fax, website = :website, image = :image, agent = :agent, descripion = :descripion, contact_fullname = :contact_fullname, contact_email = :contact_email, contact_phone = :contact_phone WHERE userid=:userid');
+                $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_company SET title = :title, alias = :alias, provinceid = :provinceid, districtid = :districtid, wardid = :wardid, address = :address, maps = :maps, taxcode = :taxcode, email = :email, fax = :fax, website = :website, image = :image, agent = :agent, descripion = :descripion, contact_fullname = :contact_fullname, contact_email = :contact_email, contact_phone = :contact_phone WHERE userid=:userid');
                 $stmt->bindParam(':userid', $user_info['userid'], PDO::PARAM_INT);
                 $stmt->bindParam(':title', $row['title'], PDO::PARAM_STR);
                 $stmt->bindParam(':alias', $row['alias'], PDO::PARAM_STR);
                 $stmt->bindParam(':provinceid', $row['provinceid'], PDO::PARAM_INT);
                 $stmt->bindParam(':districtid', $row['districtid'], PDO::PARAM_INT);
+                $stmt->bindParam(':wardid', $row['wardid'], PDO::PARAM_INT);
                 $stmt->bindParam(':address', $row['address'], PDO::PARAM_STR);
                 $stmt->bindParam(':maps', $row['maps'], PDO::PARAM_STR);
                 $stmt->bindParam(':taxcode', $row['taxcode'], PDO::PARAM_STR);
@@ -252,6 +255,7 @@ $location->set('BlankTitleProvince', 1);
 $location->set('BlankTitleDistrict', 1);
 $location->set('SelectProvinceid', $row['provinceid']);
 $location->set('SelectDistrictid', $row['districtid']);
+$location->set('SelectWardid', $row['wardid']);
 $location->set('All', 0);
 $xtpl->assign('LOCATION', $location->buildInput());
 

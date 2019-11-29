@@ -96,7 +96,7 @@ if (!nv_function_exists('nv_block_market_post')) {
         }
 
         $db->sqlreset()
-            ->select('id, title, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
+            ->select('id, title, alias, catid, area_p, area_d, area_w, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
             ->from(NV_PREFIXLANG . '_' . $site_mods[$module]['module_data'] . '_rows')
             ->where($where)
             ->order($order)

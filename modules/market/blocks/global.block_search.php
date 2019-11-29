@@ -68,17 +68,19 @@ if (!nv_function_exists('nv_market_block_search')) {
             $my_head .= '<link rel="StyleSheet" href="' . NV_BASE_SITEURL . 'themes/' . $block_theme . '/css/' . $site_mods[$module]['module_file'] . '.css">';
             include NV_ROOTDIR . '/modules/' . $site_mods[$module]['module_file'] . '/language/' . NV_LANG_INTERFACE . '.php';
         }
-
+//         var_dump($array_search_params);die;
         $array_search = array(
-            'q' => $nv_Request->get_title('q', 'post,get', ''),
+            'q' => $nv_Request->get_title('q', 'post,get',  ' '),
             'catid' => $nv_Request->get_int('catid', 'post,get', ($module_name == $module and in_array($op, array(
                 'viewcat',
                 'detail'
             ))) ? $catid : $array_search_params['catid']),
             'area_p' => $nv_Request->get_int('area_p', 'post,get', $array_search_params['provinceid']),
             'area_d' => $nv_Request->get_int('area_d', 'post,get', $array_search_params['districtid']),
+            'area_w' => $nv_Request->get_int('area_w', 'post,get', $array_search_params['wardid']),
             'type' => $nv_Request->get_int('type', 'post,get', $array_search_params['typeid'])
         );
+
 
         if (!$global_config['rewrite_enable']) {
             $array_search['action'] = NV_BASE_SITEURL . 'index.php';
@@ -118,11 +120,15 @@ if (!nv_function_exists('nv_market_block_search')) {
         $location = new Location();
         $location->set('SelectCountryid', $module_config[$module]['countryid']);
         $location->set('IsDistrict', 1);
+        $location->set('IsWard', 1);
         $location->set('BlankTitleDistrict', 1);
+        $location->set('BlankTitleWard', 1);
         $location->set('NameProvince', 'area_p');
         $location->set('NameDistrict', 'area_d');
+        $location->set('NameWard', 'area_w');
         $location->set('SelectProvinceid', $array_search['area_p']);
         $location->set('SelectDistrictid', $array_search['area_d']);
+        $location->set('SelectWardid', $array_search['area_w']);
         $xtpl->assign('LOCATION', $location->buildInput());
 
         if (!empty($module_array_type)) {

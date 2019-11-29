@@ -119,10 +119,10 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-xs-12">
+                            <div class="col-md-10 col-xs-24">
                                 <input type="text" class="form-control" name="address" value="{ROW.address}" placeholder="{LANG.contact_address}" />
                             </div>
-                            <div class="col-xs-12">{LOCATION}</div>
+                            <div class="col-md-14 col-xs-24">{LOCATION}</div>
                         </div>
                     </div>
                     <div id="maps">

@@ -22,7 +22,8 @@ $array_search = array(
     'q' => $nv_Request->get_title('q', 'post,get', ''),
     'catid' => $nv_Request->get_int('catid', 'post,get', $array_search_params['catid']),
     'area_p' => $nv_Request->get_int('area_p', 'post,get', $array_search_params['provinceid']),
-    'area_d' => $nv_Request->get_int('area_d', 'post,get', $array_search_params['districtid'])
+    'area_d' => $nv_Request->get_int('area_d', 'post,get', $array_search_params['districtid']),
+    'area_w' => $nv_Request->get_int('area_w', 'post,get', $array_search_params['wardid'])
 );
 
 if (!empty($array_search['type'])) {
@@ -41,6 +42,13 @@ if (!empty($array_search['catid'])) {
     $array_alias[] = $array_market_cat[$array_search['catid']]['alias'];
 }
 
+if (!empty($array_search['area_w'])) {
+    $where .= ' AND area_w = ' . $array_search['area_w'];
+    $search_ward = $db->query('SELECT title, alias, type FROM ' . $db_config['prefix'] . '_location_ward WHERE wardid=' . $db->quote($array_search['area_w']))
+        ->fetch();
+        $array_title[] = $search_ward['type'] . ' ' . $search_ward['title'];
+        $array_alias[] = change_alias($search_ward['type']) . '-' . $search_ward['alias'];
+}
 if (!empty($array_search['area_d'])) {
     $where .= ' AND area_d = ' . $array_search['area_d'];
     $search_district = $db->query('SELECT title, alias, type FROM ' . $db_config['prefix'] . '_location_district WHERE districtid=' . $db->quote($array_search['area_d']))
@@ -92,7 +100,7 @@ $sth = $db->prepare($db->sql());
 $sth->execute();
 $num_items = $sth->fetchColumn();
 
-$db->select('t1.id, title, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, description, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, groups_config, t2.maps')
+$db->select('t1.id, title, alias, catid, area_p, area_d, area_w, typeid, pricetype, price, price1, unitid, description, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, groups_config, t2.maps')
     ->order('ordertime DESC')
     ->limit($per_page)
     ->offset(($page - 1) * $per_page);

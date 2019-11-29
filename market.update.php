@@ -166,6 +166,7 @@ while (list ($lang) = $language_query->fetch(3)) {
           catid smallint(4) NOT NULL,
           area_p smallint(4) NOT NULL COMMENT 'Vùng',
           area_d smallint(4) unsigned NOT NULL,
+          area_w smallint(4) unsigned NOT NULL,
           typeid tinyint(1) NOT NULL,
           description text NOT NULL,
           content text NOT NULL,
@@ -298,7 +299,15 @@ while (list ($lang) = $language_query->fetch(3)) {
 
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_detail ADD maps VARCHAR(255) NOT NULL AFTER content;";
 
-        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD address VARCHAR(255) NOT NULL AFTER area_d;";
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD area_w VARCHAR(255) NOT NULL AFTER area_d;";
+
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_queue_edit ADD area_w VARCHAR(255) NOT NULL AFTER area_d;";
+
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_crawler_items ADD area_w VARCHAR(255) NOT NULL AFTER area_d;";
+
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD address VARCHAR(255) NOT NULL AFTER area_w;";
+
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_company ADD wardid VARCHAR(255) NOT NULL AFTER districtid;";
 
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_queue_edit ADD maps VARCHAR(255) NOT NULL AFTER content;";
 
@@ -347,6 +356,7 @@ while (list ($lang) = $language_query->fetch(3)) {
           catid varchar(255) NOT NULL COMMENT 'Chủ đề lưu tin',
           area_p smallint(4) NOT NULL COMMENT 'Tỉnh',
           area_d smallint(4) unsigned NOT NULL COMMENT 'Huyện',
+          area_w smallint(4) unsigned NOT NULL COMMENT 'Xã',
           queue tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT 'Kiểm duyệt tin',
           save_image tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT 'Tải ảnh về host',
           auto_getkeyword tinyint(1) unsigned NOT NULL DEFAULT '1',

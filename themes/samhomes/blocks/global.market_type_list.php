@@ -173,8 +173,8 @@ if (!nv_function_exists('nv_block_market_type_list')) {
                 foreach ($list as $l) {
                     if (nv_user_in_groups($l['groupview'])) {
                         if (!empty($data = nv_market_data($l, $module))) {
-                            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
-                            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);
+                            $data['location'] = $location->locationString($data['area_p'], $data['area_d'], $data['area_w'], ' » ');
+                            $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d'], $data['area_w']);
                             $lang_module['price'] = $lang_module['pricetype_cat_title_' . $array_market_cat[$l['catid']]['pricetype']];
                             $xtpl->assign('LANG', $lang_module);
                             $xtpl->assign('ROW', $data);

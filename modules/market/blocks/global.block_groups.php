@@ -115,7 +115,7 @@ if (!nv_function_exists('nv_block_market_groups')) {
             $module_upload = $module_upload_tmp;
         }
         $db->sqlreset()
-            ->select('t1.id, title, description, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
+            ->select('t1.id, title, description, alias, catid, area_p, area_d, area_w, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
             ->from(NV_PREFIXLANG . '_' . $site_mods[$module]['module_data'] . '_rows t1')
             ->join('INNER JOIN ' . NV_PREFIXLANG . '_' . $site_mods[$module]['module_data'] . '_block t2 ON t1.id = t2.id')
             ->where('t2.bid= ' . $block_config['blockid'] . ' AND (t2.exptime = 0 OR t2.exptime >= ' . NV_CURRENTTIME . ') AND t1.status=1 AND t1.status_admin=1 AND t1.is_queue=0 AND (t1.exptime=0 OR t1.exptime >= ' . NV_CURRENTTIME . ')')
@@ -197,8 +197,8 @@ if (!nv_function_exists('nv_block_market_groups')) {
                             }
 
                         $data['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_images WHERE rowsid=' . $data['id'] )->fetchColumn();
-                        $data['location'] = $location->locationString($data['area_p'], $data['area_d'], 0, ' » ');
-                        $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d']);
+                        $data['location'] = $location->locationString($data['area_p'], $data['area_d'], $data['area_w'], ' » ');
+                        $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d'], $data['area_w']);
                         $lang_module['price'] = $lang_module['pricetype_cat_title_' . $array_market_cat[$l['catid']]['pricetype']];
                         $xtpl->assign('LANG', $lang_module);
                         $xtpl->assign('ROW', $data);

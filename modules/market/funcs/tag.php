@@ -56,7 +56,7 @@ if (! empty($page_title) and $page_title == strip_punctuation($page_title)) {
         $sth->execute();
         $num_items = $sth->fetchColumn();
 
-        $db->select('id, title, alias, catid, area_p, area_d, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
+        $db->select('id, title, alias, catid, area_p, area_d, area_w, typeid, pricetype, price, price1, unitid, homeimgfile, homeimgalt, homeimgthumb, countview, countcomment, groupview, addtime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groups_config')
             ->order('prior DESC, ordertime DESC')
             ->limit($per_page)
             ->offset(($page - 1) * $per_page);
