@@ -65,6 +65,7 @@ while (list ($lang) = $language_query->fetch(3)) {
             }
         }
 
+
         $_sql[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_econtent(action varchar(100) NOT NULL, econtent text NOT NULL, PRIMARY KEY (action ) ENGINE=MyISAM";
 
         $_sql[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_econtent (action, econtent) VALUES('queue_status', 'Xin chào <strong>&#91;NAME&#93;. </strong>Chúng tôi<strong>&nbsp;</strong>xin gửi đến bạn thông báo về trạng thái tin rao của bạn tại&nbsp;<strong>&#91;SITE_NAME&#93;!</strong><br  /><br  />Trạng thái hiện tại: &#91;STATUS&#93;<br  />Kiểm duyệt bởi: &#91;QUEUE_NAME&#93;<br  />Thời gian duyệt: &#91;QUEUE_TIME&#93;<br  />Ghi chú: &#91;NOTE&#93;<br  /><br  />Mọi ý kiến xin gửi về &#91;SITE_EMAIL&#93; để được giải đáp, xin cảm ơn!')";
