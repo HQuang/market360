@@ -76,6 +76,19 @@
                 </div>
             </div>
             <div class="panel panel-default">
+                <div class="panel-heading">{LANG.pack_money}</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-5 col-md-4 control-label"></label>
+                        <div class="col-sm-19 col-md-20">
+                            <!-- BEGIN: pack_money -->
+                            <label class="container"><input type="radio" name="pack_money" value="{PACK_MONEY.id}" {PACK_MONEY.checked}>{PACK_MONEY.title}</label>
+                            <!-- END: pack_money -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
                 <div class="panel-heading">{LANG.image}</div>
                 <div class="panel-body">
                     <div class="row">

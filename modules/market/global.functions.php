@@ -24,6 +24,11 @@ $array_pricetype_cat = array(
     2 => $lang_module['pricetype_cat_title_2']
 );
 
+$array_pack_money = array(
+    1 => sprintf($lang_module['pack_money_1'], number_format($array_config['price_days'])),
+    2 => sprintf($lang_module['pack_money_2'], number_format($array_config['price_month'])),
+);
+
 $_sql = 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_cat WHERE status=1 ORDER BY sort';
 $array_market_cat = $nv_Cache->db($_sql, 'id', $module_name);
 

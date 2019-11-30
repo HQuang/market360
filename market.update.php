@@ -26,7 +26,9 @@ while (list ($lang) = $language_query->fetch(3)) {
         $data = array(
             'maps_appid' => '',
             'priceformat' => 0,
-            'map_position' => 'top'
+            'map_position' => 'top',
+            'price_days' => 0,
+            'price_month' => 0,
         );
         foreach ($data as $config_name => $config_value) {
             $_sql[] = "INSERT INTO " . $dataname . "." . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', " . $db->quote($mod) . ", " . $db->quote($config_name) . ", " . $db->quote($config_value) . ")";
@@ -194,6 +196,8 @@ while (list ($lang) = $language_query->fetch(3)) {
         ) ENGINE=MyISAM";
 
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD is_queue_edit TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' AFTER is_queue;";
+
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD pack_money tinyint(1) unsigned NOT NULL DEFAULT '0' AFTER groups_config;";
 
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_cat ADD pricetype TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' AFTER image;";
 

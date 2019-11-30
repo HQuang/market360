@@ -185,6 +185,7 @@ if ($row['id'] > 0) {
     $row['queue_reasonid'] = 0;
     $row['status_admin'] = 1;
     $row['status'] = 1;
+    $row['pack_money'] = 1;
     $row['userid'] = $admin_info['userid'];
     $row['custom_field'] = $row['maps'] = $row['custom_field'] = $row['images'] = $row['images_old'] = array();
     $row['display_maps'] = 0;
@@ -229,7 +230,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     $row['custom_field'] = $nv_Request->get_array('custom', 'post');
     $row['maps'] = $nv_Request->get_array('maps', 'post', array());
     $row['display_maps'] = $nv_Request->get_int('display_maps', 'post', 0);
-
+    $row['pack_money'] = $nv_Request->get_int('pack_money', 'post', 1);
     $_groups_post = $nv_Request->get_array('groupview', 'post', array());
     $row['groupview'] = !empty($_groups_post) ? implode(',', nv_groups_post(array_intersect($_groups_post, array_keys($groups_list)))) : '';
 
@@ -411,7 +412,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
         $new_id = 0;
         $maps = !empty($row['maps']) ? serialize($row['maps']) : '';
         if (empty($row['id'])) {
-            $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_rows (code, title, alias, wid, faci, catid, groupid, area_p, area_d, area_w, address, typeid, description, pricetype, price, price1, unitid, addtime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, groupcomment, userid, ordertime) VALUES (:code, :title, :alias, :wid, :faci, :catid, :groupid, :area_p, :area_d, :area_w, :address, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, :groupcomment, :userid, ' . NV_CURRENTTIME . ')';
+            $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_rows (code, title, alias, wid, faci, catid, groupid, area_p, area_d, area_w, address, typeid, description, pricetype, price, price1, unitid, addtime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, groupcomment, userid, ordertime, pack_money) VALUES (:code, :title, :alias, :wid, :faci, :catid, :groupid, :area_p, :area_d, :area_w, :address, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, :groupcomment, :userid, ' . NV_CURRENTTIME . ', :pack_money)';
             $data_insert = array();
             $data_insert['code'] = $row['code'];
             $data_insert['title'] = $row['title'];
@@ -439,6 +440,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
             $data_insert['groupview'] = $row['groupview'];
             $data_insert['groupcomment'] = $row['groupcomment'];
             $data_insert['userid'] = $row['userid'];
+            $data_insert['pack_money'] = $row['pack_money'];
             $new_id = $db->insert_id($_sql, 'id', $data_insert);
         } else {
             if ($row['queue'] == 1) {
@@ -448,7 +450,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $row['is_queue'] = 2;
             }
 
-            $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET title = :title, alias = :alias, wid = :wid, faci = :faci, catid = :catid, groupid = :groupid, area_p = :area_p, area_d = :area_d, area_w = :area_w, address = :address, typeid = :typeid, description = :description, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, edittime = ' . NV_CURRENTTIME . ', exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, groupview = :groupview, groupcomment = :groupcomment, userid = :userid, is_queue = :is_queue, ordertime = :ordertime WHERE id=' . $row['id']);
+            $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET title = :title, alias = :alias, wid = :wid, faci = :faci, catid = :catid, groupid = :groupid, area_p = :area_p, area_d = :area_d, area_w = :area_w, address = :address, typeid = :typeid, description = :description, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, edittime = ' . NV_CURRENTTIME . ', exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, groupview = :groupview, groupcomment = :groupcomment, userid = :userid, is_queue = :is_queue, ordertime = :ordertime, pack_money = :pack_money WHERE id=' . $row['id']);
             $stmt->bindParam(':title', $row['title'], PDO::PARAM_STR);
             $stmt->bindParam(':alias', $row['alias'], PDO::PARAM_STR);
             $stmt->bindParam(':wid', $wid, PDO::PARAM_INT);
@@ -476,6 +478,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
             $stmt->bindParam(':userid', $row['userid'], PDO::PARAM_INT);
             $stmt->bindParam(':is_queue', $row['is_queue'], PDO::PARAM_INT);
             $stmt->bindParam(':ordertime', $row['ordertime'], PDO::PARAM_INT);
+            $stmt->bindParam(':pack_money', $row['pack_money'], PDO::PARAM_INT);
             if ($stmt->execute()) {
                 $new_id = $row['id'];
             }
@@ -882,6 +885,15 @@ $xtpl->assign('ROW', $row);
 $xtpl->assign('MONEY_UNIT', $array_config['money_unit']);
 $xtpl->assign('REDIRECT', $redirect);
 $xtpl->assign('UPLOAD_URL', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=upload&token=' . md5($nv_Request->session_id . $global_config['sitekey']));
+
+foreach ($array_pack_money as $key_pm => $val_pm){
+    $xtpl->assign('PACK_MONEY', array(
+        'id' => $key_pm,
+        'title' => $val_pm,
+        'checked' => $row['pack_money'] == $key_pm ? 'checked="checked"' : ''
+    ));
+    $xtpl->parse('main.pack_money');
+}
 
 foreach ($array_wid as $grtl) {
     if (!empty($row['id'])) {

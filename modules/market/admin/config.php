@@ -88,6 +88,11 @@ if ($nv_Request->isset_request('savesetting', 'post')) {
     }
     $data['specialgroup_config'] = !empty($data['specialgroup_config']) ? serialize($data['specialgroup_config']) : '';
 
+    $data['price_days'] = $nv_Request->get_title('price_days', 'post', 0);
+    $data['price_days'] = preg_replace('/[^0-9]/', '', $data['price_days']);
+    $data['price_month'] = $nv_Request->get_title('price_month', 'post', 0);
+    $data['price_month'] = preg_replace('/[^0-9]/', '', $data['price_month']);
+
     $sth = $db->prepare("UPDATE " . NV_CONFIG_GLOBALTABLE . " SET config_value = :config_value WHERE lang = '" . NV_LANG_DATA . "' AND module = :module_name AND config_name = :config_name");
     $sth->bindParam(':module_name', $module_name, PDO::PARAM_STR);
     foreach ($data as $config_name => $config_value) {
