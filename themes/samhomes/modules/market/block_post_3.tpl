@@ -1,12 +1,12 @@
 <!-- BEGIN: main -->
 <div class="row d-flex align-items-center">
-    <div class="col-xs-24 col-sm-20">
-        <div class="title st2">
-            <h2>{BLOCK_TITLE}</h2>
+    <div class="col-sm-20 col-xs-18">
+        <div class="title st2 ">
+            <h2 class="one-line">{BLOCK_TITLE}</h2>
         </div>
     </div>
-    <div class="col-sm-4">
-        <a href="{BLOCK_LINK}" class="text-view-more hidden-xs">Xem thêm</a>
+    <div class="col-sm-4 col-xs-6">
+        <a href="{BLOCK_LINK}" class="text-view-more">Xem thêm</a>
     </div>
 </div>
 <div class="row">
@@ -72,9 +72,6 @@ LANG.auction_register_success = '{LANG.auction_register_success}';
 LANG.auction_cancel_succes = '{LANG.auction_cancel_succes}';
 LANG.auction_cancel_confirm = '{LANG.auction_cancel_confirm}';
 </script>
-    </div>
-    <div class="col-sm-12 text-right view-more no-padding visible-xs">
-        <a href="{BLOCK_LINK}">Xem thêm</a>
     </div>
 </div>
 <!-- END: main -->

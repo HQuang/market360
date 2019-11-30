@@ -1103,7 +1103,7 @@ footer .desfot, footer .contactfooter {text-align: justify}
 .title.st1 {color:#fb6b26;margin:0 0 5px;text-transform: uppercase;font-weight: 500;}
 .title.st1 span { color: #0c0c0c; }
 
-.title.st2 h2{ margin: 0; margin-bottom: 10px; display: inline-block; padding: 5px 10px; background-color: #d3a02a; color:#fff; font-size:14pt; font-weight: normal; text-transform: uppercase; }
+.title.st2 h2{margin: 0;margin-bottom: 10px;display: inline-block;padding: 5px 10px;background-color: #d3a02a;color:#fff;font-size:14pt;font-weight: normal;text-transform: uppercase;max-width: 40%;}
 
 
 
@@ -1202,11 +1202,11 @@ footer .desfot, footer .contactfooter {text-align: justify}
 #frmSenMailFriend .bootstrap-tagsinput {width: 100%}
 #frmSenMailFriend .bootstrap-tagsinput .label{font-size: 14px;}
 #frmChat button, #frmChat .label, #frmChat label, #frmSenMailFriend button, #frmSenMailFriend .bootstrap-tagsinput .label, #frmSenMailFriend label {font-weight: 400 !important;}
-#toolbar ul{list-style-type: none;padding: 0;}
-#toolbar ul li {float: left;margin-right: 3px;margin-bottom: 3px}
-#toolbar ul li img{width: 30px}
+#toolbar_samhome ul{list-style-type: none;padding: 0;}
+#toolbar_samhome ul li {float: left;margin-right: 3px;margin-bottom: 3px}
+#toolbar_samhome ul li img{width: 30px}
 #feedback ul.dropdown-menu {min-width: 250px;top: 94%;}
-#toolbar .btn-primary {padding: 7px 13px}
+#toolbar_samhome .btn-primary {padding: 7px 13px}
 #frmFeeback2 ul.dropdown-menu {margin: 0;top: 94%;}
 #frmFeeback {margin-bottom: 0}
 #other_real_eastate_you_interested_in, #other_real_eastate_nearby { margin-top: 20px;}
@@ -1458,7 +1458,7 @@ body.custom_page_layout_product_tinchinhchu  #scrollTopButton.affix { background
     #home_filter_down .box_filter {padding: 15px 0 15px 15px;}
     #register_alert .box_register_alert {padding: 15px 15px 0 0;}
     #posting_package .packages {height:340px;}
-    #search_view_mode .row {display: flex;align-items: center}
+    
     #search_view_mode .search-right .dropdown{display: inline-block;float: right;}
     #search_view_mode .search-right .view-list-gird{}
     #posting_success .row .col-xs-12 {padding:0 5px}
@@ -1482,7 +1482,7 @@ body.custom_page_layout_product_tinchinhchu  #scrollTopButton.affix { background
     .news .item .image img { width:150px;}
     .news .text { margin-left: 170px; font-size:10pt;}
     .news .text h4 {overflow: hidden;  display: -webkit-box; -webkit-line-clamp: 2;-webkit-box-orient: vertical;}
-    .news .text p {overflow: hidden;  display: -webkit-box; -webkit-line-clamp: 4;-webkit-box-orient: vertical;}
+    .news .text p {overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
 
     #news_slider .carousel { height:auto;}
     #box_top_contact > a, #box_top_contact > div { display:block;  width:100%;}
@@ -1494,7 +1494,7 @@ body.custom_page_layout_product_tinchinhchu  #scrollTopButton.affix { background
     #banner_home #box_search { margin: 0 !important;}
     .product_summary .basic li { float:left;}
     #box_product_search .search-light .input-group-btn { display:inline-block; width:auto; margin-bottom:4px;}
-    #box_product_search .btn-primary { margin:0px; height:35px; padding:5px 20px;  }
+    #box_product_search .btn-primary {}
 
     #main_menu .nav li { border-bottom:1px solid #ececec;}
     #main_menu.in { width:260px; transition:width .2s; transform .3s ease-in-out;}
@@ -1600,7 +1600,7 @@ body.custom_page_layout_product_tinchinhchu  #scrollTopButton.affix { background
     .news_cat.pull-right { float:unset;}
     footer .copyright, footer .social_links { text-align: center; margin:10px 0;}
     footer .col-xs-6 { width:100%;}
-    #logo_area .logos > div { width:50%;}
+    #logo_area .logos > div {width:50%;text-align: center;}
     .owl-carousel .item {width:250px;}
     #related-products.owl-carousel .item {width: 100% !important;}
 }

@@ -37,7 +37,7 @@
                     </div>
                     <!-- END: loop -->
                 </div>
-                <div class="col-sm-24 text-right view-more no-padding">
+                <div class="col-sm-24 text-right view-more no-padding hidden-xs">
                     <a href="{CAT.alias}">Xem thêm</a>
                 </div>
             </div>

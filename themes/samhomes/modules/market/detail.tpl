@@ -50,6 +50,7 @@
                             <!-- BEGIN: location -->
                             <li><em class="fa fa-map-marker">&nbsp;</em><strong>{LANG.area}</strong> : <a href="{DATA.location_link}" title="{DATA.location}">{DATA.location}</a></li>
                             <!-- END: location -->
+                            <li><div class="fb-like pull-left" style="display: contents !important;" data-href="{SELFURL}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true">&nbsp;</div></li>
                         </ul>
                     </div>
                     <div class="row">
@@ -362,20 +363,21 @@
                         {COMMENT}
                         <!-- END: comment_content -->
                     </div>
-                    <div class="m-b10">
-                        <div class="socialicon clearfix">
-                            <div class="pull-left">
+                    <div id="toolbar_samhome" class="m-b10 clearfix">
+                        <div class="form-group">
+                            <ul>
+                                <li><a href="javascript:window.history.back();" class="btn btn-primary btn-block btn-sm gray"><i class="fa fa-reply"></i> <span>Quay lại</span></a></li>
                                 <!-- BEGIN: refresh -->
-                                <a id="refresh" class="btn btn-warning" href="javascript:void(0)" onclick="nv_refresh_popup({DATA.id}); return !1;" title="{LANG.refresh}"><em class="fa fa-refresh fa-lg text-success">&nbsp;</em>{LANG.refresh}</a>
+                                <li><a href="javascript:void(0)" onclick="nv_refresh_popup({DATA.id}); return !1;" class="btn btn-primary btn-block btn-sm gray"><i class="fa fa-refresh"></i> <span>{LANG.refresh}</span></a></li>
                                 <!-- END: refresh -->
-                                <a class="btn btn-default btn-xs save_button_{DATA.id}" {DATA.style_save} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'add', {DATA.is_user}); return !1;" title="{LANG.save}"><em class="fa fa-floppy-o fa-lg text-success">&nbsp;</em>{LANG.save}</a> <a class="btn btn-default btn-xs saved_button_{DATA.id}" {DATA.style_saved} href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'remove', {DATA.is_user}); return !1;" title="{LANG.save_remove}"><em class="fa fa-minus-circle fa-lg text-danger">&nbsp;</em>{LANG.save_remove}</a>
+                                <li><a href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'add', {DATA.is_user}); return !1;" class="btn btn-primary btn-block btn-sm gray save_button_{DATA.id}"{DATA.style_save} ><i class="fa fa-heart-o"></i> <span>{LANG.save}</span></a></li>
+                                <li><a href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'remove', {DATA.is_user}); return !1;" class="btn btn-primary btn-block btn-sm gray saved_button_{DATA.id}"{DATA.style_saved} ><i class="fa fa-minus-circle"></i> <span>{LANG.save_remove}</span></a></li>
                                 <!-- BEGIN: admin -->
-                                <a href="{DATA.link_edit}" class="btn btn-default btn-xs"><em class="fa fa-edit">&nbsp;</em>{LANG.edit}</a> <a href="{DATA.link_delete}" class="btn btn-default btn-xs" onclick="return confirm(nv_is_del_confirm[0]);"><em class="fa fa-trash-o">&nbsp;</em>{LANG.delete}</a>
+                                <li><a href="{DATA.link_edit}" class="btn btn-primary btn-block btn-sm gray"><i class="fa fa-edit"></i> <span>{LANG.edit}</span></a></li>
+                                <li><a href="{DATA.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);" class="btn btn-primary btn-block btn-sm gray"><i class="fa fa-trash-o"></i> <span>{LANG.delete}</span></a></li>
                                 <!-- END: admin -->
-                                <div class="fb-like pull-left line-25" data-href="{SELFURL}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true">&nbsp;</div>
-                            </div>
+                            </ul>
                         </div>
-                        <div class="clearfix"></div>
                     </div>
                     <!-- BEGIN: keywords -->
                     <div class="tags">
@@ -401,14 +403,10 @@
                         </div>
                         <!-- BEGIN: phone -->
                         <div class="form-group">
-                            <a href="tel:{DATA.contact_phone}" class="btn btn-primary btn-block btn-sm" id="btn_get_phone"><i class="fa fa-phone"></i> <span>
-                                    {DATA.contact_phone}
-                            </span></a>
+                            <a href="tel:{DATA.contact_phone}" class="btn btn-primary btn-block btn-sm" id="btn_get_phone"><i class="fa fa-phone"></i> <span> {DATA.contact_phone} </span></a>
                         </div>
                         <div class="form-group">
-                            <a href="sms:{DATA.contact_phone}" class="btn btn-primary btn-block btn-sm" id="btn_get_phone"><i class="fa fa-envelope"></i> <span>
-                                    {DATA.contact_phone}
-                            </span></a>
+                            <a href="sms:{DATA.contact_phone}" class="btn btn-primary btn-block btn-sm" id="btn_get_phone"><i class="fa fa-envelope"></i> <span> {DATA.contact_phone} </span></a>
                         </div>
                         <!-- END: phone -->
                         <div class=" div_chat">
@@ -417,8 +415,7 @@
                             <!-- END: email -->
                         </div>
                         <div class="">
-                            <a href="#" class="btn btn-default btn-block" style="white-space: inherit;"> <i class="fa fa-map-pin"></i> Địa chỉ <b style="color: #ed1c24">
-                                    <!-- BEGIN: address --> {DATA.contact_address} <!-- END: address -->
+                            <a href="#" class="btn btn-default btn-block" style="white-space: inherit;"> <i class="fa fa-map-pin"></i> Địa chỉ <b style="color: #ed1c24"> <!-- BEGIN: address --> {DATA.contact_address} <!-- END: address -->
                             </b></a>
                         </div>
                         <!-- END: contact -->

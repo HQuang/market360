@@ -90,7 +90,7 @@ if (!nv_function_exists('nv_market_block_search')) {
 
         array_unshift($module_array_type, array(
             'id' => 0,
-            'title' => $lang_module['all'],
+            'title' => $lang_module['type_select'],
             'alias' => 'all'
         ));
 

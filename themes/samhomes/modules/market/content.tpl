@@ -19,6 +19,12 @@
             </ul>
         </div>
         <input type="hidden" name="id" value="{ROW.id}" />
+        <div class="form-group">
+            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"></label>
+            <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
+                <span class="require">(*) Thông tin bắt buộc</span>
+            </div>
+        </div>
         <!-- BEGIN: typeid -->
         <div class="form-group">
             <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>{LANG.type} <span class="require">(*)</span></strong></label>
@@ -48,6 +54,19 @@
         </div>
         <div id="div-pricetype">{PRICETYPE}</div>
         <div id="custom_form">{DATACUSTOM_FORM}</div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10 col-xs-24">
+                    <input type="text" class="form-control" name="address" value="{ROW.address}" placeholder="{LANG.contact_address}" />
+                </div>
+                <div class="col-md-14 col-xs-24">{LOCATION}</div>
+            </div>
+        </div>
+        <div id="maps">
+            <!-- BEGIN: maps -->
+            {MAPS}
+            <!-- END: maps -->
+        </div>
         <!-- BEGIN: description -->
         <div class="form-group form-tooltip">
             <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.description_s}</strong> <em class="fa fa-question-circle fa-pointer text-info" data-toggle="tooltip" data-original-title="{LANG.description_note}">&nbsp;</em></label>
@@ -108,26 +127,6 @@
             </div>
         </div>
         <!-- END: exptime -->
-        <div class="form-group">
-            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>{LANG.wid} </strong></label>
-            <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
-                <!-- BEGIN: groups_widget -->
-                <div class="col-xs-12 col-sm-8 col-md-6">
-                    <label><input type="checkbox" name="wid[]" value="{GROUPS_WIDGET.value}" {GROUPS_WIDGET.checked} />{GROUPS_WIDGET.title}</label>
-                </div>
-                <!-- END: groups_widget -->
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>{LANG.faci} </strong></label>
-            <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
-                <!-- BEGIN: groups_faci -->
-                <div class="col-xs-12 col-sm-8 col-md-6">
-                    <label><input type="checkbox" name="faci[]" value="{GROUPS_FACI.value}" {GROUPS_FACI.checked} />{GROUPS_FACI.title}</label>
-                </div>
-                <!-- END: groups_faci -->
-            </div>
-        </div>
         <!-- BEGIN: auction -->
         <h2 class="title">
             <label><input type="checkbox" name="auction" value="1" {ROW.ck_auction} />{LANG.auction}</label>
@@ -256,19 +255,6 @@
         <h2 class="title">
             {LANG.location}<label class="pull-right"><input type="checkbox" name="display_maps" value="1" id="display_maps"{ROW.ck_display_maps}>{LANG.display_maps}</label>
         </h2>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-10 col-xs-24">
-                    <input type="text" class="form-control" name="address" value="{ROW.address}" placeholder="{LANG.contact_address}" />
-                </div>
-                <div class="col-md-14 col-xs-24">{LOCATION}</div>
-            </div>
-        </div>
-        <div id="maps">
-            <!-- BEGIN: maps -->
-            {MAPS}
-            <!-- END: maps -->
-        </div>
         <!-- BEGIN: required_maps_appid -->
         <div class="alert alert-danger">{LANG.error_required_maps_appid}</div>
         <!-- END: required_maps_appid -->

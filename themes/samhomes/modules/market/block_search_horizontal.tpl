@@ -22,7 +22,7 @@
                         </div>
                     </div>
                    
-                    <div class="col-sm-3 col-xs-12 col-min-24 p-lr0 p-xs-b5">
+                    <div class="col-sm-3 col-xs-12 col-min-24 p-min-lr0  p-xs-b5 p-xs-r0">
                         <div class="form-group">
                             <select name="type" class="form-control">
                                 <!-- BEGIN: type -->
@@ -31,7 +31,7 @@
                             </select>
                         </div>
                     </div>
-                     <div class="col-sm-8 col-xs-24">{LOCATION}</div>
+                     <div class="col-sm-8 col-xs-24 p-lr0">{LOCATION}</div>
                     <div class="col-sm-4 col-xs-12 col-min-24 p-xs-lr0 p-xs-b5">
                         <select name="catid" class="form-control select2">
                             <option value="0">---{LANG.cat_select}---</option>

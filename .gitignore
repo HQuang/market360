@@ -49,6 +49,7 @@ modules/users/
 modules/videoclips/
 modules/voting/
 modules/wallet/
+modules/feedback/
 
 modules/banners/
 modules/bookhouse/

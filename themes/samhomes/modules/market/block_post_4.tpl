@@ -1,19 +1,17 @@
 <!-- BEGIN: main -->
 <div id="news_updated">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-8 col-xs-18">
             <div class="title st2">
                 <h2>{BLOCK_TITLE}</h2>
             </div>
         </div>
-        <div class="col-sm-16">
-            <div class="hidden-xs hidden-sm">
+        <div class="col-sm-16 col-xs-6">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="tab-link"><a href="{BLOCK_LINK}">Xem thêm</a></li>
                     </ul>
                 </div>
-            </div>
         </div>
     </div>
     <div class="row">

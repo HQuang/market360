@@ -1,17 +1,29 @@
+#tab-content ul {
+				padding-left: 0;
+}
+
+.nav-tabs-custom .view-more {
+				right: unset;
+}
+
 .alert  #idcomment {
 				background: #fcf8e3;
 }
+
 .alert  #idcomment .row.clearfix.margin-bottom-lg {
 				display: none;
 }
-.aleart-comment{
+
+.aleart-comment {
 				position: relative;
 }
-#idcomment button{
+
+#idcomment button {
 				position: absolute;
 				right: 25px;
 				top: 15px;
 }
+
 #my_full_page .table>tbody>tr>td {
 				vertical-align: middle;
 }
@@ -200,11 +212,6 @@ label {
 				right: 0px;
 }
 
-#box_product_search .province {
-				padding-right: 0px;
-				padding-left: 0;
-}
-
 .wallet-button {
 				position: relative;
 				bottom: 10px;
@@ -260,9 +267,22 @@ label {
 }
 
 @media only screen and (max-width:991px) {
+				#box_product_search .ward {
+								display: none;
+				}
+				#box_product_search .province, #box_product_search .district {
+								width: 50%;
+				}
 }
 
 @media only screen and (max-width:767px) {
+				#product_detail .house_static li {
+								display: block;
+								padding-left: 0;
+				}
+				#register_alert .input-lg {
+								margin-bottom: 15px;
+				}
 				#my_actions .menu-header {
 								padding-top: 25px;
 				}
@@ -276,6 +296,9 @@ label {
 				.p-xs-b5 {
 								padding-bottom: 5px;
 				}
+				.p-xs-r0 {
+								padding-right: 0;
+				}
 				.p-xs-lr0 {
 								padding-left: 0;
 								padding-right: 0;
@@ -287,11 +310,11 @@ label {
 				}
 				#user_menu>li>a {
 								font-size: 10px;
+								padding: 5px;
 				}
-				.search-light .district, .search-light .province {
+				.search-light .province, .search-light .ward {
 								padding-bottom: 5px;
 								width: 50%;
-								padding-left: 0;
 								padding-right: 0;
 				}
 }
@@ -315,7 +338,7 @@ label {
 				.col-min-12 {
 								width: 50%;
 				}
-				#box_product_search .input-keyword, .search-light .district, .search-light .province {
+				#box_product_search .input-keyword, .search-light .district, .search-light .province, .search-light .ward {
 								width: 100%;
 				}
 }
@@ -340,6 +363,13 @@ label {
 }
 
 @media only screen and (min-width:992px) {
+				#search_view_mode .row {
+								display: flex;
+								align-items: center
+				}
+				#box_product_search .province, #box_product_search .district {
+								padding-right: 0px;
+				}
 }
 
 @media only screen and (min-width:1200px) {
@@ -349,12 +379,20 @@ label {
 }
 
 @media ( min-width :0px) and (max-width:479px) {
+				.p-min-r0 {
+								padding-right: 0;
+				}
+				.p-min-lr0 {
+								padding-left: 0;
+								padding-right: 0;
+				}
 }
 
 @media ( max-width : 991px) and (min-width: 320px) {
 				#user_menu {
 								right: 43px;
 								top: 5px;
+								position: absolute;
 				}
 }
 
