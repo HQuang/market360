@@ -55,17 +55,14 @@
         <div id="div-pricetype">{PRICETYPE}</div>
         <div id="custom_form">{DATACUSTOM_FORM}</div>
         <div class="form-group">
-            <div class="row">
-                <div class="col-md-10 col-xs-24">
+            <label class="col-sm-5 col-md-4 control-label"> <strong>{LANG.location} <span class="require">(*)</span></strong>
+            </label>
+            <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
+                <div class="col-md-10 col-xs-24 p-l0">
                     <input type="text" class="form-control" name="address" value="{ROW.address}" placeholder="{LANG.contact_address}" />
                 </div>
                 <div class="col-md-14 col-xs-24">{LOCATION}</div>
             </div>
-        </div>
-        <div id="maps">
-            <!-- BEGIN: maps -->
-            {MAPS}
-            <!-- END: maps -->
         </div>
         <!-- BEGIN: description -->
         <div class="form-group form-tooltip">
@@ -211,17 +208,17 @@
         </div>
         <!-- END: auction -->
         <!-- BEGIN: images -->
-        <h2 class="title">{LANG.image}</h2>
-        <blockquote class="alert alert-info">
-            <ul>
-                <li>{LANG.maxsizeimage}: {USER_CONFIG.max_width}x{USER_CONFIG.max_height}</li>
-                <li>{LANG.maxsize}: {USER_CONFIG.max_filesize}</li>
-            </ul>
-        </blockquote>
-        <div class="row">
-            <div class="col-xs-24 col-sm-12 col-md-12">
+        <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.image} <span class="require">(*)</span></strong></label>
+        <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
+            <blockquote class="alert alert-info">
+                <ul class="p-0">
+                    <li>Tin đăng kèm hình ảnh sẽ thu hút người xem nhiều hơn!</li>
+                    <li>Bạn có thể tải lên tới 10 hình ảnh, {LANG.maxsizeimage}: {USER_CONFIG.max_width}x{USER_CONFIG.max_height}, {LANG.maxsize}: {USER_CONFIG.max_filesize} có liên quan đến tin đăng của bạn</li>
+                </ul>
+            </blockquote>
+            <div class="col-xs-24 col-sm-12 col-md-12 p-l0">
                 <div id="uploader">
-                    <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+                    <p>Trình duyệt của bạn không có hỗ trợ Flash, Silverlight hoặc HTML5.</p>
                 </div>
             </div>
             <div class="col-xs-24 col-sm-12 col-md-12">
@@ -252,37 +249,198 @@
             </div>
         </div>
         <!-- END: images -->
-        <h2 class="title">
-            {LANG.location}<label class="pull-right"><input type="checkbox" name="display_maps" value="1" id="display_maps"{ROW.ck_display_maps}>{LANG.display_maps}</label>
-        </h2>
+        <div class="form-group">
+            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>{LANG.wid} </strong></label>
+            <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
+                <!-- BEGIN: groups_widget -->
+                <div class="col-xs-12 col-sm-8 col-md-6">
+                    <label><input type="checkbox" name="wid[]" value="{GROUPS_WIDGET.value}" {GROUPS_WIDGET.checked} />{GROUPS_WIDGET.title}</label>
+                </div>
+                <!-- END: groups_widget -->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>{LANG.faci} </strong></label>
+            <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
+                <!-- BEGIN: groups_faci -->
+                <div class="col-xs-12 col-sm-8 col-md-6">
+                    <label><input type="checkbox" name="faci[]" value="{GROUPS_FACI.value}" {GROUPS_FACI.checked} />{GROUPS_FACI.title}</label>
+                </div>
+                <!-- END: groups_faci -->
+            </div>
+        </div>
+        <label class="col-sm-5 col-md-4 control-label"><strong>Vị trí trên bản đồ </strong></label>
+        <div class="col-sm-19 col-md-20 p-tb5 p-lr15" style="min-height: 35px;">
+            <label class="btn btn-primary" style="padding-left: inherit !important"><input type="checkbox" name="display_maps" value="1" id="display_maps"{ROW.ck_display_maps}>{LANG.display_maps}</label>
+            <div id="maps" class="p-tb5 p-lr5">
+                <!-- BEGIN: maps -->
+                {MAPS}
+                <!-- END: maps -->
+            </div>
+        </div>
         <!-- BEGIN: required_maps_appid -->
         <div class="alert alert-danger">{LANG.error_required_maps_appid}</div>
         <!-- END: required_maps_appid -->
         <h2 class="title">{LANG.contact_info}</h2>
         <div class="form-group">
             <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.contact_fullname} <span class="require">(*)</span></strong></label>
-            <div class="col-sm-16 col-md-17">
+            <div class="col-sm-16 col-md-14">
                 <input class="form-control" type="text" name="contact_fullname" value="{ROW.contact_fullname}" />
             </div>
         </div>
         <div class="form-group form-tooltip">
             <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.contact_email} <span class="require">(*)</span></strong><em class="fa fa-question-circle fa-pointer text-info" data-toggle="tooltip" data-original-title="{LANG.contact_email_note}">&nbsp;</em></label>
-            <div class="col-sm-16 col-md-17">
+            <div class="col-sm-16 col-md-14">
                 <input class="form-control" type="email" name="contact_email" value="{ROW.contact_email}" id="contact_email" oninvalid="setCustomValidity( nv_email )" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.contact_phone} <span class="require">(*)</span></strong></label>
-            <div class="col-sm-16 col-md-17">
+            <div class="col-sm-16 col-md-14">
                 <input class="form-control" type="text" name="contact_phone" value="{ROW.contact_phone}" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.contact_address} <span class="require">(*)</span></strong></label>
-            <div class="col-sm-16 col-md-17">
+            <div class="col-sm-16 col-md-14">
                 <input class="form-control" type="text" name="contact_address" value="{ROW.contact_address}" />
             </div>
         </div>
+<!-- 
+        <h2 class="title">HÌNH THỨC ĐĂNG</h2>
+        <div id="group_posting_single">
+            <div class="form-group">
+                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
+                <div class="col-sm-16 col-md-14">Để đáp ứng tốt hơn nhu cầu của Khách hàng, chúng tôi hỗ trợ dịch vụ đăng tin Hot, tin Vip với nhiều ưu đãi về hình thức và vị trí hiển thị.</div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Loại tin đăng</strong></label>
+                <div class="col-sm-16 col-md-14">
+                    <select class="form-control" name="Form[post_type]" id="vip_type" required="" data-bv-field="Form[post_type]">
+                        <option value="0">Tin thường</option>
+                        <option value="1">Tin Nổi Bật</option>
+                        <option value="2">Tin Vip</option>
+                    </select> <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[post_type]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thời gian đăng</strong></label>
+                <div class="col-sm-16 col-md-14">
+                    <div class="input-group input-daterange" id="group_date" style="width: 100%">
+                        <input type="text" name="Form[active_time]" id="active_time" value="30/11/2019" class="form-control inputmask" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[active_time]">
+                        <span class="input-group-addon">đến</span>
+                        <input type="text" name="Form[expire_time]" id="expire_time" value="30/12/2019" class="form-control inputmask" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[expire_time]">
+                    </div>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[active_time]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small><small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[expire_time]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thành tiền</strong></label>
+                <div class="col-sm-16 col-md-14">
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Đơn giá</td>
+                                <td align="right">
+                                    <span id="price_per_day">0</span> VND/ngày
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Số ngày</td>
+                                <td align="right">
+                                    <span id="days_calculate">31</span> ngày
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Phí đăng tin</td>
+                                <td align="right">
+                                    <span id="price_subtotal">0</span> VND
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Khuyến mại</td>
+                                <td align="right">0 VND</td>
+                            </tr>
+                            <tr>
+                                <td>Tổng tiền</td>
+                                <td align="right">
+                                    <span id="price_total">0</span> VND
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thời gian đăng</strong></label>
+                <div class="col-sm-16 col-md-14">
+                    <div class="input-group input-daterange" id="group_date" style="width: 100%">
+                        <input type="text" name="Form[active_time]" id="active_time" value="30/11/2019" class="form-control inputmask" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[active_time]">
+                        <span class="input-group-addon">đến</span>
+                        <input type="text" name="Form[expire_time]" id="expire_time" value="30/12/2019" class="form-control inputmask" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[expire_time]">
+                    </div>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[active_time]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small><small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[expire_time]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
+                <div class="col-sm-16 col-md-14">
+                    <div class="checkbox">
+                        <label> <input type="checkbox" name="autopost" value="1" id="autopost"> <b>Đăng tin trên nhiều website, tăng cường khả năng tiếp cận khách mua/thuê</b>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <fieldset id="fl_autopost" disabled="">
+                <div class="form-group">
+                    <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right control-label">Gói đăng tin</label>
+                    <div class="col-sm-17 col-md-18 p-tb5">
+                        <div class="row" id="posting_package">
+                            <div class="col-xs-8">
+                                <div class="packages alert alert-warning">
+                                    <div class="radio">
+                                        <label> <input type="radio" name="pkid" value="1" checked=""> <b>Cơ bản </b><br> (80,000 đ)
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label> <input type="radio" name="pkid" value="2"> <b>Nâng cao</b><br> (250,000 đ)
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label> <input type="radio" name="pkid" value="20"> <b>Vip</b><br> (450,000 đ)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-16">
+                                <div class="table-responsive table-scroll " id="pk_1">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="50%">Website</th>
+                                                <th width="50%">Ghi chú</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1. https://dothi.net</td>
+                                                <td>Tin có phí 14 ngày - up mới 14 ngày</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2. http://phonhadat.net</td>
+                                                <td>Tồn tại đến khi nào bán được</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        
+             -->
         <!-- BEGIN: requeue -->
         <div class="alert alert-warning text-center">
             <p>{LANG.requeue_note}</p>
