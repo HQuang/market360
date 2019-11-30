@@ -407,6 +407,13 @@ if ($nv_Request->isset_request('submit', 'post')) {
         }
         $row['keywords'] = implode(',', $keywords_return);
     }
+    $mess_ = sprintf($lang_module['mess_'], $array_pack_money[$row['pack_money']]);
+
+    if ($row['pack_money'] == 1) {
+        $total = empty($row['exptime']) ? $array_config['price_days'] : (($row['exptime'] - NV_CURRENTTIME) / 86400) * $array_config['price_days'];
+    }elseif ($row['pack_money'] == 2) {
+        $total = $array_config['price_month'];
+    }
 
     try {
         $new_id = 0;
@@ -484,9 +491,25 @@ if ($nv_Request->isset_request('submit', 'post')) {
             }
         }
 
+        if( isset( $site_mods['wallets'] ) )
+        {
+            $sql = "SELECT money_in FROM " . $db_config['prefix'] . "_wallets_money WHERE userid = " . $user_info['userid'] . " AND money_unit = 'VND'";
+            $result = $db->query( $sql );
+            if( $result->rowCount() == 0 )
+            {
+                $config_raovat['money_in'] = 0;
+            }
+            else
+            {
+                list( $config_raovat['money_in'] ) = $result->fetch( 3 );
+            }
+        }
+
         if ($new_id > 0) {
 
             if (empty($row['id'])) {
+
+                $wallet->update($total, 'VND', $admin_info['userid'], $mess_);
 
                 // thêm vào tùy biến dữ liệu
                 if (!empty($row['custom_field'])) {
@@ -513,6 +536,11 @@ if ($nv_Request->isset_request('submit', 'post')) {
                     nv_add_fb_queue($new_id);
                 }
             } else {
+
+                if (empty($row['is_queue'])) {
+                    $wallet->update($total, 'VND', $row['userid'], $mess_);
+                }
+
                 // cập nhật tùy biến dữ liệu
                 if (!empty($query_field)) {
                     $db->query('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_info SET ' . implode(', ', $query_field) . ' WHERE rowid=' . $new_id);

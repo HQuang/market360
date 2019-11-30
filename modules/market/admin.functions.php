@@ -549,3 +549,14 @@ function nv_crawler_delete_rows($id)
 
     $db->query('DELETE FROM ' . NV_PREFIXLANG . '_' . $module_data . '_crawler_rows WHERE id=' . $id);
 }
+
+
+function wallet_sub_money_user( $price, $userid, $moneyunit )
+{
+    global $db_config, $db, $module_data, $nv_Cache;
+    $query = "UPDATE " . $db_config['prefix'] . "_wallet_money SET  money_total= money_total-" . $price . ", money_out= money_out+" . $price . "  WHERE userid =" . $userid . " AND money_unit = '" . $moneyunit . "' ";
+    if( $db->query( $query ) )
+    {
+        return true;
+    }
+}
