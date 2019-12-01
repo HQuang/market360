@@ -52,16 +52,16 @@
                 </select>
             </div>
         </div>
-        <div id="div-pricetype">{PRICETYPE}</div>
         <div id="custom_form">{DATACUSTOM_FORM}</div>
+        <div id="div-pricetype">{PRICETYPE}</div>
         <div class="form-group">
             <label class="col-sm-5 col-md-4 control-label"> <strong>{LANG.location} <span class="require">(*)</span></strong>
             </label>
             <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
+                <div class="col-md-14 col-xs-24">{LOCATION}</div>
                 <div class="col-md-10 col-xs-24 p-l0">
                     <input type="text" class="form-control" name="address" value="{ROW.address}" placeholder="{LANG.contact_address}" />
                 </div>
-                <div class="col-md-14 col-xs-24">{LOCATION}</div>
             </div>
         </div>
         <!-- BEGIN: description -->
@@ -90,39 +90,39 @@
         </div>
         <!-- END: note -->
         <!-- BEGIN: exptime -->
-        <div class="form-group">
-            <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.exptime}</strong></label>
-            <div class="col-sm-19 col-md-20 p-tb5 p-lr15">
-                <div class="row m-bottom">
-                    <div class="col-xs-8 col-sm-8 col-md-6">
-                        <select name="begintime_hour" class="form-control">
-                            <option value="0">---{LANG.hour_select}---</option>
-                            <!-- BEGIN: hour -->
-                            <option value="{HOUR.index}"{HOUR.selected}>{HOUR.index}</option>
-                            <!-- END: hour -->
-                        </select>
-                    </div>
-                    <div class="col-xs-8 col-sm-8 col-md-6">
-                        <select name="begintime_min" class="form-control">
-                            <option value="0">---{LANG.min_select}---</option>
-                            <!-- BEGIN: min -->
-                            <option value="{MIN.index}"{MIN.selected}>{MIN.index}</option>
-                            <!-- END: min -->
-                        </select>
-                    </div>
-                    <div class="col-xs-8 col-sm-8 col-md-12">
-                        <div class="input-group">
-                            <input class="form-control datepicker" type="text" name="exptime" value="{ROW.exptimef}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" id="exptime-btn">
-                                    <em class="fa fa-calendar fa-fix"> </em>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--         <div class="form-group"> -->
+<!--             <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.exptime}</strong></label> -->
+<!--             <div class="col-sm-19 col-md-20 p-tb5 p-lr15"> -->
+<!--                 <div class="row m-bottom"> -->
+<!--                     <div class="col-xs-8 col-sm-8 col-md-6"> -->
+<!--                         <select name="begintime_hour" class="form-control"> -->
+<!--                             <option value="0">---{LANG.hour_select}---</option> -->
+<!--                             BEGIN: hour -->
+<!--                             <option value="{HOUR.index}"{HOUR.selected}>{HOUR.index}</option> -->
+<!--                             END: hour -->
+<!--                         </select> -->
+<!--                     </div> -->
+<!--                     <div class="col-xs-8 col-sm-8 col-md-6"> -->
+<!--                         <select name="begintime_min" class="form-control"> -->
+<!--                             <option value="0">---{LANG.min_select}---</option> -->
+<!--                             BEGIN: min -->
+<!--                             <option value="{MIN.index}"{MIN.selected}>{MIN.index}</option> -->
+<!--                             END: min -->
+<!--                         </select> -->
+<!--                     </div> -->
+<!--                     <div class="col-xs-8 col-sm-8 col-md-12"> -->
+<!--                         <div class="input-group"> -->
+<!--                             <input class="form-control datepicker" type="text" name="exptime" value="{ROW.exptimef}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" /> -->
+<!--                             <span class="input-group-btn"> -->
+<!--                                 <button class="btn btn-default" type="button" id="exptime-btn"> -->
+<!--                                     <em class="fa fa-calendar fa-fix"> </em> -->
+<!--                                 </button> -->
+<!--                             </span> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
         <!-- END: exptime -->
         <!-- BEGIN: auction -->
         <h2 class="title">
@@ -216,13 +216,13 @@
                     <li>Bạn có thể tải lên tới 10 hình ảnh, {LANG.maxsizeimage}: {USER_CONFIG.max_width}x{USER_CONFIG.max_height}, {LANG.maxsize}: {USER_CONFIG.max_filesize} có liên quan đến tin đăng của bạn</li>
                 </ul>
             </blockquote>
-            <div class="col-xs-24 col-sm-12 col-md-12 p-l0">
+            <div class="col-xs-24 col-sm-13  p-l0">
                 <div id="uploader">
                     <p>Trình duyệt của bạn không có hỗ trợ Flash, Silverlight hoặc HTML5.</p>
                 </div>
             </div>
-            <div class="col-xs-24 col-sm-12 col-md-12">
-                <div id="imagelist" style="border: solid 1px #ddd; padding: 10px; height: 360px">
+            <div class="col-xs-24 col-sm-11 ">
+                <div id="imagelist" style="border: solid 1px #ddd; padding: 10px; height: 315px">
                     <!-- BEGIN: loop -->
                     <div class="image <!-- BEGIN: is_main -->is_main<!-- END: is_main -->">
                         <em class="fa fa-times-circle fa-lg fa-pointer" title="{LANG.image_delete}" onclick="$(this).parent().remove();">&nbsp;</em>
@@ -306,7 +306,7 @@
                 <input class="form-control" type="text" name="contact_address" value="{ROW.contact_address}" />
             </div>
         </div>
-<!-- 
+
         <h2 class="title">HÌNH THỨC ĐĂNG</h2>
         <div id="group_posting_single">
             <div class="form-group">
@@ -440,7 +440,7 @@
             </fieldset>
         </div>
         
-             -->
+
         <!-- BEGIN: requeue -->
         <div class="alert alert-warning text-center">
             <p>{LANG.requeue_note}</p>
@@ -496,7 +496,7 @@ $(function() {
 	var i = {COUNT};
 	
 	$('#imagelist').slimScroll({
-        height: '360px'
+        height: '315px'
     });
 	
     // Setup html5 version
@@ -523,7 +523,7 @@ $(function() {
     			},
     			UploadComplete: function (up, files) {
     				$('#imagelist').slimScroll({
-    	                height: '360px'
+    	                height: '315px'
     	            });
     				up.destroy();
                     initUploader();

@@ -356,12 +356,14 @@
                     </div>
                     <div class="m-t20"></div>
                     <div class="alert alert-warning aleart-comment">
-                        <div class="row d-flex align-items-center m-b20">
-                            <div class="col-xs-24">Vui lòng hỗ trợ chúng tôi báo sai phạm nếu tin đăng không đúng như nội dung đăng tải</div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-sm-16 col-md-20">Vui lòng hỗ trợ chúng tôi báo sai phạm nếu tin đăng không đúng như nội dung đăng tải</div>
+                            <div class="col-sm-8 col-md-4">
+                                <!-- BEGIN: comment_content -->
+                                {COMMENT}
+                                <!-- END: comment_content -->
+                            </div>
                         </div>
-                        <!-- BEGIN: comment_content -->
-                        {COMMENT}
-                        <!-- END: comment_content -->
                     </div>
                     <div id="toolbar_samhome" class="m-b10 clearfix">
                         <div class="form-group">
@@ -370,8 +372,6 @@
                                 <!-- BEGIN: refresh -->
                                 <li><a href="javascript:void(0)" onclick="nv_refresh_popup({DATA.id}); return !1;" class="btn btn-primary btn-block btn-sm gray"><i class="fa fa-refresh"></i> <span>{LANG.refresh}</span></a></li>
                                 <!-- END: refresh -->
-                                <li><a href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'add', {DATA.is_user}); return !1;" class="btn btn-primary btn-block btn-sm gray save_button_{DATA.id}"{DATA.style_save} ><i class="fa fa-heart-o"></i> <span>{LANG.save}</span></a></li>
-                                <li><a href="javascript:void(0)" onclick="nv_save_rows({DATA.id}, 'remove', {DATA.is_user}); return !1;" class="btn btn-primary btn-block btn-sm gray saved_button_{DATA.id}"{DATA.style_saved} ><i class="fa fa-minus-circle"></i> <span>{LANG.save_remove}</span></a></li>
                                 <!-- BEGIN: admin -->
                                 <li><a href="{DATA.link_edit}" class="btn btn-primary btn-block btn-sm gray"><i class="fa fa-edit"></i> <span>{LANG.edit}</span></a></li>
                                 <li><a href="{DATA.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);" class="btn btn-primary btn-block btn-sm gray"><i class="fa fa-trash-o"></i> <span>{LANG.delete}</span></a></li>
@@ -409,10 +409,22 @@
                             <a href="sms:{DATA.contact_phone}" class="btn btn-primary btn-block btn-sm" id="btn_get_phone"><i class="fa fa-envelope"></i> <span> {DATA.contact_phone} </span></a>
                         </div>
                         <!-- END: phone -->
-                        <div class=" div_chat">
-                            <!-- BEGIN: email -->
-                            <a href="mailto:{DATA.contact_email}" class="btn btn-info btn-block btn-sm"><i class="fa fa-envelope"></i>&nbsp;{LANG.sendmail}</a>
-                            <!-- END: email -->
+                        <div class="row">
+                            <div class="col-sm-24 col-md-8 div_save_post saved">
+                                <button type="button" onclick="nv_save_rows({DATA.id}, 'add', {DATA.is_user}); return !1;" class="btn btn-default w-100 btn-sm save_button_{DATA.id}"{DATA.style_save} >
+                                    <span class="hidden-xs">&nbsp;<i class="fa fa-heart"></i>&nbsp;
+                                    </span> <span class="visible-xs"><i class="fa fa-heart"></i> {LANG.save}</span>
+                                </button>
+                                <button type="button" onclick="nv_save_rows({DATA.id}, 'remove', {DATA.is_user}); return !1;" class="btn btn-default  w-100 btn-sm saved_button_{DATA.id}"{DATA.style_saved} >
+                                    <span class="hidden-xs">&nbsp;<i class="fa fa-minus-circle"></i>&nbsp;
+                                    </span> <span class="visible-xs"><i class="fa fa-minus-circle"></i> {LANG.save_remove}</span>
+                                </button>
+                            </div>
+                            <div class="col-sm-24 col-md-16 hidden-xs div_chat">
+                                <!-- BEGIN: email -->
+                                <a href="mailto:{DATA.contact_email}" class="btn btn-info btn-block btn-sm" style="color: #fff !important"><i class="fa fa-envelope"></i>&nbsp;{LANG.sendmail}</a>
+                                <!-- END: email -->
+                            </div>
                         </div>
                         <div class="">
                             <a href="#" class="btn btn-default btn-block" style="white-space: inherit;"> <i class="fa fa-map-pin"></i> Địa chỉ <b style="color: #ed1c24"> <!-- BEGIN: address --> {DATA.contact_address} <!-- END: address -->

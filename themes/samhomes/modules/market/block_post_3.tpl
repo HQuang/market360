@@ -2,7 +2,7 @@
 <div class="row d-flex align-items-center">
     <div class="col-sm-20 col-xs-18">
         <div class="title st2 ">
-            <h2 class="one-line">{BLOCK_TITLE}</h2>
+            <h2>{BLOCK_TITLE}</h2>
         </div>
     </div>
     <div class="col-sm-4 col-xs-6">
