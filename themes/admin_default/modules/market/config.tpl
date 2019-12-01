@@ -1,4 +1,8 @@
 <!-- BEGIN: main -->
+<link type="text/css" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/select2.min.css">
+<link rel="stylesheet" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/select2-bootstrap.min.css">
+<link rel="stylesheet" href="{NV_BASE_SITEURL}themes/default/js/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css">
 <form action="" method="post" class="form-horizontal">
     <div class="panel panel-default">
         <div class="panel-heading">{LANG.config_system}</div>
@@ -370,6 +374,23 @@
         </div>
     </div>
     <div class="panel panel-default">
+        <div class="panel-heading">{LANG.config_wallet}</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-3 control-label"><strong>{LANG.config_wallet_days}</strong></label>
+                <div class="col-sm-21">
+                    <input class="form-control price" type="text" name="price_days" value="{DATA.price_days}" placeholder="{LANG.pricetype_cat_title_2_note}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label"><strong>{LANG.config_wallet_month}</strong></label>
+                <div class="col-sm-21">
+                    <input class="form-control price" type="text" name="price_month" value="{DATA.price_month}" placeholder="{LANG.pricetype_cat_title_2_note}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
         <div class="panel-heading">{LANG.config_group_useradd}</div>
         <div class="panel-body">
             <div class="form-group">
@@ -408,7 +429,32 @@
         <input type="submit" class="btn btn-primary" value="{LANG.save}" name="savesetting" />
     </div>
 </form>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/language/jquery.ui.datepicker-{NV_LANG_INTERFACE}.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}themes/default/js/market_autoNumeric-1.9.41.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/select2.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/i18n/{NV_LANG_INTERFACE}.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}themes/default/js/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}themes/default/js/plupload/jquery.plupload.queue/jquery.plupload.queue.min.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}themes/default/js/plupload/i18n/{NV_LANG_INTERFACE}.js"></script>
 <script>
+
+    $(document).ready(function() {
+    	var Options = {
+    		aSep : '.',
+    		aDec : ',',
+    		vMin : '0',
+    		vMax : '999999999999999999'
+    	};
+    	$('.price').autoNumeric('init', Options);
+    	$('.price').bind('blur focusout keypress keyup', function() {
+    		$(this).autoNumeric('get', Options);
+    	});
+    });
+
+
+
+
 	var number = {COUNT};
 	$('.grouppost').change(function(){
 		if($(this).is(':checked')){

@@ -233,6 +233,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   is_queue tinyint(1) unsigned NOT NULL DEFAULT '0',
   is_queue_edit tinyint(1) unsigned NOT NULL DEFAULT '0',
   groups_config text NOT NULL DEFAULT '',
+  pack_money tinyint(1) unsigned NOT NULL DEFAULT '0',
   status_admin tinyint(1) unsigned NOT NULL DEFAULT '1',
   status tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (id),
@@ -563,6 +564,8 @@ $data['remove_link'] = 1;
 $data['maps_appid'] = '';
 $data['priceformat'] = 0;
 $data['map_position'] = 'top';
+$data['price_days'] = 0;
+$data['price_month'] = 0;
 
 foreach ($data as $config_name => $config_value) {
     $sql_create_module[] = "INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', " . $db->quote($module_name) . ", " . $db->quote($config_name) . ", " . $db->quote($config_value) . ")";

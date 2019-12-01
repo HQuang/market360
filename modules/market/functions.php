@@ -430,3 +430,13 @@ function nv_user_logs($msg)
     }
 }
 
+
+function wallet_add_money_user( $price, $userid, $moneyunit )
+{
+    global $db_config, $db, $module_data, $nv_Cache;
+    $query = "UPDATE " . $db_config['prefix'] . "_wallet_money SET  money_total= money_total+" . $price . ", money_in= money_in+" . $price . "  WHERE userid =" . $userid . " AND money_unit = '" . $moneyunit . "' ";
+    if( $db->query( $query ) )
+    {
+        return true;
+    }
+}

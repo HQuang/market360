@@ -11,6 +11,9 @@ if (!defined('NV_MAINFILE')) {
     die('Stop!!!');
 }
 
+require_once NV_ROOTDIR . '/modules/wallet/wallet.class.php';
+$wallet = new nukeviet_wallet();
+
 $array_config = $module_config[$module_name];
 
 $array_pricetype = array(
@@ -22,6 +25,11 @@ $array_pricetype = array(
 $array_pricetype_cat = array(
     1 => $lang_module['pricetype_cat_title_1'],
     2 => $lang_module['pricetype_cat_title_2']
+);
+
+$array_pack_money = array(
+    1 => sprintf($lang_module['pack_money_1'], number_format($array_config['price_days'])),
+    2 => sprintf($lang_module['pack_money_2'], number_format($array_config['price_month'])),
 );
 
 $_sql = 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_cat WHERE status=1 ORDER BY sort';
@@ -665,4 +673,38 @@ function nv_market_initializeMap($data = array())
 
     $xtpl->parse('main');
     return $xtpl->text('main');
+}
+
+
+if( isset( $site_mods['wallets'] ) )
+{
+    $sql = "SELECT money_in FROM " . $db_config['prefix'] . "_wallets_money WHERE userid = " . $user_info['userid'] . " AND money_unit = 'VND'";
+    $result = $db->query( $sql );
+    if( $result->rowCount() == 0 )
+    {
+        $config_raovat['money_in'] = 0;
+    }
+    else
+    {
+        list( $config_raovat['money_in'] ) = $result->fetch( 3 );
+    }
+}
+
+function getSotienconlai( $uesid, $money_unit )
+{
+
+    global $db, $db_config, $nv_Cache;
+
+    $sql = "SELECT money_total FROM " . $db_config['prefix'] . "_wallet_money WHERE userid=" . $uesid . " AND money_unit = '" . $money_unit . "'";
+    $result = $db->query( $sql );
+    if( $result->rowCount() == 0 )
+    {
+        $money_total = 0;
+    }
+    else
+    {
+        $money_total = $result->fetchColumn();
+    }
+
+    return $money_total;
 }
