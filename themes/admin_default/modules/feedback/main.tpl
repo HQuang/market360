@@ -85,18 +85,20 @@
     <table class="table table-striped table-bordered table-hover">
         <colgroup>
             <col class="w50" />
-            <col class="text-center" />
-            <col class="text-center" />
-            <col class="w200" />
             <col class="w100" />
-            <col class="w250" />
+            <col class="w100" />
+            <col class="w60 " />
+            <col class="text-center" />
+            <col class="w50" />
+            <col class="" />
         </colgroup>
         <thead>
             <tr>
                 <th>&nbsp;</th>
                 <th>{LANG.mod_name}</th>
-                <th>{LANG.content}</th>
                 <th>{LANG.email}</th>
+                <th>{LANG.link_post}</th>
+                <th>{LANG.content}</th>
                 <th>{LANG.status}</th>
                 <th class="text-right">{LANG.funcs}</th>
             </tr>
@@ -128,10 +130,11 @@
         <tbody>
             <!-- BEGIN: loop -->
             <tr>
-                <td class="text-center"><input name="commentid" id="checkboxid" type="checkbox" value="{ROW.cid}"/></td>
-                <td>{ROW.module}</td>
-                <td><a target="_blank" href="{ROW.link}" title="{ROW.content}">{ROW.title}</a></td>
+                <td class="text-center"><input name="feebackid" id="checkboxid" type="checkbox" value="{ROW.cid}"/></td>
+                <td>Rao vặt</td>
                 <td>{ROW.email}</td>
+                <td><a target="_blank" href="{ROW.link}" title="{ROW.content}">{ROW.link}</a></td>
+                <td>{ROW.title}</td>
                 <td class="text-center">
                     <input type="checkbox" name="activecheckbox" id="change_active_{ROW.cid}" onclick="nv_change_active('{ROW.cid}')" {ROW.active}>
                 </td>

@@ -84,14 +84,14 @@ if (isset($site_mods['feedback']) and isset($module_config[$module_name]['active
     }
     define('NV_PER_PAGE_COMMENT', 5);
     // Số bản ghi hiển thị bình luận
-    require_once NV_ROOTDIR . '/modules/feedback/comment.php';
+    require_once NV_ROOTDIR . '/modules/feedback/feedback.php';
     $area = (defined('NV_COMM_AREA')) ? NV_COMM_AREA : 0;
     $checkss = md5($module_name . '-' . $area . '-' . NV_COMM_ID . '-' . $allowed . '-' . NV_CACHE_PREFIX);
 
 
     // get url comment
     $url_info = parse_url($client_info['selfurl']);
-    $content_comment = nv_comment_module($module_name, $checkss, $area, NV_COMM_ID, $allowed, 1);
+    $content_comment = nv_feedback_module($module_name, $checkss, $area, NV_COMM_ID, $allowed, 1);
 } else {
     $content_comment = '';
 }
