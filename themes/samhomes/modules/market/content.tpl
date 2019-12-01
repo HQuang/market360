@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="{NV_BASE_SITEURL}themes/default/js/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css">
 <link rel="stylesheet" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/select2.min.css" />
 <link rel="stylesheet" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/select2-bootstrap.min.css" />
+
+
 <div class="content-body content <!-- BEGIN: popup -->popup<!-- END: popup -->">
     <!-- BEGIN: error -->
     <div class="alert alert-warning">{ERROR}</div>
@@ -331,7 +333,7 @@
                         <span class="input-group-addon">đến</span>
                         <input type="text" name="Form[expire_time]" id="expire_time" value="30/12/2019" class="form-control inputmask" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[expire_time]">
                     </div>
-                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[active_time]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small><small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[expire_time]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small>
+                    
                 </div>
             </div>
             <div class="form-group">
@@ -371,17 +373,7 @@
                     </table>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thời gian đăng</strong></label>
-                <div class="col-sm-16 col-md-14">
-                    <div class="input-group input-daterange" id="group_date" style="width: 100%">
-                        <input type="text" name="Form[active_time]" id="active_time" value="30/11/2019" class="form-control inputmask" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[active_time]">
-                        <span class="input-group-addon">đến</span>
-                        <input type="text" name="Form[expire_time]" id="expire_time" value="30/12/2019" class="form-control inputmask" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[expire_time]">
-                    </div>
-                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[active_time]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small><small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[expire_time]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small>
-                </div>
-            </div>
+            
             <div class="form-group">
                 <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
                 <div class="col-sm-16 col-md-14">
@@ -708,4 +700,27 @@ $(function() {
 	});
 </script>
 <!-- END: check_similar_content -->
+
+<script type="text/javascript" src="/{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/{NV_ASSETS_DIR}/js/language/jquery.ui.datepicker-{NV_LANG_INTERFACE}.js"></script>
+<script>
+    $("#active_time").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: !0,
+        changeYear: !0,
+        showOtherMonths: !0,
+        showOn: "focus",
+        yearRange: "-90:+0"
+    });
+</script>
+<script>
+    $("#expire_time").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: !0,
+        changeYear: !0,
+        showOtherMonths: !0,
+        showOn: "focus",
+        yearRange: "-90:+0"
+    });
+</script>
 <!-- END: main -->
