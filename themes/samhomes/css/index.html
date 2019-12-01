@@ -1,0 +1,17 @@
+
+<form id="frmFeeback" method="post" onsubmit="return doFeedback(this)">
+    <button class="btn btn-primary btn-block btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+        <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Phản hồi
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right">
+        <li><label class="title"><input type="checkbox" id="fb_1" name="fb[]" value="1">Bất động sản đã bán/cho thuê</label></li>
+        <li><label class="title"><input type="checkbox" id="fb_2" name="fb[]" value="2">Nội dung không đúng với thực tế</label></li>
+        <li><label class="title"><input type="checkbox" id="fb_3" name="fb[]" value="3">Giá không đúng</label></li>
+        <li><label class="title"><input type="checkbox" id="fb_4" name="fb[]" value="4">Không liên lạc được</label></li>
+        <li><label class="title"><input type="checkbox" id="fb_5" name="fb[]" value="5">Tin không có thật</label></li>
+        <li><label class="title"><input type="checkbox" id="fb_6" name="fb[]" value="6">Địa chỉ bất động sản không đúng</label></li>
+        <li><label class="title"><input type="checkbox" id="fb_7" name="fb[]" value="7">Trùng với tin rao khác</label></li>
+        <li><input type="hidden" name="hid" value="143645">
+            <button type="submit" name="action" class="btn btn-primary btn-sm" value="save" style="padding: 7px 20px;">Gửi đi</button></li>
+    </ul>
+</form>

@@ -122,7 +122,7 @@ if ($op == 'main') {
             );
             $parentid = $array_cat_i['parentid'];
         }
-        ksort($array_mod_title, SORT_NUMERIC);
+        krsort($array_mod_title, SORT_NUMERIC);
     }
 }
 

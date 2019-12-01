@@ -163,7 +163,6 @@ ul.slimmenu li a:hover { background-color: transparent;}
 
 .section { padding:40px 0 !important;}
 
-.custom_page_site_index {padding-top:40px !important;padding-bottom:70px !important;}
 .custom_page_site_index h1.title,  .custom_page_site_index h2.title{ font-size:18pt; margin:5px auto 20px auto; color:#333;}
 .custom_page_site_newsdetail h1 { font-size:14pt; }
 .custom_page_site_newsdetail h2, .custom_page_site_news h2 { font-size:14pt; }
@@ -1103,7 +1102,7 @@ footer .desfot, footer .contactfooter {text-align: justify}
 .title.st1 {color:#fb6b26;margin:0 0 5px;text-transform: uppercase;font-weight: 500;}
 .title.st1 span { color: #0c0c0c; }
 
-.title.st2 h2{margin: 0;margin-bottom: 10px;display: inline-block;padding: 5px 10px;background-color: #d3a02a;color:#fff;font-size:14pt;font-weight: normal;text-transform: uppercase;max-width: 40%;}
+.title.st2 h2{margin: 0;margin-bottom: 10px;display: inline-block;padding: 5px 10px;background-color: #d3a02a;color:#fff;font-size:14pt;font-weight: normal;text-transform: uppercase;}
 
 
 

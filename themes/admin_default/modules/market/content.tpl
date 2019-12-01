@@ -10,6 +10,14 @@
                 <div class="panel-body">
                     <input type="hidden" name="id" value="{ROW.id}" />
                     <div class="form-group">
+                        <label class="col-sm-5 col-md-4 text-right"><strong>{LANG.type}</strong> <span class="red">(*)</span></label>
+                        <div class="col-sm-19 col-md-20">
+                            <!-- BEGIN: type -->
+                            <label><input type="radio" name="typeid" value="{TYPE.id}" {TYPE.checked} />{TYPE.title}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <!-- END: type -->
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.title}</strong> <span class="red">(*)</span></label>
                         <div class="col-sm-19 col-md-20">
                             <input class="form-control" type="text" name="title" value="{ROW.title}" id="title" />
@@ -46,14 +54,6 @@
                             required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')"
                             <!-- END: required_code1 -->
                             />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-5 col-md-4 text-right"><strong>{LANG.type}</strong> <span class="red">(*)</span></label>
-                        <div class="col-sm-19 col-md-20">
-                            <!-- BEGIN: type -->
-                            <label><input type="radio" name="typeid" value="{TYPE.id}" {TYPE.checked} />{TYPE.title}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <!-- END: type -->
                         </div>
                     </div>
                     <div id="div-pricetype">{PRICETYPE}</div>
@@ -104,7 +104,8 @@
                                     <em class="fa fa-times-circle fa-lg fa-pointer" title="{LANG.image_delete}" onclick="$(this).parent().remove();">&nbsp;</em>
                                     <div class="row m-bottom">
                                         <div class="col-xs-24 col-sm-4 text-center">
-                                            <input type="hidden" name="images[{IMAGE.index}][path]" value="{IMAGE.homeimgfile}" /> <img class="img-thumbnail" src="{IMAGE.path}" width="100%" />
+                                            <input type="hidden" name="images[{IMAGE.index}][path]" value="{IMAGE.homeimgfile}" />
+                                            <img class="img-thumbnail" src="{IMAGE.path}" width="100%" />
                                         </div>
                                         <div class="col-xs-24 col-sm-20">
                                             <h2>{IMAGE.basename}</h2>
@@ -246,7 +247,8 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <input class="form-control datepicker" type="text" name="exptime" value="{ROW.exptimef}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" /> <span class="input-group-btn">
+                            <input class="form-control datepicker" type="text" name="exptime" value="{ROW.exptimef}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" />
+                            <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" id="exptime-btn">
                                     <em class="fa fa-calendar fa-fix"> </em>
                                 </button>
@@ -282,7 +284,8 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="input-group">
-                                    <input class="form-control datepicker" type="text" name="auction_begin_date" value="{ROW.auction_beginf}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" /> <span class="input-group-btn">
+                                    <input class="form-control datepicker" type="text" name="auction_begin_date" value="{ROW.auction_beginf}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" />
+                                    <span class="input-group-btn">
                                         <button class="btn btn-default" type="button">
                                             <em class="fa fa-calendar fa-fix"> </em>
                                         </button>
@@ -312,7 +315,8 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="input-group">
-                                    <input class="form-control datepicker" type="text" name="auction_end_date" value="{ROW.auction_endf}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" /> <span class="input-group-btn">
+                                    <input class="form-control datepicker" type="text" name="auction_end_date" value="{ROW.auction_endf}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" />
+                                    <span class="input-group-btn">
                                         <button class="btn btn-default" type="button" id="exptime-btn">
                                             <em class="fa fa-calendar fa-fix"> </em>
                                         </button>
@@ -324,13 +328,15 @@
                     <label><strong>{LANG.auction_price_begin}</strong> <span class="red">(*)</span></label>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" name="auction_price_begin" value="{ROW.auction_price_begin}" class="form-control price" /> <span class="input-group-addon">{MONEY_UNIT}</span>
+                            <input type="text" name="auction_price_begin" value="{ROW.auction_price_begin}" class="form-control price" />
+                            <span class="input-group-addon">{MONEY_UNIT}</span>
                         </div>
                     </div>
                     <label><strong>{LANG.auction_price_step}</strong> <span class="red">(*)</span></label>
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" name="auction_price_step" value="{ROW.auction_price_step}" class="form-control price" /> <span class="input-group-addon">{MONEY_UNIT}</span>
+                            <input type="text" name="auction_price_step" value="{ROW.auction_price_step}" class="form-control price" />
+                            <span class="input-group-addon">{MONEY_UNIT}</span>
                         </div>
                     </div>
                 </div>
@@ -440,7 +446,8 @@
     </div>
     <!-- END: queue -->
     <div class="form-group text-center">
-        <input type="hidden" name="submit" value="1" /> <input class="btn btn-primary loading" type="submit" value="{LANG.save}" />
+        <input type="hidden" name="submit" value="1" />
+        <input class="btn btn-primary loading" type="submit" value="{LANG.save}" />
     </div>
 </form>
 <script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.js"></script>
