@@ -1,7 +1,6 @@
 <!-- BEGIN: main -->
-<h1>{LANG.saved}</h1>
-<hr />
-<form action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post">
+<h2 class="title">{LANG.saved}</h2>
+<form action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post" class="content-body">
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>

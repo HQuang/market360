@@ -1,12 +1,12 @@
 <!-- BEGIN: main -->
 <div class="row d-flex align-items-center">
-    <div class="col-xs-24 col-sm-20">
-        <div class="title st2">
+    <div class="col-sm-20 col-xs-18">
+        <div class="title st2 ">
             <h2>{BLOCK_TITLE}</h2>
         </div>
     </div>
-    <div class="col-sm-4">
-        <a href="{BLOCK_LINK}" class="text-view-more hidden-xs">Xem thêm</a>
+    <div class="col-sm-4 col-xs-6">
+        <a href="{BLOCK_LINK}" class="text-view-more">Xem thêm</a>
     </div>
 </div>
 <div class="row">
@@ -16,18 +16,31 @@
             <div class="item adshot" itemtype="https://schema.org/House">
                 <a itemprop="url" href="{ROW.link}" title="{ROW.title}">
                     <div class="image">
+                        <div class="ribbon ribbon-top-right">
+                            <span>{BLOCKCAT.description}</span>
+                        </div>
                         <img src="{ROW.thumb}" alt="{ROW.title}" width='320' height='240' />
-                        <div class="photo">5</div>
+                        <!-- BEGIN: count_image -->
+                        <div class="photo">{ROW.count_image}</div>
+                        <!-- END: count_image -->
                     </div>
                 </a>
                 <div class="block-info">
-                    <div class="header">
+                    <div class="header header_group">
                         <h3 class="line2">
                             <a href="{ROW.link}" title="{ROW.title}">{ROW.title}</a>
                         </h3>
                         <p>
                             <a href="{ROW.location_link}">{ROW.location}</a>
                         </p>
+                        <div class="saved saved_176667 hidden-xs">
+                            <button type="button" onclick="nv_save_rows({ROW.id}, 'add', {ROW.is_user}); return !1;" {ROW.style_save} class="save_button_{ROW.id}">
+                                <i class="fa fa-heart-o">&nbsp;</i>
+                            </button>
+                            <button type="button" onclick="nv_save_rows({ROW.id}, 'remove', {ROW.is_user}); return !1;" {ROW.style_saved} class="saved_button_{ROW.id}">
+                                <i class="fa fa-minus-circle">&nbsp;</i>
+                            </button>
+                        </div>
                     </div>
                     <div class="body">
                         <p>{ROW.description}</p>
@@ -50,9 +63,15 @@
             </div>
         </div>
         <!-- END: loop -->
-    </div>
-    <div class="col-sm-12 text-right view-more no-padding visible-xs">
-        <a href="{BLOCK_LINK}">Xem thêm</a>
+        <script>
+var LANG = [];
+LANG.error_save_login = '{LANG.error_save_login}';
+LANG.auction_register_confirm = '{LANG.auction_register_confirm}';
+LANG.auction_cancel = '{LANG.auction_cancel}';
+LANG.auction_register_success = '{LANG.auction_register_success}';
+LANG.auction_cancel_succes = '{LANG.auction_cancel_succes}';
+LANG.auction_cancel_confirm = '{LANG.auction_cancel_confirm}';
+</script>
     </div>
 </div>
 <!-- END: main -->
