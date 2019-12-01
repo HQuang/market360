@@ -1,55 +1,65 @@
 <!-- BEGIN: main -->
-<div class="viewlist">
-    <!-- BEGIN: loop -->
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-8 col-sm-7 col-md-4 hidden-xs">
-                    <div class="image" style="width: {WIDTH">
-                        <a href="{ROW.link}" title="{ROW.title}"><img src="{ROW.thumb}" alt="{ROW.thumbalt}" class="img-thumbnail img-responsive" style="max-width: {WIDTH" /></a>
-                    </div>
-                </div>
-                <div class="col-xs-24 col-sm-17 col-md-20">
-                    <h2>
-                        <a href="{ROW.link}" title="{ROW.title}"
-                            <!-- BEGIN: color -->style="color: {ROW.color}"<!-- END: color --> >{ROW.title}
-                        </a>
-                    </h2>
-                    <!-- BEGIN: type -->
-                    <span class="type">({ROW.type})</span>
-                    <!-- END: type -->
-                    <div class="row">
-                        <div class="col-xs-11 col-sm-14 col-md-14">
-                            <ul class="list-info">
-                                <li><em class="fa fa-folder-open-o">&nbsp;</em><a href="{ROW.cat_link}" title="{ROW.cat}">{ROW.cat}</a></li>
-                                <!-- BEGIN: location -->
-                                <li><em class="fa fa-map-marker">&nbsp;</em><a href="{ROW.location_link}" title="{ROW.location}">{ROW.location}</a></li>
-                                <!-- END: location -->
-                                <!-- BEGIN: auction -->
-                                <li><em class="fa fa-gavel text-success">&nbsp;</em>{LANG.auction}</li>
-                                <!-- END: auction -->
-                                <!-- BEGIN: field -->
-                                <li>{FIELD.title}: {FIELD.value}</li>
-                                <!-- END: field -->
-                            </ul>
-                        </div>
-                        <div class="col-xs-13 col-sm-10 col-md-10 text-right">
-                            <ul>
-                                <li><em class="fa fa-clock-o">&nbsp;</em>{ROW.addtime}</li>
-                                <li><span class="money">{ROW.price}</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<!-- BEGIN: loop -->
+<div class="item  col-xs-24 no-padding" itemtype="https://schema.org/House">
+    <a itemprop="url" href="{ROW.link}" title="{ROW.title}">
+        <div class="image">
+            <div class="ribbon ribbon-top-right">
+                <span>VIP</span>
+            </div>
+            <img src="{ROW.thumb}" alt="{ROW.thumbalt}" width='320' height='240' />
+              <!-- BEGIN: count_image -->
+            <div class="photo">{ROW.count_image}</div>
+            <!-- END: count_image -->
+        </div>
+    </a>
+    <div class="block-info">
+        <div class="header">
+            <h3 class="line2">
+                <a href="{ROW.link}" title="{ROW.title}">{ROW.title}</a>
+            </h3>
+            <!-- BEGIN: location -->
+            <p>
+                <a href="{ROW.location_link}" title="{ROW.location}">{ROW.location}</a>
+            </p>
+            <!-- END: location -->
+            <div class="saved saved_176667 hidden-xs">
+                <button type="button" onclick="nv_save_rows({ROW.id}, 'add', {ROW.is_user}); return !1;" {ROW.style_save}  class="save_button_{ROW.id}">
+                    <i class="fa fa-heart-o">&nbsp;</i>
+                </button>
+                <button type="button" onclick="nv_save_rows({ROW.id}, 'remove', {ROW.is_user}); return !1;" {ROW.style_saved}  class="saved_button_{ROW.id}">
+                    <i class="fa fa-minus-circle">&nbsp;</i>
+                </button>
             </div>
         </div>
+        <div class="body">
+            <p>{ROW.description}</p>
+            <div class="value">
+                <ul>
+                    <!-- BEGIN: field -->
+                    <li>{FIELD.title}: {FIELD.value}</li>
+                    <!-- END: field -->
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            <span class="price">{ROW.price}</span> <span class="date pull-right"><i class="fa fa-clock-o"></i> {ROW.addtime}</span>
+        </div>
     </div>
-    <!-- BEGIN: block -->
-    {BLOCK}
-    <!-- END: block -->
-    <!-- END: loop -->
-    <!-- BEGIN: page -->
-    <div class="text-center clear">{PAGE}</div>
-    <!-- END: page -->
 </div>
+<!-- BEGIN: block -->
+{BLOCK}
+<!-- END: block -->
+<!-- END: loop -->
+<!-- BEGIN: page -->
+<div class="text-center clear">{PAGE}</div>
+<!-- END: page -->
+<script>
+var LANG = [];
+LANG.error_save_login = '{LANG.error_save_login}';
+LANG.auction_register_confirm = '{LANG.auction_register_confirm}';
+LANG.auction_cancel = '{LANG.auction_cancel}';
+LANG.auction_register_success = '{LANG.auction_register_success}';
+LANG.auction_cancel_succes = '{LANG.auction_cancel_succes}';
+LANG.auction_cancel_confirm = '{LANG.auction_cancel_confirm}';
+</script>
 <!-- END: main -->

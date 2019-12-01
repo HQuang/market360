@@ -7,18 +7,18 @@
  */
 
 function nv_commment_feedback(cid, post_name) {
-    $("#commentpid").val(cid);
-    var data = $('#formcomment form').data();
+    $("#feedbackpid").val(cid);
+    var data = $('#formfeedback form').data();
     if (data.editor) {
-        CKEDITOR.instances['commentcontent'].insertText("@" + post_name + " ");
+        CKEDITOR.instances['feedbackcontent'].insertText("@" + post_name + " ");
     } else {
-        $("#commentcontent").focus();
-        $("#commentcontent").val("@" + post_name + " ");
+        $("#feedbackcontent").focus();
+        $("#feedbackcontent").val("@" + post_name + " ");
     }
 }
 
 function nv_commment_like(cid, checkss, like) {
-    $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=comment&' + nv_fc_variable + '=like&nocache=' + new Date().getTime(), 'cid=' + cid + '&like=' + like + '&checkss=' + checkss, function(res) {
+    $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=feedback&' + nv_fc_variable + '=like&nocache=' + new Date().getTime(), 'cid=' + cid + '&like=' + like + '&checkss=' + checkss, function(res) {
         var rs = res.split('_');
         if (rs[0] == 'OK') {
             $("#" + rs[1]).text(rs[2]);
@@ -30,12 +30,12 @@ function nv_commment_like(cid, checkss, like) {
 
 function nv_commment_delete(cid, checkss) {
     if (confirm(nv_is_del_confirm[0])) {
-        $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=comment&' + nv_fc_variable + '=delete&nocache=' + new Date().getTime(), 'cid=' + cid + '&checkss=' + checkss, function(res) {
+        $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=feedback&' + nv_fc_variable + '=delete&nocache=' + new Date().getTime(), 'cid=' + cid + '&checkss=' + checkss, function(res) {
             var rs = res.split('_');
             if (rs[0] == 'OK') {
                 $("#cid_" + cid).remove();
                 $.post(nv_url_comm + '&nocache=' + new Date().getTime(), 'sortcomm=' + $('#sort').val() , function(res) {
-                    $('#idcomment').html(res);
+                    $('#idfeedback').html(res);
                     nv_commment_buildeditor();
                 });
             } else if (rs[0] == 'ERR') {
@@ -45,22 +45,20 @@ function nv_commment_delete(cid, checkss) {
     }
 }
 
-function nv_commment_reload(res) {
+function nv_feedback_reload(res) {
     var rs = res.split('_');
-    var data = $('#formcomment form').data();
+    var data = $('#formfeedback form').data();
     if (rs[0] == 'OK') {
-        $("#idcomment").load(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=comment&module=' + data.module + '&area=' + data.area + '&id=' + data.id + '&allowed=' + data.allowed + '&status_comment=' + rs[1] + '&checkss=' + data.checkss + '&header=0&nocache=' + new Date().getTime(), function() {
+        $("#idfeedback").load(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=feedback&module=' + data.module + '&area=' + data.area + '&id=' + data.id + '&allowed=' + data.allowed + '&status_feedback=' + rs[1] + '&checkss=' + data.checkss + '&header=0&nocache=' + new Date().getTime(), function() {
             if (data.gfxnum == -1) {
                 change_captcha();
             }
             nv_commment_buildeditor();
         });
-        $('html, body').animate({
-            scrollTop: $("#idcomment").offset().top
-        }, 800);
+        $('html, body').animate({ scrollTop: $("#idfeedback").offset().top}, 800);
     } else {
         if (data.gfxnum > 0 ) {
-            change_captcha('#commentseccode_iavim');
+            change_captcha('#feedbackseccode_iavim');
         }
         if (rs[0] == 'ERR') {
             alert(rs[1]);
@@ -72,38 +70,38 @@ function nv_commment_reload(res) {
 }
 
 function nv_commment_buildeditor() {
-    var data = $('#formcomment form').data();
+    var data = $('#formfeedback form').data();
     if (data.editor) {
         CKEDITOR.replace('content', {width: '100%',height: '200px',removePlugins: 'uploadfile,uploadimage,autosave'});
     }
 }
 
 $(document).ready(function() {
-    $(document).delegate('#formcomment form', 'submit', function(e) {
-        var commentname = document.getElementById('commentname');
-        var commentemail = document.getElementById('commentemail_iavim');
+    $(document).delegate('#formfeedback form', 'submit', function(e) {
+        var feedbackname = document.getElementById('feedbackname');
+        var feedbackemail = document.getElementById('feedbackemail_iavim');
         var code = "";
         var gfx_count = $(this).data('gfxnum');
         if (gfx_count > 0) {
-            code = $("#commentseccode_iavim").val();
+            code = $("#feedbackseccode_iavim").val();
         } else if (gfx_count == -1) {
             code = $('[name="g-recaptcha-response"]', $(btn.form)).val();
         }
-        var commentcontent = strip_tags($('textarea[name=content]').val());
-        if (commentname.value == "") {
+        var feedbackcontent = strip_tags($('textarea[name=content]').val());
+        if (feedbackname.value == "") {
             alert(nv_fullname);
-            commentname.focus();
+            feedbackname.focus();
             e.preventDefault();
-        } else if (!nv_email_check(commentemail)) {
+        } else if (!nv_email_check(feedbackemail)) {
             alert(nv_error_email);
-            commentemail.focus();
+            feedbackemail.focus();
             e.preventDefault();
         } else if (gfx_count > 0 && !nv_namecheck.test(code)) {
             error = nv_error_seccode.replace(/\[num\]/g, gfx_count);
             alert(error);
-            $("#commentseccode_iavim").focus();
+            $("#feedbackseccode_iavim").focus();
             e.preventDefault();
-        } else if (commentcontent == '') {
+        } else if (feedbackcontent == '') {
             alert(nv_content);
             e.preventDefault();
         } else {

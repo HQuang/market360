@@ -1,9 +1,13 @@
 <!-- BEGIN: main -->
-<ul class="block_location_list">
-    <!-- BEGIN: location -->
-    <li><a href="{LOCATION.link}" title="{LOCATION.title}">{LOCATION.title}</a></li>
-    <!-- END: location -->
-</ul>
+<div class="form-group">
+<div class="house_project_city">
+    <ul class="block_location_list">
+        <!-- BEGIN: location -->
+        <li><a href="{LOCATION.link}" title="{LOCATION.title}"><i class="fa fa-angle-right"></i>&nbsp;{LOCATION.title}</a></li>
+        <!-- END: location -->
+    </ul>
+</div>
+</div>
 <!-- END: main -->
 <!-- BEGIN: config -->
 <div class="form-group">

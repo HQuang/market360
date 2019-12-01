@@ -1,83 +1,68 @@
 <!-- BEGIN: main -->
-<div class="row">
-<div class="list-unstyled item-fb-newsfeed">
 <!-- BEGIN: loop -->
-    <div class="col-xs-12 col-min-24 col">
-        <div class="item box-style" id="post_5d0845ee86e1a">
-            <div class="box-big">                <div class="entry">
-                    <div class="block-summary">
-                        <div class="order-tool ">
-                            <div class="entry">
-<!--                                 <div class="thumbnail"> -->
-<!--                                     <img alt="{ROW.thumbalt}" src="{ROW.thumb}"> -->
-<!--                                 </div> -->
-                                <div class="summary">
-                                    <a href="{ROW.link}" title="{ROW.title}" class="title-post"> {ROW.title} </a>
-                                    <div class="box-price">
-                                        <div class="price-new pull-left">
-                                            {ROW.price}
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <div class="order-button">
-                                    <a href="{ROW.link}" class="btn add-to-cart"> Xem ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="quick-view">
-                            <div class="pull-left">
-                                {ROW.addtime} - {ROW.location}
-                            </div>
-                            <div class="pull-right">{ROW.countview} lượt xem</div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="wrap-box-image row10 m-t-5">
-                            <div class="box-image layout-3">
-                                   <a href="{ROW.link}" title="{ROW.title}"><img alt="{ROW.title}" data-src="{ROW.thumb}" src="{ROW.thumb}"  class="loaded"></a>
-                            </div>
-                        </div>
-                       
-                        <div class="content ">
-                        
-                            <div class="metaTerm">
-                            <a href="{ROW.cat_link}"> {ROW.cat}</a>
-                                
-                            </div>
-                            <div class="des_short">
-                            {ROW.homeimgalt}
-                            </div>
-                            ..<a class="open-readmore" href="{ROW.link}">Xem thêm</a>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="footer-bottom-item">
-                        <div style="position: relative; padding-right: 75px;">
-                            <span class="username btn-style"> <b>{ROW.contact_fullname}</b>
-                            </span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="bottomLine">
-                            <a href="tel:{ROW.contact_phone}" class="text-black"><b>{ROW.contact_phone}</b></a>
-                             {ROW.location}
-                        </div>
-                        <!-- BEGIN: field -->
-                        <div>
-                        {FIELD.title}: {FIELD.value}
-                        </div>
-                        <!-- END: field -->
-                    </div>
-                </div>
+<div class="item gird-group-item col-xs-12 col-sm-6" itemtype="https://schema.org/House">
+    <a itemprop="url" href="{ROW.link}" title="{ROW.title}">
+        <div class="image">
+            <div class="ribbon ribbon-top-right">
+                <span>{ROW.groupid}</span>
+            </div>
+            <img src="{ROW.thumb}" alt="{ROW.thumbalt}" width='320' height='240' />
+            <!-- BEGIN: count_image -->
+            <div class="photo">{ROW.count_image}</div>
+            <!-- END: count_image -->
+        </div>
+    </a>
+    <div class="block-info">
+        <div class="header">
+            <h3 class="line2">
+                <a href="{ROW.link}" title="{ROW.title}">{ROW.title}</a>
+            </h3>
+            <!-- BEGIN: location -->
+            <p>
+                <a href="{ROW.location_link}" title="{ROW.location}">{ROW.location}</a>
+            </p>
+            <!-- END: location -->
+            <div class="saved saved_176667 hidden-xs">
+                <button type="button" onclick="nv_save_rows({ROW.id}, 'add', {ROW.is_user}); return !1;" {ROW.style_save} class="save_button_{ROW.id}">
+                    <i class="fa fa-heart-o">&nbsp;</i>
+                </button>
+                <button type="button" onclick="nv_save_rows({ROW.id}, 'remove', {ROW.is_user}); return !1;" {ROW.style_saved} class="saved_button_{ROW.id}">
+                    <i class="fa fa-minus-circle">&nbsp;</i>
+                </button>
             </div>
         </div>
+        <div class="body">
+            <p>{ROW.description}</p>
+            <div class="value">
+                <ul>
+                    <!-- BEGIN: field -->
+                    <li>{FIELD.title}: {FIELD.value}</li>
+                    <!-- END: field -->
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            <span class="price">{ROW.price}</span> <span class="date pull-right"><i class="fa fa-clock-o"></i> {ROW.addtime}</span>
+        </div>
     </div>
-    <!-- BEGIN: block -->
-    {BLOCK}
-    <!-- END: block -->
-   <!-- END: loop -->
-    <!-- BEGIN: page -->
-    <div class="text-center clear">{PAGE}</div>
-    <!-- END: page -->
 </div>
-</div>
+<!-- BEGIN: block -->
+{BLOCK}
+<!-- END: block -->
+
+
+<!-- END: loop -->
+<script>
+var LANG = [];
+LANG.error_save_login = '{LANG.error_save_login}';
+LANG.auction_register_confirm = '{LANG.auction_register_confirm}';
+LANG.auction_cancel = '{LANG.auction_cancel}';
+LANG.auction_register_success = '{LANG.auction_register_success}';
+LANG.auction_cancel_succes = '{LANG.auction_cancel_succes}';
+LANG.auction_cancel_confirm = '{LANG.auction_cancel_confirm}';
+</script>
+<!-- BEGIN: page -->
+<div class="text-center clear">{PAGE}</div>
+<!-- END: page -->
+
 <!-- END: main -->

@@ -1,7 +1,7 @@
 <!-- BEGIN: main -->
 <div class="form-group">
 	<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.price}</strong></label>
-	<div class="col-sm-19 col-md-20">
+	<div class="col-sm-19 col-md-20 p-tb5 p-lr15">
 		<div class="row">
 			<div class="col-xs-24 col-sm-5 col-md-5">
 				<select name="pricetype" id="pricetype" class="form-control">

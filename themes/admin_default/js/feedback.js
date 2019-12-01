@@ -35,18 +35,18 @@ $(document).ready(function() {
         $("#from_date").datepicker('show');
     });
     $("#checkall").click(function() {
-        $("input[name=commentid]:checkbox").each(function() {
+        $("input[name=feebackid]:checkbox").each(function() {
             $(this).prop("checked", true);
         });
     });
     $("#uncheckall").click(function() {
-        $("input[name=commentid]:checkbox").each(function() {
+        $("input[name=feebackid]:checkbox").each(function() {
             $(this).prop("checked", false);
         });
     });
     $("a.enable").click(function() {
         var list = [];
-        $("input[name=commentid]:checked").each(function() {
+        $("input[name=feebackid]:checked").each(function() {
             list.push($(this).val());
         });
         if (list.length < 1) {
@@ -66,7 +66,7 @@ $(document).ready(function() {
     });
     $("a.disable").click(function() {
         var list = [];
-        $("input[name=commentid]:checked").each(function() {
+        $("input[name=feebackid]:checked").each(function() {
             list.push($(this).val());
         });
         if (list.length < 1) {
@@ -86,7 +86,7 @@ $(document).ready(function() {
     });
     $("a.delete").click(function() {
         var list = [];
-        $("input[name=commentid]:checked").each(function() {
+        $("input[name=feebackid]:checked").each(function() {
             list.push($(this).val());
         });
         if (list.length < 1) {
