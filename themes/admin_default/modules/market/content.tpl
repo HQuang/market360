@@ -82,7 +82,7 @@
                         <label class="col-sm-5 col-md-4 control-label"></label>
                         <div class="col-sm-19 col-md-20">
                             <!-- BEGIN: pack_money -->
-                            <label class="container"><input type="radio" name="pack_money" value="{PACK_MONEY.id}" {PACK_MONEY.checked}>{PACK_MONEY.title}</label>
+                            <label class="container"><input type="radio" name="pack_money" value="{PACK_MONEY.id}"{PACK_MONEY.checked}>{PACK_MONEY.title}</label>
                             <!-- END: pack_money -->
                         </div>
                     </div>
@@ -150,10 +150,6 @@
                 </div>
             </div>
             <div id="custom_form">{DATACUSTOM_FORM}</div>
-            
-            
-            
-            
             <div class="panel panel-default">
                 <div class="panel-heading">{LANG.contact_info}</div>
                 <div class="panel-body">
@@ -183,131 +179,128 @@
                     </div>
                 </div>
             </div>
-            
-            
-                    <h2 class="title">HÌNH THỨC ĐĂNG</h2>
-        <div id="group_posting_single">
-            <div class="form-group">
-                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
-                <div class="col-sm-16 col-md-14">Để đáp ứng tốt hơn nhu cầu của Khách hàng, chúng tôi hỗ trợ dịch vụ đăng tin Hot, tin Vip với nhiều ưu đãi về hình thức và vị trí hiển thị.</div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Loại tin đăng</strong></label>
-                <div class="col-sm-16 col-md-14">
-                    <select class="form-control" name="Form[post_type]" id="vip_type" required="" data-bv-field="Form[post_type]">
-                        <option value="0">Tin thường</option>
-                        <option value="1">Tin Nổi Bật</option>
-                        <option value="2">Tin Vip</option>
-                    </select> <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[post_type]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thời gian đăng</strong></label>
-                <div class="col-sm-16 col-md-14">
-                    <div class="input-group input-daterange" id="group_date" style="width: 100%">
-                        <input type="text" name="Form[active_time]"  value="30/11/2019" class="form-control inputmask select_time" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[active_time]">
-                        <span class="input-group-addon">đến</span>
-                        <input type="text" name="Form[expire_time]"  value="30/12/2019" class="form-control inputmask select_time" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[expire_time]">
+            <div class="panel panel-default">
+                <div class="panel-heading">HÌNH THỨC ĐĂNG</div>
+                <div id="group_posting_single" class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
+                        <div class="col-sm-16 col-md-14">Để đáp ứng tốt hơn nhu cầu của Khách hàng, chúng tôi hỗ trợ dịch vụ đăng tin Hot, tin Vip với nhiều ưu đãi về hình thức và vị trí hiển thị.</div>
                     </div>
-                    
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thành tiền</strong></label>
-                <div class="col-sm-16 col-md-14">
-                    <table class="table table-striped table-bordered">
-                        <tbody>
-                            <tr>
-                                <td>Đơn giá</td>
-                                <td align="right">
-                                    <span id="price_per_day">0</span> VND/ngày
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Số ngày</td>
-                                <td align="right">
-                                    <span id="days_calculate">31</span> ngày
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Phí đăng tin</td>
-                                <td align="right">
-                                    <span id="price_subtotal">0</span> VND
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Khuyến mại</td>
-                                <td align="right">0 VND</td>
-                            </tr>
-                            <tr>
-                                <td>Tổng tiền</td>
-                                <td align="right">
-                                    <span id="price_total">0</span> VND
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
-                <div class="col-sm-16 col-md-14">
-                    <div class="checkbox">
-                        <label> <input type="checkbox" name="autopost" value="1" id="autopost"> <b>Đăng tin trên nhiều website, tăng cường khả năng tiếp cận khách mua/thuê</b>
-                        </label>
+                    <div class="form-group">
+                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Loại tin đăng</strong></label>
+                        <div class="col-sm-16 col-md-14">
+                            <select class="form-control" name="Form[post_type]" id="vip_type" required="" data-bv-field="Form[post_type]">
+                                <option value="0">Tin thường</option>
+                                <option value="1">Tin Nổi Bật</option>
+                                <option value="2">Tin Vip</option>
+                            </select> <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[post_type]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <fieldset id="fl_autopost" disabled="">
-                <div class="form-group">
-                    <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right control-label">Gói đăng tin</label>
-                    <div class="col-sm-17 col-md-18 p-tb5">
-                        <div class="row" id="posting_package">
-                            <div class="col-xs-8">
-                                <div class="packages alert alert-warning">
-                                    <div class="radio">
-                                        <label> <input type="radio" name="pkid" value="1" checked=""> <b>Cơ bản </b><br> (80,000 đ)
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label> <input type="radio" name="pkid" value="2"> <b>Nâng cao</b><br> (250,000 đ)
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label> <input type="radio" name="pkid" value="20"> <b>Vip</b><br> (450,000 đ)
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-16">
-                                <div class="table-responsive table-scroll " id="pk_1">
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th width="50%">Website</th>
-                                                <th width="50%">Ghi chú</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1. https://dothi.net</td>
-                                                <td>Tin có phí 14 ngày - up mới 14 ngày</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2. http://phonhadat.net</td>
-                                                <td>Tồn tại đến khi nào bán được</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                    <div class="form-group">
+                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thời gian đăng</strong></label>
+                        <div class="col-sm-16 col-md-14">
+                            <div class="input-group input-daterange" id="group_date" style="width: 100%">
+                                <input type="text" name="Form[active_time]" value="30/11/2019" class="form-control inputmask select_time" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[active_time]">
+                                <span class="input-group-addon">đến</span>
+                                <input type="text" name="Form[expire_time]" value="30/12/2019" class="form-control inputmask select_time" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[expire_time]">
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thành tiền</strong></label>
+                        <div class="col-sm-16 col-md-14">
+                            <table class="table table-striped table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>Đơn giá</td>
+                                        <td align="right">
+                                            <span id="price_per_day">0</span> VND/ngày
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số ngày</td>
+                                        <td align="right">
+                                            <span id="days_calculate">31</span> ngày
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phí đăng tin</td>
+                                        <td align="right">
+                                            <span id="price_subtotal">0</span> VND
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Khuyến mại</td>
+                                        <td align="right">0 VND</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tổng tiền</td>
+                                        <td align="right">
+                                            <span id="price_total">0</span> VND
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
+                        <div class="col-sm-16 col-md-14">
+                            <div class="checkbox">
+                                <label> <input type="checkbox" name="autopost" value="1" id="autopost"> <b>Đăng tin trên nhiều website, tăng cường khả năng tiếp cận khách mua/thuê</b>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset id="fl_autopost" disabled="">
+                        <div class="form-group">
+                            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right control-label">Gói đăng tin</label>
+                            <div class="col-sm-17 col-md-18 p-tb5">
+                                <div class="row" id="posting_package">
+                                    <div class="col-xs-8">
+                                        <div class="packages alert alert-warning">
+                                            <div class="radio">
+                                                <label> <input type="radio" name="pkid" value="1" checked=""> <b>Cơ bản </b><br> (80,000 đ)
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label> <input type="radio" name="pkid" value="2"> <b>Nâng cao</b><br> (250,000 đ)
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label> <input type="radio" name="pkid" value="20"> <b>Vip</b><br> (450,000 đ)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-16">
+                                        <div class="table-responsive table-scroll " id="pk_1">
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="50%">Website</th>
+                                                        <th width="50%">Ghi chú</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1. https://dothi.net</td>
+                                                        <td>Tin có phí 14 ngày - up mới 14 ngày</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2. http://phonhadat.net</td>
+                                                        <td>Tồn tại đến khi nào bán được</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-            </fieldset>
-        </div>
-        
+            </div>
         </div>
         <div class="col-xs-24 col-sm-5">
             <div class="panel panel-default">
