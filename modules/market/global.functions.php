@@ -50,6 +50,9 @@ $array_wid = $nv_Cache->db($_sql, 'id', $module_name);
 $_sql = 'SELECT id, icon, title, note, dfault FROM ' . NV_PREFIXLANG . '_' . $module_data . '_facilities where status=1';
 $array_faci = $nv_Cache->db($_sql, 'id', $module_name);
 
+$_sql = 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_post_type where status=1';
+$array_post_type = $nv_Cache->db($_sql, 'id', $module_name);
+
 
 require_once NV_ROOTDIR . '/modules/location/location.class.php';
 
@@ -485,6 +488,24 @@ function nv_load_pricetype($row, $template)
 
     $xtpl->parse('main');
     return $xtpl->text('main');
+}
+
+function nv_load_price_info($row, $template)
+{
+    global $lang_module, $array_post_type;
+
+    $row['price_per_day'] = number_format($array_post_type[$row['post_type']]['price']);
+    $row['days_calculate'] = ($row['exptime'] - $row['starttime'])/86400;
+    $row['price_subtotal'] = number_format($array_post_type[$row['post_type']]['price'] * $row['days_calculate']);
+    $row['price_total'] = number_format($array_post_type[$row['post_type']]['price'] * $row['days_calculate']);
+    $row['price_total_input'] = $array_post_type[$row['post_type']]['price'] * $row['days_calculate'];
+
+    $xtpl = new XTemplate('content.tpl', $template);
+    $xtpl->assign('LANG', $lang_module);
+    $xtpl->assign('PRICE_INFO', $row);
+
+    $xtpl->parse('price_info');
+    return $xtpl->text('price_info');
 }
 
 function nv_freelance_update($operator = '+')

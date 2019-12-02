@@ -16,6 +16,7 @@ $submenu['groups'] = $lang_module['groups'];
 $submenu['cat'] = $lang_module['cat'];
 $submenu['unit'] = $lang_module['unit'];
 $submenu['type'] = $lang_module['type'];
+$submenu['post-type'] = $lang_module['post_type'];
 $submenu['tags'] = $lang_module['tags'];
 $submenu['reason'] = $lang_module['reason'];
 $submenu['freelance'] = $lang_module['freelance'];

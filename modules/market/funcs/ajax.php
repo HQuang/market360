@@ -504,6 +504,24 @@ if ($nv_Request->isset_request('load_pricetype', 'post')) {
     die(nv_load_pricetype($row, $template));
 }
 
+if ($nv_Request->isset_request('load_price_info', 'post')) {
+    $row = array();
+    $row['post_type'] = $nv_Request->get_int('post_type', 'post', 0);
+    if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string('starttime', 'post'), $m)) {
+        $row['starttime'] = mktime(0, 0, 0, $m[2], $m[1], $m[3]);
+    } else {
+        $row['starttime'] = 0;
+    }
+    if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string('exptime', 'post'), $m)) {
+        $row['exptime'] = mktime(24, 00, 00, $m[2], $m[1], $m[3]);
+    } else {
+        $row['exptime'] = 0;
+    }
+
+    $template = NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file;
+    die(nv_load_price_info($row, $template));
+}
+
 if ($nv_Request->isset_request('show_terms', 'post')) {
     $ispopp = $nv_Request->get_int('ispopup', 'post', 0);
 

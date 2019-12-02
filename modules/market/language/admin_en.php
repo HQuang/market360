@@ -56,3 +56,9 @@ $lang_module['error_required_content'] = 'Error: Required fields enter the Conte
 //Lang for function widget
 $lang_module['widget'] = 'widget';
 $lang_module['icon'] = 'Icon';
+
+//Lang for function post-type
+$lang_module['post-type'] = 'post-type';
+
+//Lang for function post-type
+$lang_module['error_required_price'] = 'Error: Required fields enter the Price';

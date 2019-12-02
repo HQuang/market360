@@ -41,6 +41,7 @@ $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lan
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_crawler_rows";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_widget";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_facilities";
+$sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_post_type";
 
 $sql_create_module = $sql_drop_module;
 
@@ -218,6 +219,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   groupcomment tinyint(1) unsigned NOT NULL DEFAULT '6',
   addtime int(11) unsigned NOT NULL,
   edittime int(11) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
   exptime int(11) unsigned NOT NULL DEFAULT '0',
   auction tinyint(1) unsigned NOT NULL DEFAULT '0',
   auction_begin int(11) unsigned NOT NULL DEFAULT '0',
@@ -234,6 +236,8 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   is_queue_edit tinyint(1) unsigned NOT NULL DEFAULT '0',
   groups_config text NOT NULL DEFAULT '',
   pack_money tinyint(1) unsigned NOT NULL DEFAULT '0',
+  post_type smallint(4) NOT NULL COMMENT 'Loại tin đăng',
+  price_info double unsigned NOT NULL DEFAULT '0',
   status_admin tinyint(1) unsigned NOT NULL DEFAULT '1',
   status tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (id),
@@ -374,6 +378,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   homeimgalt varchar(255) NOT NULL DEFAULT '',
   homeimgthumb tinyint(1) unsigned NOT NULL DEFAULT '0',
   note text NOT NULL,
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
   exptime int(11) unsigned NOT NULL DEFAULT '0',
   auction tinyint(1) unsigned NOT NULL DEFAULT '0',
   auction_begin int(11) unsigned NOT NULL DEFAULT '0',
@@ -385,6 +390,8 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   contact_phone varchar(255) NOT NULL,
   contact_address varchar(255) NOT NULL,
   images TEXT NOT NULL DEFAULT '',
+  post_type smallint(4) NOT NULL COMMENT 'Loại tin đăng',
+  price_info double unsigned NOT NULL DEFAULT '0',
   keywords TEXT NOT NULL DEFAULT '',
   PRIMARY KEY (rowsid)
 ) ENGINE=MyISAM";
@@ -506,6 +513,16 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   UNIQUE KEY url (url),
   KEY items_id (items_id)
 ) ENGINE=MyISAM";
+
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_post_type(
+  id smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+  title varchar(255) NOT NULL,
+  price double unsigned NOT NULL DEFAULT '0',
+  note text NOT NULL,
+  status tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Trạng thái',
+  weight smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (id)
+) ENGINE=MyISAM;";
 
 $data = array();
 $data['countryid'] = '1'; // Việt Nam

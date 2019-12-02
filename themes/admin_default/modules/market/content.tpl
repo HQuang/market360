@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default hide">
                 <div class="panel-heading">{LANG.pack_money}</div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -189,57 +189,28 @@
                     <div class="form-group">
                         <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Loại tin đăng</strong></label>
                         <div class="col-sm-16 col-md-14">
-                            <select class="form-control" name="Form[post_type]" id="vip_type" required="" data-bv-field="Form[post_type]">
-                                <option value="0">Tin thường</option>
-                                <option value="1">Tin Nổi Bật</option>
-                                <option value="2">Tin Vip</option>
-                            </select> <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Form[post_type]" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập giá trị</small>
+                            <select class="form-control" name="post_type" id="post_type">
+                                <!-- BEGIN: post_type -->
+                                <option value="{POST_TYPE.id}" {POST_TYPE.checked}>{POST_TYPE.title}</option>
+                                <!-- END: post_type -->
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thời gian đăng</strong></label>
                         <div class="col-sm-16 col-md-14">
                             <div class="input-group input-daterange" id="group_date" style="width: 100%">
-                                <input type="text" name="Form[active_time]" value="30/11/2019" class="form-control inputmask select_time" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[active_time]">
+                                <input type="text" id="starttime" name="starttime" value="{ROW.starttime}" class="form-control inputmask select_time">
                                 <span class="input-group-addon">đến</span>
-                                <input type="text" name="Form[expire_time]" value="30/12/2019" class="form-control inputmask select_time" data-inputmask="'mask':'99/99/9999'" autocomplete="off" required="" data-bv-field="Form[expire_time]">
+                                <input type="text" id="exptime" name="exptime" value="{ROW.exptimef}" class="form-control inputmask select_time">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thành tiền</strong></label>
                         <div class="col-sm-16 col-md-14">
-                            <table class="table table-striped table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <td>Đơn giá</td>
-                                        <td align="right">
-                                            <span id="price_per_day">0</span> VND/ngày
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Số ngày</td>
-                                        <td align="right">
-                                            <span id="days_calculate">31</span> ngày
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phí đăng tin</td>
-                                        <td align="right">
-                                            <span id="price_subtotal">0</span> VND
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Khuyến mại</td>
-                                        <td align="right">0 VND</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tổng tiền</td>
-                                        <td align="right">
-                                            <span id="price_total">0</span> VND
-                                        </td>
-                                    </tr>
-                                </tbody>
+                            <table class="table table-striped table-bordered" id="price_info">
+                                
                             </table>
                         </div>
                     </div>
@@ -346,39 +317,39 @@
                     <!-- END: groups_faci -->
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">{LANG.exptime}</div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="row m-bottom">
-                            <div class="col-xs-24 col-sm-12">
-                                <select name="begintime_hour" class="form-control">
-                                    <option value="0">---{LANG.hour_select}---</option>
-                                    <!-- BEGIN: hour -->
-                                    <option value="{HOUR.index}"{HOUR.selected}>{HOUR.index}</option>
-                                    <!-- END: hour -->
-                                </select>
-                            </div>
-                            <div class="col-xs-24 col-sm-12">
-                                <select name="begintime_min" class="form-control">
-                                    <option value="0">---{LANG.min_select}---</option>
-                                    <!-- BEGIN: min -->
-                                    <option value="{MIN.index}"{MIN.selected}>{MIN.index}</option>
-                                    <!-- END: min -->
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <input class="form-control datepicker" type="text" name="exptime" value="{ROW.exptimef}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" id="exptime-btn">
-                                    <em class="fa fa-calendar fa-fix"> </em>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--             <div class="panel panel-default"> -->
+<!--                 <div class="panel-heading">{LANG.exptime}</div> -->
+<!--                 <div class="panel-body"> -->
+<!--                     <div class="form-group"> -->
+<!--                         <div class="row m-bottom"> -->
+<!--                             <div class="col-xs-24 col-sm-12"> -->
+<!--                                 <select name="begintime_hour" class="form-control"> -->
+<!--                                     <option value="0">---{LANG.hour_select}---</option> -->
+<!--                                     BEGIN: hour -->
+<!--                                     <option value="{HOUR.index}"{HOUR.selected}>{HOUR.index}</option> -->
+<!--                                     END: hour -->
+<!--                                 </select> -->
+<!--                             </div> -->
+<!--                             <div class="col-xs-24 col-sm-12"> -->
+<!--                                 <select name="begintime_min" class="form-control"> -->
+<!--                                     <option value="0">---{LANG.min_select}---</option> -->
+<!--                                     BEGIN: min -->
+<!--                                     <option value="{MIN.index}"{MIN.selected}>{MIN.index}</option> -->
+<!--                                     END: min -->
+<!--                                 </select> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="input-group"> -->
+<!--                             <input class="form-control datepicker" type="text" name="exptime" value="{ROW.exptimef}" pattern="^[0-9]{2,2}\/[0-9]{2,2}\/[0-9]{1,4}$" /> -->
+<!--                             <span class="input-group-btn"> -->
+<!--                                 <button class="btn btn-default" type="button" id="exptime-btn"> -->
+<!--                                     <em class="fa fa-calendar fa-fix"> </em> -->
+<!--                                 </button> -->
+<!--                             </span> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
             <!-- BEGIN: auction -->
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -583,6 +554,27 @@
 <script type="text/javascript">
 // Initialize the widget when the DOM is ready
 $(function() {
+    
+    function auto_load_price_info(){
+        var post_type = $('#post_type').val();
+	    var starttime = $('#starttime').val();
+	    var exptime = $('#exptime').val();
+	    
+		$.ajax({
+			type : 'POST',
+			url : script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ajax',
+			data : 'load_price_info=1&post_type=' + post_type + '&starttime=' + starttime + '&exptime=' + exptime,
+			success : function(data) {
+				$('#price_info').html(data);
+			}
+		});
+    }
+    
+    auto_load_price_info();
+    
+    $('#post_type, #starttime, #exptime').change(function() {
+        auto_load_price_info();
+	});
 	
 	var i = {COUNT};
 	
@@ -880,3 +872,37 @@ $(function() {
     });
 </script>
 <!-- END: main -->
+<!-- BEGIN: price_info -->
+<tbody>
+    <tr>
+        <td>Đơn giá</td>
+        <td align="right">
+            <span id="price_per_day">{PRICE_INFO.price_per_day}</span> VND/ngày
+        </td>
+    </tr>
+    <tr>
+        <td>Số ngày</td>
+        <td align="right">
+            <span id="days_calculate">{PRICE_INFO.days_calculate}</span> ngày
+            <input type="hidden" name="days_calculate" value="{PRICE_INFO.days_calculate}" />
+        </td>
+    </tr>
+    <tr>
+        <td>Phí đăng tin</td>
+        <td align="right">
+            <span id="price_subtotal">{PRICE_INFO.price_subtotal}</span> VND
+        </td>
+    </tr>
+    <tr>
+        <td>Khuyến mại</td>
+        <td align="right">0 VND</td>
+    </tr>
+    <tr>
+        <td>Tổng tiền</td>
+        <td align="right">
+            <span id="price_total">{PRICE_INFO.price_total}</span> VND
+            <input type="hidden" name="price_info" value="{PRICE_INFO.price_total_input}" />
+        </td>
+    </tr>
+</tbody>
+<!-- END: price_info -->
