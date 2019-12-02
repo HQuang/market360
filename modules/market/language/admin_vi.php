@@ -478,3 +478,7 @@ $lang_module['pack_money'] = 'Gói dịch vụ';
 $lang_module['pack_money_1'] = 'Gói theo ngày (%s đ)';
 $lang_module['pack_money_2'] = 'Trọn gói (30 ngày) (%s đ)';
 $lang_module['mess_'] = 'Trừ tiền theo gói (%s)';
+
+//Lang for function post-type
+$lang_module['post-type'] = 'post-type';
+$lang_module['post_type'] = 'Loại tin đăng';

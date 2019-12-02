@@ -42,6 +42,7 @@ $allow_func = array(
     'crawler-content',
     'widget',
     'facilities',
+    'post-type',
 );
 
 if ($array_config['auction']) {

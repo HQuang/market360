@@ -422,6 +422,23 @@ while (list ($lang) = $language_query->fetch(3)) {
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD wid varchar(255) NOT NULL COMMENT 'Tiện ích' AFTER alias;";
         $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD faci varchar(255) NOT NULL COMMENT 'Tiện nghi' AFTER wid;";
 
+        $_sql[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_post_type(
+          id smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+          title varchar(255) NOT NULL,
+          price double unsigned NOT NULL DEFAULT '0',
+          note text NOT NULL,
+          status tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Trạng thái',
+          weight smallint(4) unsigned NOT NULL DEFAULT '0',
+          PRIMARY KEY (id)
+        ) ENGINE=MyISAM;";
+
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD post_type smallint(4) NOT NULL COMMENT 'Loại tin đăng' AFTER pack_money;";
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD price_info double unsigned NOT NULL DEFAULT '0' AFTER post_type;";
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_rows ADD starttime int(11) unsigned NOT NULL DEFAULT '0' AFTER edittime;";
+
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_queue_edit ADD post_type smallint(4) NOT NULL COMMENT 'Loại tin đăng' AFTER images;";
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_queue_edit ADD price_info double unsigned NOT NULL DEFAULT '0' AFTER post_type;";
+        $_sql[] = "ALTER TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_queue_edit ADD starttime int(11) unsigned NOT NULL DEFAULT '0' AFTER note;";
 
         if (!empty($_sql)) {
             foreach ($_sql as $sql) {
