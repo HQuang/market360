@@ -179,8 +179,9 @@ if ($row['id'] > 0) {
     if ($userid > 0) {
         $row['contact_fullname'] = $user_info['fullname'];
         $row['contact_email'] = $user_info['email'];
-        $row['contact_phone'] = $user_info['phone'];
-        $row['contact_address'] = $user_info['address'];
+        $user_add = $db->query('SELECT * FROM ' . NV_USERS_GLOBALTABLE . '_info WHERE userid = ' . $user_info['userid'])->fetch();
+        $row['contact_phone'] = $user_add['contact_phone'];
+        $row['contact_address'] = $user_add['contact_address'];
     }
 }
 
