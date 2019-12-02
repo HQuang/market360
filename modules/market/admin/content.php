@@ -60,7 +60,9 @@ $row['id'] = $nv_Request->get_int('id', 'post,get', 0);
 $groups_list = nv_groups_list();
 $id_block_content = array();
 
+$adminid = defined('NV_IS_MODADMIN') ? $admin_info['userid'] : 0;
 $username_alias = change_alias($admin_info['username']);
+
 $currentpath = nv_upload_user_path($username_alias);
 
 $array_block_cat_module = array();
@@ -197,6 +199,14 @@ if ($row['id'] > 0) {
     $row['post_type'] = 0;
     $row['price_info'] = 0;
     $row['days_calculate'] = 0;
+
+    if ($adminid > 0) {
+        $row['contact_fullname'] = $admin_info['full_name'];
+        $row['contact_email'] = $admin_info['email'];
+        $user_add = $db->query('SELECT * FROM ' . NV_USERS_GLOBALTABLE . '_info WHERE userid = ' . $admin_info['userid'])->fetch();
+        $row['contact_phone'] = $user_add['contact_phone'];
+        $row['contact_address'] = $user_add['contact_address'];
+    }
 }
 
 $row['remove_link'] = 0;

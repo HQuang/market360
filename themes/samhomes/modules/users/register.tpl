@@ -1,5 +1,5 @@
 <!-- BEGIN: main -->
-<div class="row centered margin-top-lg margin-bottom-lg">
+<div class="row centered margin-top-lg margin-bottom-lg login-box" style="margin:auto">
 <div style="min-width:300px">
     <div class="page panel panel-default box-shadow">
         <div class="panel-body">

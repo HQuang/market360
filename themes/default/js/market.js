@@ -11,7 +11,7 @@ $(function() {
         $('#payment-btn').attr('data_tokenkey', $(this).data('tokenkey'));
         $('#payment-btn').attr('data-checksum', $(this).data('checksum'));
     });
-    
+
     // taikhoan
     $('.ws_c_d').click(function() {
         if (confirm(LANG.payment_confirm)) {
@@ -20,7 +20,7 @@ $(function() {
             var number = $('.payment-option:checked').val();
             var groupid = $('#groupid').val();
             var mod = $(this).data('mod');
-            
+
             $.ajax({
                 type : "POST",
                 url : nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=taikhoan&' + nv_fc_variable + '=ws&nocache=' + new Date().getTime(),
@@ -34,7 +34,7 @@ $(function() {
                                 var r_split = res.split('_');
                                 alert(r_split[1]);
                                 if (r_split[0] = 'OK') {
-                                    window.location.reload(true);
+                                    window.location.reload(true);   
                                 }
                             });
                         } else if (mod == 'group') {
@@ -63,22 +63,22 @@ $(window).on("resize", function() {
     fix_news_image();
 });
 
-function fix_news_image() {
+function fix_news_image(){
     var news = $('#content'), newsW, w, h;
-    if (news.length) {
+    if( news.length ){
         var newsW = news.innerWidth();
-        $.each($('img', news), function() {
-            if (typeof $(this).data('width') == "undefined") {
+        $.each($('img', news), function(){
+            if( typeof $(this).data('width') == "undefined" ){
                 w = $(this).innerWidth();
                 h = $(this).innerHeight();
                 $(this).data('width', w);
                 $(this).data('height', h);
-            } else {
+            }else{
                 w = $(this).data('width');
                 h = $(this).data('height');
             }
             
-            if (w > newsW) {
+            if( w > newsW ){
                 newsW -= 25;
                 $(this).prop('width', newsW);
                 $(this).prop('height', h * newsW / w);
@@ -97,11 +97,11 @@ function nv_save_rows(id, mod, is_user) {
                 alert(r_split[1]);
             } else {
                 if (mod == 'add') {
-                    $('#save').hide();
-                    $('#saved').show();
+                    $('.save_button_' + id + '').hide();
+                    $('.saved_button_' + id + '').show();
                 } else {
-                    $('#saved').hide();
-                    $('#save').show();
+                    $('.saved_button_' + id + '').hide();
+                    $('.save_button_' + id + '').show();
                 }
                 alert(r_split[1]);
             }
@@ -128,12 +128,12 @@ function nv_list_action(action, url_action, del_confirm_no_post, checkss) {
     $('input.post:checked').each(function() {
         listall.push($(this).val());
     });
-    
+
     if (listall.length < 1) {
         alert(del_confirm_no_post);
         return false;
     }
-    
+
     if (action == 'delete_list_id') {
         if (confirm(nv_is_del_confirm[0])) {
             $.ajax({
@@ -151,7 +151,7 @@ function nv_list_action(action, url_action, del_confirm_no_post, checkss) {
             });
         }
     }
-    
+
     return false;
 }
 
@@ -281,6 +281,27 @@ function nv_popup_content(op) {
         $('#sitemodal .modal-dialog').addClass('modal-lg');
         $('#sitemodal .modal-dialog .modal-header').remove();
         modalShow('', a)
+    });
+}
+
+function nv_chang_viewtype(viewtype) {
+    $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ajax&nocache=' + new Date().getTime(), 'changeviewtype=1&viewtype=' + viewtype, function(res) {
+        if (res != 'OK') {
+            alert(res);
+        } else {
+            window.location.href = window.location.href;
+        }
+    });
+}
+
+function nv_chang_price() {
+    var newsort = $("#sort").val();
+    $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ajax&nocache=' + new Date().getTime(), 'changesprice=1&sort=' + newsort, function(res) {
+        if (res != 'OK') {
+            alert(res);
+        } else {
+            window.location.href = window.location.href;
+        }
     });
 }
 
