@@ -535,13 +535,13 @@ form .require { color:red; font-size:10pt; text-transform: lowercase;}
 .bank_icons .icon a.active, .bank_icons .icon a:hover { border:1px solid #c87f0a;}
 
 .ribbon {width: 120px; height: 120px; overflow: hidden;position: absolute; z-index: 100;}
-.ribbon span {position: absolute;display: block;width: 120px;padding: 10px 0;background-color: #d75345;box-shadow: 0 5px 10px rgba(0,0,0,.1);color: #fff;font: 700 16px/1 'Lato', sans-serif;text-shadow: 0 1px 1px rgba(0,0,0,.2);text-transform: uppercase;text-align: center;}
+.ribbon span {position: absolute;display: block;width: 120px;padding: 14px 0 8px 0;background-color: #d75345;box-shadow: 0 5px 10px rgba(0,0,0,.1);color: #fff;font: 700 13px/13px 'Lato', sans-serif;text-shadow: 0 1px 1px rgba(0,0,0,.2);text-transform: uppercase;text-align: center;}
 .ribbon-top-right {top: -20px;right: -20px;}
 .ribbon-top-right::before,
 .ribbon-top-right::after {border-top-color: transparent;border-right-color: transparent;}
 .ribbon-top-right::before {top: 0;left: 0;}
 .ribbon-top-right::after {bottom: 0;right: 0;}
-.ribbon-top-right span {right: -25px;top: 18px;transform: rotate(45deg);}
+.ribbon-top-right span {right: -29px;top: 17px;transform: rotate(45deg);}
 .ribbon-top-left {top: 0;left: -25px;}
 .ribbon-top-left::before,
 .ribbon-top-left::after {border-top-color: transparent;border-right-color: transparent;}
