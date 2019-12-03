@@ -182,88 +182,67 @@
             <div class="panel panel-default">
                 <div class="panel-heading">HÌNH THỨC ĐĂNG</div>
                 <div id="group_posting_single" class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
-                        <div class="col-sm-16 col-md-14">Để đáp ứng tốt hơn nhu cầu của Khách hàng, chúng tôi hỗ trợ dịch vụ đăng tin Hot, tin Vip với nhiều ưu đãi về hình thức và vị trí hiển thị.</div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Loại tin đăng</strong></label>
-                        <div class="col-sm-16 col-md-14">
-                            <select class="form-control" name="post_type" id="post_type">
-                                <!-- BEGIN: post_type -->
-                                <option value="{POST_TYPE.id}" {POST_TYPE.checked}>{POST_TYPE.title}</option>
-                                <!-- END: post_type -->
-                            </select>
+                    <div id="only_website">
+                        <div class="form-group">
+                            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
+                            <div class="col-sm-16 col-md-14">Để đáp ứng tốt hơn nhu cầu của Khách hàng, chúng tôi hỗ trợ dịch vụ đăng tin Hot, tin Vip với nhiều ưu đãi về hình thức và vị trí hiển thị.</div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thời gian đăng</strong></label>
-                        <div class="col-sm-16 col-md-14">
-                            <div class="input-group input-daterange" id="group_date" style="width: 100%">
-                                <input type="text" id="starttime" name="starttime" value="{ROW.starttime}" class="form-control inputmask select_time">
-                                <span class="input-group-addon">đến</span>
-                                <input type="text" id="exptime" name="exptime" value="{ROW.exptimef}" class="form-control inputmask select_time">
+                        <div class="form-group">
+                            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Loại tin đăng</strong></label>
+                            <div class="col-sm-16 col-md-14">
+                                <select class="form-control" name="post_type" id="post_type">
+                                    <!-- BEGIN: post_type -->
+                                    <option value="{POST_TYPE.id}" {POST_TYPE.checked}>{POST_TYPE.title}</option>
+                                    <!-- END: post_type -->
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thành tiền</strong></label>
-                        <div class="col-sm-16 col-md-14">
-                            <table class="table table-striped table-bordered" id="price_info">
-                                
-                            </table>
+                        <div class="form-group">
+                            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thời gian đăng</strong></label>
+                            <div class="col-sm-16 col-md-14">
+                                <div class="input-group input-daterange" id="group_date" style="width: 100%">
+                                    <input type="text" id="starttime" name="starttime" value="{ROW.starttime}" class="form-control inputmask select_time">
+                                    <span class="input-group-addon">đến</span>
+                                    <input type="text" id="exptime" name="exptime" value="{ROW.exptimef}" class="form-control inputmask select_time">
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thành tiền</strong></label>
+                            <div class="col-sm-16 col-md-14">
+                                <table class="table table-striped table-bordered" id="price_info">
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>                    
                     <div class="form-group">
                         <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong> </strong></label>
                         <div class="col-sm-16 col-md-14">
                             <div class="checkbox">
-                                <label> <input type="checkbox" name="autopost" value="1" id="autopost"> <b>Đăng tin trên nhiều website, tăng cường khả năng tiếp cận khách mua/thuê</b>
+                                <label> <input type="checkbox" name="autopost" value="1" id="autopost" {ROW.autopost_checked}> <b>Đăng tin trên nhiều website, tăng cường khả năng tiếp cận khách mua/thuê</b>
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <fieldset id="fl_autopost" disabled="">
+                    <fieldset id="fl_autopost" disabled___>
                         <div class="form-group">
                             <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right control-label">Gói đăng tin</label>
                             <div class="col-sm-17 col-md-18 p-tb5">
                                 <div class="row" id="posting_package">
                                     <div class="col-xs-8">
                                         <div class="packages alert alert-warning">
+                                            <!-- BEGIN: package -->
                                             <div class="radio">
-                                                <label> <input type="radio" name="pkid" value="1" checked=""> <b>Cơ bản </b><br> (80,000 đ)
+                                                <label> <input class="package" type="radio" name="package" value="{PACKAGE.id}" {PACKAGE.checked}> <b>{PACKAGE.title}</b><br> ({PACKAGE.price} đ)
                                                 </label>
                                             </div>
-                                            <div class="radio">
-                                                <label> <input type="radio" name="pkid" value="2"> <b>Nâng cao</b><br> (250,000 đ)
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label> <input type="radio" name="pkid" value="20"> <b>Vip</b><br> (450,000 đ)
-                                                </label>
-                                            </div>
+                                            <!-- END: package -->
                                         </div>
                                     </div>
                                     <div class="col-xs-16">
                                         <div class="table-responsive table-scroll " id="pk_1">
-                                            <table class="table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="50%">Website</th>
-                                                        <th width="50%">Ghi chú</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1. https://dothi.net</td>
-                                                        <td>Tin có phí 14 ngày - up mới 14 ngày</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2. http://phonhadat.net</td>
-                                                        <td>Tồn tại đến khi nào bán được</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -554,6 +533,43 @@
 <script type="text/javascript">
 // Initialize the widget when the DOM is ready
 $(function() {
+    
+    function auto_check_autopost(){
+        var checked = $("#autopost:checked").length;
+        if(checked){
+        	$("#only_website").hide('slow');            
+        	$("#fl_autopost").attr("disabled", false);            
+        }else{
+            $("#only_website").show('slow');            
+        	$("#fl_autopost").attr("disabled", true);
+        }
+    }
+    
+    auto_check_autopost();
+    
+    $('#autopost').change(function(){
+        auto_check_autopost();
+    });
+    
+    
+    function auto_load_packages_info(id){
+		$.ajax({
+			type : 'POST',
+			url : script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ajax',
+			data : 'load_packages_info=1&id=' + id,
+			success : function(data) {
+				$('#pk_1').html(data);
+			}
+		});
+    }
+    
+    auto_load_packages_info($('.package').val());
+    
+    $('.package').change(function() {
+        auto_load_packages_info($(this).val());           
+	});
+    
+    
     
     function auto_load_price_info(){
         var post_type = $('#post_type').val();
@@ -906,3 +922,21 @@ $(function() {
     </tr>
 </tbody>
 <!-- END: price_info -->
+<!-- BEGIN: table_packages -->
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th width="50%">Website</th>
+            <th width="50%">Ghi chú</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- BEGIN: loop -->
+        <tr>
+            <td>{LIST.number}. {LIST.list.link}</td>
+            <td>{LIST.list.note}</td>
+        </tr>
+        <!-- END: loop -->
+    </tbody>
+</table>
+<!-- END: table_packages -->

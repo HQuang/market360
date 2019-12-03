@@ -62,3 +62,13 @@ $lang_module['post-type'] = 'post-type';
 
 //Lang for function post-type
 $lang_module['error_required_price'] = 'Error: Required fields enter the Price';
+
+//Lang for function package-websites
+$lang_module['package-websites'] = 'package-websites';
+$lang_module['link'] = 'Link';
+$lang_module['error_required_link'] = 'Error: Required fields enter the Link';
+
+//Lang for function packages
+$lang_module['packages'] = 'packages';
+$lang_module['website'] = 'Website';
+$lang_module['error_required_website'] = 'Error: Required fields enter the Website';

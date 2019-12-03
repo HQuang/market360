@@ -43,6 +43,8 @@ $allow_func = array(
     'widget',
     'facilities',
     'post-type',
+    'packages',
+    'package-websites',
 );
 
 if ($array_config['auction']) {
