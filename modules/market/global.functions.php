@@ -53,6 +53,12 @@ $array_faci = $nv_Cache->db($_sql, 'id', $module_name);
 $_sql = 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_post_type where status=1';
 $array_post_type = $nv_Cache->db($_sql, 'id', $module_name);
 
+$_sql = 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_packages where status=1 ORDER BY weight';
+$array_packages = $nv_Cache->db($_sql, 'id', $module_name);
+
+$_sql = 'SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_package_websites where status=1 ORDER BY weight';
+$array_package_websites = $nv_Cache->db($_sql, 'id', $module_name);
+
 
 require_once NV_ROOTDIR . '/modules/location/location.class.php';
 

@@ -478,7 +478,18 @@ $lang_module['pack_money'] = 'Gói dịch vụ';
 $lang_module['pack_money_1'] = 'Gói theo ngày (%s đ)';
 $lang_module['pack_money_2'] = 'Trọn gói (30 ngày) (%s đ)';
 $lang_module['mess_'] = 'Trừ tiền theo gói (%s)';
+$lang_module['mess_autopost'] = 'Đăng tin trên nhiều website: Gói <strong>%s</strong>';
 
 //Lang for function post-type
 $lang_module['post-type'] = 'post-type';
 $lang_module['post_type'] = 'Loại tin đăng';
+
+//Lang for function package-websites
+$lang_module['package-websites'] = 'Website liên kết đăng tin';
+$lang_module['link'] = 'Đường dẫn';
+$lang_module['error_required_link'] = 'Lỗi: bạn cần nhập dữ liệu cho Link';
+
+//Lang for function packages
+$lang_module['packages'] = 'Gói đăng tin';
+$lang_module['website'] = 'Website liên kết';
+$lang_module['error_required_website'] = 'Lỗi: bạn cần nhập dữ liệu cho Website';

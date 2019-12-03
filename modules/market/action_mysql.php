@@ -42,6 +42,8 @@ $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lan
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_widget";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_facilities";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_post_type";
+$sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_packages";
+$sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_package_websites";
 
 $sql_create_module = $sql_drop_module;
 
@@ -221,6 +223,8 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   edittime int(11) unsigned NOT NULL DEFAULT '0',
   starttime int(11) unsigned NOT NULL DEFAULT '0',
   exptime int(11) unsigned NOT NULL DEFAULT '0',
+  autopost tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Trạng thái đăng tin tự động',
+  package smallint(4) NOT NULL DEFAULT '0' COMMENT 'Gói',
   auction tinyint(1) unsigned NOT NULL DEFAULT '0',
   auction_begin int(11) unsigned NOT NULL DEFAULT '0',
   auction_end int(11) unsigned NOT NULL DEFAULT '0',
@@ -380,6 +384,8 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   note text NOT NULL,
   starttime int(11) unsigned NOT NULL DEFAULT '0',
   exptime int(11) unsigned NOT NULL DEFAULT '0',
+  autopost tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Trạng thái đăng tin tự động',
+  package smallint(4) NOT NULL DEFAULT '0' COMMENT 'Gói',
   auction tinyint(1) unsigned NOT NULL DEFAULT '0',
   auction_begin int(11) unsigned NOT NULL DEFAULT '0',
   auction_end int(11) unsigned NOT NULL DEFAULT '0',
@@ -518,6 +524,26 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   id smallint(4) unsigned NOT NULL AUTO_INCREMENT,
   title varchar(255) NOT NULL,
   price double unsigned NOT NULL DEFAULT '0',
+  note text NOT NULL,
+  status tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Trạng thái',
+  weight smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (id)
+) ENGINE=MyISAM;";
+
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_packages(
+  id smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+  title varchar(255) NOT NULL,
+  price double unsigned NOT NULL DEFAULT '0',
+  website text NOT NULL,
+  note text NOT NULL,
+  status tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Trạng thái',
+  weight smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (id)
+) ENGINE=MyISAM;";
+
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_package_websites(
+  id smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+  link text NOT NULL,
   note text NOT NULL,
   status tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Trạng thái',
   weight smallint(4) unsigned NOT NULL DEFAULT '0',

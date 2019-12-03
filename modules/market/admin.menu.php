@@ -32,4 +32,6 @@ $submenu['crawler'] = array(
 );
 $submenu['widget'] = $lang_module['widget'];
 $submenu['facilities'] = $lang_module['facilities'];
+$submenu['packages'] = $lang_module['packages'];
+$submenu['package-websites'] = $lang_module['package-websites'];
 $submenu['config'] = $lang_module['config'];
