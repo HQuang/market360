@@ -175,6 +175,8 @@ if ($row['id'] > 0) {
     $row['post_type'] = 0;
     $row['price_info'] = 0;
     $row['days_calculate'] = 0;
+    $row['autopost'] = 0;
+    $row['package'] = key($array_packages);
 
     if ($userid > 0) {
         $row['contact_fullname'] = $user_info['fullname'];
@@ -220,17 +222,6 @@ if ($nv_Request->isset_request('submit', 'post')) {
     $row['contact_email'] = $nv_Request->get_title('contact_email', 'post', '');
     $row['contact_phone'] = $nv_Request->get_title('contact_phone', 'post', '');
     $row['contact_address'] = $nv_Request->get_title('contact_address', 'post', '');
-
-    if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string('starttime', 'post'), $m)) {
-        $row['starttime'] = mktime(0, 0, 0, $m[2], $m[1], $m[3]);
-    } else {
-        $row['starttime'] = 0;
-    }
-    if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string('exptime', 'post'), $m)) {
-        $row['exptime'] = mktime(23, 59, 59, $m[2], $m[1], $m[3]);
-    } else {
-        $row['exptime'] = 0;
-    }
 
     if ($array_config['auction']) {
         $row['auction'] = $nv_Request->get_int('auction', 'post', 0);
@@ -282,9 +273,31 @@ if ($nv_Request->isset_request('submit', 'post')) {
     $faci = !empty($row['faci']) ? implode(',', $row['faci']) : '';
     $row['address'] = $nv_Request->get_title('address', 'post', '');
 
-    $row['post_type'] = $nv_Request->get_int('post_type', 'post', 0);
-    $row['price_info'] = $nv_Request->get_int('price_info', 'post', 0);
-    $row['days_calculate'] = $nv_Request->get_int('days_calculate', 'post', 0);
+    $row['autopost'] = $nv_Request->get_int('autopost', 'post', 0);
+    $row['package'] = $row['post_type'] = $row['starttime'] = $row['exptime'] = $row['days_calculate'] = $row['price_info'] = 0;
+
+    if (!empty($row['autopost'])) {
+        // Đăng tin trên nhiều website
+        $row['package'] = $nv_Request->get_int('package', 'post', 0);
+
+    }else{
+        // Đăng tin trên website
+        $row['post_type'] = $nv_Request->get_int('post_type', 'post', 0);
+
+        if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string('starttime', 'post'), $m)) {
+            $row['starttime'] = mktime(0, 0, 0, $m[2], $m[1], $m[3]);
+        } else {
+            $row['starttime'] = 0;
+        }
+        if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string('exptime', 'post'), $m)) {
+            $row['exptime'] = mktime(23, 59, 59, $m[2], $m[1], $m[3]);
+        } else {
+            $row['exptime'] = 0;
+        }
+
+        $row['days_calculate'] = $nv_Request->get_int('days_calculate', 'post', 0);
+        $row['price_info'] = $nv_Request->get_int('price_info', 'post', 0);
+    }
 
     if (empty($row['catid'])) {
         nv_jsonOutput(array(
@@ -389,7 +402,13 @@ if ($nv_Request->isset_request('submit', 'post')) {
         $row['keywords'] = implode(',', $keywords_return);
     }
 
-    $mess_ = $array_post_type[$row['post_type']]['title'] . ' - ' . $row['days_calculate'] . ' ngày (' . nv_date('d/m/Y', $row['starttime']) . ' đến ' . nv_date('d/m/Y', $row['exptime']) . ')';
+    if (!empty($row['autopost'])) {
+        $mess_ = sprintf($lang_module['mess_autopost'], $array_packages[$row['package']]['title']);
+        $fee = $array_packages[$row['package']]['price'];
+    }else{
+        $mess_ = $array_post_type[$row['post_type']]['title'] . ' - ' . $row['days_calculate'] . ' ngày (' . nv_date('d/m/Y', $row['starttime']) . ' đến ' . nv_date('d/m/Y', $row['exptime']) . ')';
+        $fee = $row['price_info'];
+    }
 
     try {
         $new_id = $is_queue_edit = 0;
@@ -399,7 +418,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
         }
         $maps = !empty($row['maps']) ? serialize($row['maps']) : '';
         if (empty($row['id'])) {
-            $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_rows (title, alias, wid, faci, address, catid, area_p, area_d, area_w, typeid, description, pricetype, price, price1, unitid, addtime, starttime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, userid, ordertime, is_queue, pack_money, post_type, price_info) VALUES (:title, :alias, :wid, :faci, :address, :catid, :area_p, :area_d, :area_w, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :starttime, :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, ' . $userid . ', ' . NV_CURRENTTIME . ', :is_queue, :pack_money, :post_type, :price_info)';
+            $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_rows (title, alias, wid, faci, address, catid, area_p, area_d, area_w, typeid, description, pricetype, price, price1, unitid, addtime, starttime, exptime, autopost, package, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, groupview, userid, ordertime, is_queue, pack_money, post_type, price_info) VALUES (:title, :alias, :wid, :faci, :address, :catid, :area_p, :area_d, :area_w, :typeid, :description, :pricetype, :price, :price1, :unitid, ' . NV_CURRENTTIME . ', :starttime, :exptime, :autopost, :package, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :groupview, ' . $userid . ', ' . NV_CURRENTTIME . ', :is_queue, :pack_money, :post_type, :price_info)';
             $data_insert = array();
             $data_insert['title'] = $row['title'];
             $data_insert['alias'] = $row['alias'];
@@ -418,6 +437,8 @@ if ($nv_Request->isset_request('submit', 'post')) {
             $data_insert['unitid'] = $row['unitid'];
             $data_insert['starttime'] = $row['starttime'];
             $data_insert['exptime'] = $row['exptime'];
+            $data_insert['autopost'] = $row['autopost'];
+            $data_insert['package'] = $row['package'];
             $data_insert['auction'] = $row['auction'];
             $data_insert['auction_begin'] = $row['auction_begin'];
             $data_insert['auction_end'] = $row['auction_end'];
@@ -434,9 +455,9 @@ if ($nv_Request->isset_request('submit', 'post')) {
             if ($is_queue_edit) {
                 $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_queue_edit WHERE rowsid=' . $row['id'])->fetchColumn();
                 if ($count) {
-                    $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_queue_edit SET title = :title, catid = :catid, area_p = :area_p, area_d = :area_d, area_w = :area_w, typeid = :typeid, description = :description, content = :content, maps = :maps, display_maps = :display_maps, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, note = :note, starttime = :starttime, exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, contact_fullname = :contact_fullname, contact_email = :contact_email, contact_phone = :contact_phone, contact_address = :contact_address WHERE rowsid = :rowsid');
+                    $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_queue_edit SET title = :title, catid = :catid, area_p = :area_p, area_d = :area_d, area_w = :area_w, typeid = :typeid, description = :description, content = :content, maps = :maps, display_maps = :display_maps, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, note = :note, starttime = :starttime, exptime = :exptime, autopost = :autopost, package = :package, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, contact_fullname = :contact_fullname, contact_email = :contact_email, contact_phone = :contact_phone, contact_address = :contact_address WHERE rowsid = :rowsid');
                 } else {
-                    $stmt = $db->prepare('INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_queue_edit(rowsid, title, catid, area_p, area_d, area_w, typeid, description, content, maps, display_maps, pricetype, price, price1, unitid, note, starttime, exptime, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, contact_fullname, contact_email, contact_phone, contact_address) VALUES(:rowsid, :title, :catid, :area_p, :area_d, :area_w, :typeid, :description, :content, :maps, :display_maps, :pricetype, :price, :price1, :unitid, :note, :starttime, :exptime, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :contact_fullname, :contact_email, :contact_phone, :contact_address)');
+                    $stmt = $db->prepare('INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_queue_edit(rowsid, title, catid, area_p, area_d, area_w, typeid, description, content, maps, display_maps, pricetype, price, price1, unitid, note, starttime, exptime, autopost, package, auction, auction_begin, auction_end, auction_price_begin, auction_price_step, contact_fullname, contact_email, contact_phone, contact_address) VALUES(:rowsid, :title, :catid, :area_p, :area_d, :area_w, :typeid, :description, :content, :maps, :display_maps, :pricetype, :price, :price1, :unitid, :note, :starttime, :exptime, :autopost, :package, :auction, :auction_begin, :auction_end, :auction_price_begin, :auction_price_step, :contact_fullname, :contact_email, :contact_phone, :contact_address)');
                 }
                 $stmt->bindParam(':rowsid', $row['id'], PDO::PARAM_INT);
                 $stmt->bindParam(':title', $row['title'], PDO::PARAM_STR);
@@ -456,6 +477,8 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $stmt->bindParam(':note', $row['note'], PDO::PARAM_STR, strlen($row['note']));
                 $stmt->bindParam(':starttime', $row['starttime'], PDO::PARAM_INT);
                 $stmt->bindParam(':exptime', $row['exptime'], PDO::PARAM_INT);
+                $stmt->bindParam(':autopost', $row['autopost'], PDO::PARAM_INT);
+                $stmt->bindParam(':package', $row['package'], PDO::PARAM_INT);
                 $stmt->bindParam(':auction', $row['auction'], PDO::PARAM_INT);
                 $stmt->bindParam(':auction_begin', $row['auction_begin'], PDO::PARAM_INT);
                 $stmt->bindParam(':auction_end', $row['auction_end'], PDO::PARAM_INT);
@@ -466,7 +489,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $stmt->bindParam(':contact_phone', $row['contact_phone'], PDO::PARAM_STR);
                 $stmt->bindParam(':contact_address', $row['contact_address'], PDO::PARAM_STR);
             } else {
-                $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET title = :title, alias = :alias, wid = :wid, faci = :faci, address = :address, catid = :catid, area_p = :area_p, area_d = :area_d, area_w = :area_w, typeid = :typeid, description = :description, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, edittime = ' . NV_CURRENTTIME . ', starttime = :starttime, exptime = :exptime, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, groupview = :groupview, pack_money = :pack_money, post_type = :post_type, price_info = :price_info  WHERE id=' . $row['id']);
+                $stmt = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET title = :title, alias = :alias, wid = :wid, faci = :faci, address = :address, catid = :catid, area_p = :area_p, area_d = :area_d, area_w = :area_w, typeid = :typeid, description = :description, pricetype = :pricetype, price = :price, price1 = :price1, unitid = :unitid, edittime = ' . NV_CURRENTTIME . ', starttime = :starttime, exptime = :exptime, autopost = :autopost, package = :package, auction = :auction, auction_begin = :auction_begin, auction_end = :auction_end, auction_price_begin = :auction_price_begin, auction_price_step = :auction_price_step, groupview = :groupview, pack_money = :pack_money, post_type = :post_type, price_info = :price_info  WHERE id=' . $row['id']);
                 $stmt->bindParam(':title', $row['title'], PDO::PARAM_STR);
                 $stmt->bindParam(':alias', $row['alias'], PDO::PARAM_STR);
                 $stmt->bindParam(':wid', $wid, PDO::PARAM_INT);
@@ -484,6 +507,8 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $stmt->bindParam(':unitid', $row['unitid'], PDO::PARAM_INT);
                 $stmt->bindParam(':starttime', $row['starttime'], PDO::PARAM_INT);
                 $stmt->bindParam(':exptime', $row['exptime'], PDO::PARAM_INT);
+                $stmt->bindParam(':autopost', $row['autopost'], PDO::PARAM_INT);
+                $stmt->bindParam(':package', $row['package'], PDO::PARAM_INT);
                 $stmt->bindParam(':auction', $row['auction'], PDO::PARAM_INT);
                 $stmt->bindParam(':auction_begin', $row['auction_begin'], PDO::PARAM_INT);
                 $stmt->bindParam(':auction_end', $row['auction_end'], PDO::PARAM_INT);
@@ -518,7 +543,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
             if (empty($row['id'])) {
 
                 if (empty($row['is_queue'])) {
-                    $wallet->update($row['price_info'], 'VND', $user_info['userid'], $mess_);
+                    $wallet->update($fee, 'VND', $user_info['userid'], $mess_);
                 }
 
                 // thêm vào tùy biến dữ liệu
@@ -869,6 +894,7 @@ $row['ck_auction'] = $row['auction'] ? 'checked="checked"' : '';
 $row['auction_price_begin'] = !empty($row['auction_price_begin']) ? $row['auction_price_begin'] : '';
 $row['auction_price_step'] = !empty($row['auction_price_step']) ? $row['auction_price_step'] : '';
 $row['auction_style'] = !$row['auction'] ? 'style="display: none"' : '';
+$row['autopost_checked'] = $row['autopost'] ? 'checked="checked"' : '';
 
 if (empty($userid)) {
     $link_users = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=users';
@@ -893,6 +919,16 @@ $xtpl->assign('MONEY_UNIT', $array_config['money_unit']);
 $xtpl->assign('REDIRECT', $redirect);
 $xtpl->assign('UPLOAD_URL', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=upload&token=' . md5($nv_Request->session_id . $global_config['sitekey']));
 $xtpl->assign('URL_CONTENT', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $module_info['alias']['content']);
+
+foreach ($array_packages as $v_pk => $k_pk){
+    $xtpl->assign('PACKAGE', array(
+        'id' => $v_pk,
+        'title' => $k_pk['title'],
+        'price' => number_format($k_pk['price']),
+        'checked' => $row['package'] == $v_pk ? 'checked="checked"' : ''
+    ));
+    $xtpl->parse('main.package');
+}
 
 foreach ($array_post_type as $k_pt => $v_pt){
     $xtpl->assign('POST_TYPE', array(

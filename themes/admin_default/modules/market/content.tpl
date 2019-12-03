@@ -225,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                    <fieldset id="fl_autopost" disabled___>
+                    <fieldset id="fl_autopost">
                         <div class="form-group">
                             <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right control-label">Gói đăng tin</label>
                             <div class="col-sm-17 col-md-18 p-tb5">
