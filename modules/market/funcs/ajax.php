@@ -522,6 +522,27 @@ if ($nv_Request->isset_request('load_price_info', 'post')) {
     die(nv_load_price_info($row, $template));
 }
 
+if ($nv_Request->isset_request('load_packages_info', 'post')) {
+    $row = array();
+    $row['id'] = $nv_Request->get_int('id', 'post', 0);
+
+    $template = NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file;
+    $xtpl = new XTemplate('content.tpl', $template);
+    $xtpl->assign('LANG', $lang_module);
+
+    $number=1;
+    foreach (explode(',', $array_packages[$row['id']]['website']) as $list){
+        $xtpl->assign('LIST', array(
+            'number' => $number++,
+            'list' => $array_package_websites[$list]
+        ));
+        $xtpl->parse('table_packages.loop');
+    }
+
+    $xtpl->parse('table_packages');
+    die($xtpl->text('table_packages'));
+}
+
 if ($nv_Request->isset_request('show_terms', 'post')) {
     $ispopp = $nv_Request->get_int('ispopup', 'post', 0);
 
