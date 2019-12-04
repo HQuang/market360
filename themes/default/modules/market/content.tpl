@@ -597,7 +597,7 @@ $(function() {
 	        		    $('.ajax-load-qa').remove();
 	        		    return !1;
 	        		}
-// 	        		window.location.href = json.redirect;
+	        		window.location.href = json.redirect;
 	        	}
 	        });
 	    });
