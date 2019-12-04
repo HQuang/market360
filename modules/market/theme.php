@@ -547,30 +547,30 @@ function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
     $xtpl->assign('SELFURL', $client_info['selfurl']);
     $xtpl->assign('MONEY_UNIT', $array_config['money_unit']);
     $xtpl->assign('TEMPLATE', $module_info['template']);
-    if (!empty($array_wid)) {
-        foreach ($array_wid as $wid) {
 
-            if ( $wid['icon']) {
-                $wid['icon'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_file . '/' . $wid['icon'];
+    $array_data['wid'] = explode(',', $array_data['wid']);
+    if (!empty($array_data['wid'])) {
+        foreach ($array_data['wid'] as $wid) {
+            if ( $array_wid[$wid]['icon']) {
+                $array_wid[$wid]['icon'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_file . '/' . $array_wid[$wid]['icon'];
             }else {
-                $wid['icon'] = '';
+                $array_wid[$wid]['icon'] = '';
             }
-            $xtpl->assign('WID', $wid);
+            $xtpl->assign('WID', $array_wid[$wid]);
             $xtpl->parse('main.wid.loop');
         }
         $xtpl->parse('main.wid');
     }
 
-    if (!empty($array_faci)) {
-        foreach ($array_faci as $faci) {
-            if ( $faci['icon']) {
-                $faci['icon'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_file . '/' . $faci['icon'];
+    $array_data['faci'] = explode(',', $array_data['faci']);
+    if (!empty($array_data['faci'])) {
+        foreach ($array_data['faci'] as $faci) {
+            if ( $array_faci[$faci]['icon']) {
+                $array_faci[$faci]['icon'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_file . '/' . $array_faci[$faci]['icon'];
             }else {
-                $faci['icon'] = '';
+                $array_faci[$faci]['icon'] = '';
             }
-
-
-            $xtpl->assign('FACI', $faci);
+            $xtpl->assign('FACI', $array_faci[$faci]);
             $xtpl->parse('main.faci.loop');
         }
         $xtpl->parse('main.faci');
