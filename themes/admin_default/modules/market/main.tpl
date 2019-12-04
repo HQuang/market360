@@ -76,6 +76,16 @@
 					</select>
 				</div>
 			</div>
+			<div class="col-xs-24 col-md-4">
+				<div class="form-group">
+					<select name="package" class="form-control">
+						<option value="-1">---{LANG.package_select}---</option>
+						<!-- BEGIN: package -->
+						<option value="{PACKAGE.id}"{PACKAGE.selected}>{PACKAGE.title}</option>
+						<!-- END: package -->
+					</select>
+				</div>
+			</div>
 			<div class="col-xs-12 col-md-2">
 				<div class="form-group">
 					<input class="btn btn-primary" type="submit" value="{LANG.search_submit}" />

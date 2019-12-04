@@ -120,7 +120,8 @@ $array_search = array(
     'to' => $nv_Request->get_title('to', 'get', ''),
     'typeid' => $nv_Request->get_int('typeid', 'get', - 1),
     'status' => $nv_Request->get_int('status', 'get', - 1),
-    'userid' => $nv_Request->get_int('userid', 'get', 0)
+    'userid' => $nv_Request->get_int('userid', 'get', 0),
+    'package' => $nv_Request->get_int('package', 'get', 0),
 );
 
 if (! empty($array_search['q'])) {
@@ -168,6 +169,11 @@ if ($array_search['status'] >= 0) {
 if (! empty($array_search['userid'])) {
     $base_url .= '&userid=' . $array_search['userid'];
     $where .= ' AND userid=' . $array_search['userid'];
+}
+
+if (! empty($array_search['package'])) {
+    $base_url .= '&package=' . $array_search['package'];
+    $where .= ' AND package=' . $array_search['package'];
 }
 
 if ($queue) {
@@ -404,6 +410,15 @@ while ($view = $sth->fetch()) {
     }
 
     $xtpl->parse('main.loop');
+}
+
+foreach ($array_packages as $v_pk => $k_pk){
+    $xtpl->assign('PACKAGE', array(
+        'id' => $v_pk,
+        'title' => $k_pk['title'],
+        'selected' => $array_search['package'] == $v_pk ? 'selected="selected"' : ''
+    ));
+    $xtpl->parse('main.package');
 }
 
 if (! empty($array_market_cat)) {

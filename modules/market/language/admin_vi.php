@@ -493,3 +493,4 @@ $lang_module['error_required_link'] = 'Lỗi: bạn cần nhập dữ liệu cho
 $lang_module['packages'] = 'Gói đăng tin';
 $lang_module['website'] = 'Website liên kết';
 $lang_module['error_required_website'] = 'Lỗi: bạn cần nhập dữ liệu cho Website';
+$lang_module['package_select'] = 'Chọn gói đăng tin';
