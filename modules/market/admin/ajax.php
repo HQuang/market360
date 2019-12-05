@@ -114,6 +114,8 @@ if ($nv_Request->isset_request('load_packages_info', 'post')) {
     $row = array();
     $row['id'] = $nv_Request->get_int('id', 'post', 0);
 
+    $lang_module['kodutien'] = sprintf($lang_module['kodutien'], $wallet->my_money($admin_info['userid'])['money_total']);
+
     $template = NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file;
     $xtpl = new XTemplate('content.tpl', $template);
     $xtpl->assign('LANG', $lang_module);
@@ -125,6 +127,12 @@ if ($nv_Request->isset_request('load_packages_info', 'post')) {
             'list' => $array_package_websites[$list]
         ));
         $xtpl->parse('table_packages.loop');
+    }
+
+    if (!empty($array_packages[$row['id']]['price'])) {
+        if ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $array_packages[$row['id']]['price']) {
+            $xtpl->parse('table_packages.kodutien');
+        }
     }
 
     $xtpl->parse('table_packages');
