@@ -319,6 +319,7 @@ label {
 								padding: 5px 4px !important;
 								border-radius: 5px;
 								margin-bottom: 4px;
+								    margin-top: 5px;
 				}
 				#user_menu>li>a {
 								font-size: 10px;
@@ -328,6 +329,13 @@ label {
 								padding-bottom: 5px;
 								width: 50%;
 								padding-right: 0;
+				}
+				#user_menu > li#mnuGuest	{
+				    margin-top: 5px;
+				}
+				#user_menu > li#mnuGuest  img	{
+				    position: relative;
+				    bottom: 5px;
 				}
 }
 
