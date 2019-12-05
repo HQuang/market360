@@ -357,7 +357,19 @@ if ($nv_Request->isset_request('submit', 'post')) {
             'msg' => $error_email,
             'input' => 'contact_email'
         ));
-    } elseif (!nv_capcha_txt(($global_config['captcha_type'] == 2 ? $nv_Request->get_title('g-recaptcha-response', 'post', '') : $nv_Request->get_title('fcode', 'post', '')))) {
+    }elseif ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $row['price_info']) {
+        nv_jsonOutput(array(
+            'error' => 1,
+            'msg' => sprintf($lang_module['kodutien_js'], $wallet->my_money($admin_info['userid'])['money_total']),
+            'input' => 'post_type'
+        ));
+    }elseif ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $array_packages[$row['package']]['price']) {
+        nv_jsonOutput(array(
+            'error' => 1,
+            'msg' => sprintf($lang_module['kodutien_js'], $wallet->my_money($admin_info['userid'])['money_total']),
+            'input' => 'autopost'
+        ));
+    }elseif (!nv_capcha_txt(($global_config['captcha_type'] == 2 ? $nv_Request->get_title('g-recaptcha-response', 'post', '') : $nv_Request->get_title('fcode', 'post', '')))) {
         nv_jsonOutput(array(
             'error' => 1,
             'msg' => ($global_config['captcha_type'] == 2 ? $lang_global['securitycodeincorrect1'] : $lang_global['securitycodeincorrect']),

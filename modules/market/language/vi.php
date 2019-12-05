@@ -389,3 +389,5 @@ $lang_module['pack_money_1'] = 'Gói theo ngày (%s đ)';
 $lang_module['pack_money_2'] = 'Trọn gói (30 ngày) (%s đ)';
 $lang_module['mess_'] = 'Trừ tiền theo gói (%s)';
 $lang_module['mess_autopost'] = 'Đăng tin trên nhiều website: Gói <strong>%s</strong>';
+$lang_module['kodutien'] = '<strong>Cảnh báo!</strong> Tài khoản của bạn hiện tại <strong>%sđ</strong> không đủ tiền để thanh toán.';
+$lang_module['kodutien_js'] = 'Cảnh báo! Tài khoản của bạn hiện tại %sđ không đủ tiền để thanh toán.';
