@@ -351,10 +351,8 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-5 col-md-4 p-tb5 p-lr15 text-right"><strong>Thành tiền</strong></label>
-                    <div class="col-sm-16 col-md-14">
-                        <table class="table table-striped table-bordered" id="price_info">
-                                    
-                        </table>
+                    <div class="col-sm-16 col-md-14" id="price_info">
+                        
                     </div>
                 </div>
             </div>
@@ -732,38 +730,45 @@ $(function() {
 </script>
 <!-- END: main -->
 <!-- BEGIN: price_info -->
-<tbody>
-    <tr>
-        <td>Đơn giá</td>
-        <td align="right">
-            <span id="price_per_day">{PRICE_INFO.price_per_day}</span> VND/ngày
-        </td>
-    </tr>
-    <tr>
-        <td>Số ngày</td>
-        <td align="right">
-            <span id="days_calculate">{PRICE_INFO.days_calculate}</span> ngày
-            <input type="hidden" name="days_calculate" value="{PRICE_INFO.days_calculate}" />
-        </td>
-    </tr>
-    <tr>
-        <td>Phí đăng tin</td>
-        <td align="right">
-            <span id="price_subtotal">{PRICE_INFO.price_subtotal}</span> VND
-        </td>
-    </tr>
-    <tr>
-        <td>Khuyến mại</td>
-        <td align="right">0 VND</td>
-    </tr>
-    <tr>
-        <td>Tổng tiền</td>
-        <td align="right">
-            <span id="price_total">{PRICE_INFO.price_total}</span> VND
-            <input type="hidden" name="price_info" value="{PRICE_INFO.price_total_input}" />
-        </td>
-    </tr>
-</tbody>
+<table class="table table-striped table-bordered" >
+    <tbody>
+        <tr>
+            <td>Đơn giá</td>
+            <td align="right">
+                <span id="price_per_day">{PRICE_INFO.price_per_day}</span> VND/ngày
+            </td>
+        </tr>
+        <tr>
+            <td>Số ngày</td>
+            <td align="right">
+                <span id="days_calculate">{PRICE_INFO.days_calculate}</span> ngày
+                <input type="hidden" name="days_calculate" value="{PRICE_INFO.days_calculate}" />
+            </td>
+        </tr>
+        <tr>
+            <td>Phí đăng tin</td>
+            <td align="right">
+                <span id="price_subtotal">{PRICE_INFO.price_subtotal}</span> VND
+            </td>
+        </tr>
+        <tr>
+            <td>Khuyến mại</td>
+            <td align="right">0 VND</td>
+        </tr>
+        <tr>
+            <td>Tổng tiền</td>
+            <td align="right">
+                <span id="price_total">{PRICE_INFO.price_total}</span> VND
+                <input type="hidden" name="price_info" value="{PRICE_INFO.price_total_input}" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- BEGIN: kodutien -->
+<div class="alert alert-danger">
+  {LANG.kodutien}
+</div>
+<!-- END: kodutien -->
 <!-- END: price_info -->
 <!-- BEGIN: table_packages -->
 <table class="table table-striped table-bordered">
@@ -782,4 +787,9 @@ $(function() {
         <!-- END: loop -->
     </tbody>
 </table>
+<!-- BEGIN: kodutien -->
+<div class="alert alert-danger auto_post">
+  {LANG.kodutien}
+</div>
+<!-- END: kodutien -->
 <!-- END: table_packages -->

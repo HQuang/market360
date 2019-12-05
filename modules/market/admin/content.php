@@ -329,9 +329,6 @@ if ($nv_Request->isset_request('submit', 'post')) {
         $row['price_info'] = $nv_Request->get_int('price_info', 'post', 0);
     }
 
-
-
-
     if (!$array_config['allow_auto_code'] and empty($row['code'])) {
         nv_jsonOutput(array(
             'error' => 1,
@@ -409,7 +406,22 @@ if ($nv_Request->isset_request('submit', 'post')) {
             'msg' => $error_email,
             'input' => 'contact_email'
         ));
+    }elseif ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $row['price_info']) {
+        nv_jsonOutput(array(
+            'error' => 1,
+            'msg' => sprintf($lang_module['kodutien_js'], $wallet->my_money($admin_info['userid'])['money_total']),
+            'input' => 'post_type'
+        ));
+    }elseif ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $array_packages[$row['package']]['price']) {
+        nv_jsonOutput(array(
+            'error' => 1,
+            'msg' => sprintf($lang_module['kodutien_js'], $wallet->my_money($admin_info['userid'])['money_total']),
+            'input' => 'autopost'
+        ));
     }
+
+
+    die('11');
 
     $query_field = array();
     if (isset($array_market_cat[$row['catid']]) and $array_market_cat[$row['catid']]['form'] != '') {
