@@ -192,6 +192,7 @@ function nv_refresh(rowsid, checkss) {
             if (r_split[0] != 'OK') {
                 alert(r_split[1]);
             } else {
+                alert(r_split[1]);
                 window.location.href = window.location.href;
             }
         });

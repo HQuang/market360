@@ -1,11 +1,6 @@
 <!-- BEGIN: main -->
 {FILE "header_only.tpl"} {FILE "header_extended.tpl"}
-<section id="banner_home">
-    [SERVICE]
-    <div class="module_search_pro">
-        <div class="container">[SEARCH]</div>
-    </div>
-</section>
+<section id="banner_home"> [SERVICE] <div class="module_search_pro"> <div class="container">[SEARCH]</div> </div></section>
 <div class="clearfix"></div>
 <div id="body_content" class="custom_page_site_index" role="main">
     <div class="container">

@@ -186,7 +186,7 @@ if (!nv_function_exists('nv_block_market_groups')) {
                             if (defined('NV_IS_USER')) {
 
                                 $data['is_user'] = 1;
-                                $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_saved WHERE rowsid=' . $data['id'] . ' AND userid=' . $user_info['userid'])->fetchColumn();
+                                $count = $db->query('SELECT COUNT(*) FROM ' . NV_PREFIXLANG . '_market_saved WHERE rowsid=' . $data['id'] . ' AND userid=' . $user_info['userid'])->fetchColumn();
                                 if ($count) {
                                     $data['style_save'] = 'style="display: none"';
                                 } else {
@@ -196,7 +196,7 @@ if (!nv_function_exists('nv_block_market_groups')) {
                                 $data['style_saved'] = 'style="display: none"';
                             }
 
-                        $data['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_' . $module_data . '_images WHERE rowsid=' . $data['id'] )->fetchColumn();
+                        $data['count_image'] = $db->query('SELECT  COUNT(path) FROM ' . NV_PREFIXLANG . '_market_images WHERE rowsid=' . $data['id'] )->fetchColumn();
                         $data['location'] = $location->locationString($data['area_p'], $data['area_d'], $data['area_w'], ' » ');
                         $data['location_link'] = nv_market_build_search_url($module_name, $data['typeid'], $data['catid'], $data['area_p'], $data['area_d'], $data['area_w']);
                         $lang_module['price'] = $lang_module['pricetype_cat_title_' . $array_market_cat[$l['catid']]['pricetype']];
