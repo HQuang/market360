@@ -9,53 +9,6 @@
 		<div class="row">
 			<div class="col-xs-24 col-md-4">
 				<div class="form-group">
-					<input class="form-control" type="text" value="{SEARCH.q}" name="q" maxlength="255" placeholder="{LANG.search_title}" />
-				</div>
-			</div>
-			<div class="col-xs-24 col-md-4">
-				<div class="form-group">
-					<select name="catid" class="form-control select2">
-						<option value=0>---{LANG.cat_c}---</option>
-						<!-- BEGIN: cat -->
-						<option value="{CAT.id}"{CAT.selected}>{CAT.space}{CAT.title}</option>
-						<!-- END: cat -->
-					</select>
-				</div>
-			</div>
-			<div class="col-xs-24 col-md-4">
-				<div class="form-group">
-					<select name="typeid" class="form-control">
-						<option value="-1">---{LANG.type_select}---</option>
-						<!-- BEGIN: type -->
-						<option value="{TYPE.id}"{TYPE.selected}>{TYPE.title}</option>
-						<!-- END: type -->
-					</select>
-				</div>
-			</div>
-			<div class="col-xs-24 col-md-4">
-				<div class="form-group">
-					<div class="input-group">
-						<input class="form-control datepicker" value="{SEARCH.from}" type="text" name="from" readonly="readonly" placeholder="{LANG.fromday}" /> <span class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<em class="fa fa-calendar fa-fix">&nbsp;</em>
-							</button>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-24 col-md-4">
-				<div class="form-group">
-					<div class="input-group">
-						<input class="form-control datepicker" value="{SEARCH.to}" type="text" name="to" readonly="readonly" placeholder="{LANG.today}" /> <span class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<em class="fa fa-calendar fa-fix">&nbsp;</em>
-							</button>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-24 col-md-4">
-				<div class="form-group">
 					<select name="userid" id="userid" class="form-control">
 						<option value="0">---{LANG.user_select}---</option>
 						<!-- BEGIN: userid -->
@@ -64,15 +17,13 @@
 					</select>
 				</div>
 			</div>
-		</div>
-		<div class="row">
 			<div class="col-xs-24 col-md-4">
 				<div class="form-group">
-					<select name="status" class="form-control">
-						<option value="-1">---{LANG.status_select}---</option>
-						<!-- BEGIN: status -->
-						<option value="{STATUS.index}"{STATUS.selected}>{STATUS.value}</option>
-						<!-- END: status -->
+					<select name="package" class="form-control">
+						<option value="-1">---{LANG.package_select}---</option>
+						<!-- BEGIN: package -->
+						<option value="{PACKAGE.id}"{PACKAGE.selected}>{PACKAGE.title}</option>
+						<!-- END: package -->
 					</select>
 				</div>
 			</div>
@@ -93,6 +44,7 @@
 					<th class="w100">{LANG.code}</th>
 					<th>{LANG.title}</th>
 					<th>{LANG.catid}</th>
+					<th>{LANG.packages}</th>
 					<th>{LANG.area}</th>
 					<th class="w100 text-center">{LANG.active}</th>
 					<th>&nbsp;</th>
@@ -119,6 +71,7 @@
 						</span>
 					</td>
 					<td>{VIEW.cat}</td>
+					<td>{VIEW.package}</td>
 					<td>{VIEW.area}</td>
 					<td class="text-center"><input type="checkbox" name="status" id="change_status_{VIEW.id}" value="{VIEW.id}" {VIEW.ck_status_admin} onclick="nv_change_status({VIEW.id});" /></td>
 					<td class="text-center" style="white-space: nowrap">
