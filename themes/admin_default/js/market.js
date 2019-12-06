@@ -297,12 +297,13 @@ function nv_post_facebook(id) {
 }
 
 function nv_refresh(rowsid, checkss) {
-    if (confirm(LANG.refresh_confirm)) {
+    if (confirm(lang_refresh_confirm)) {
         $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ajax&nocache=' + new Date().getTime(), 'refresh=1&id=' + rowsid + '&checkss=' + checkss, function(res) {
             var r_split = res.split('_');
             if (r_split[0] != 'OK') {
                 alert(r_split[1]);
             } else {
+                alert(r_split[1]);
                 window.location.href = window.location.href;
             }
         });

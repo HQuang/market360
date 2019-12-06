@@ -45,6 +45,7 @@ $allow_func = array(
     'post-type',
     'packages',
     'package-websites',
+    'package_news',
 );
 
 if ($array_config['auction']) {

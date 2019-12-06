@@ -8,6 +8,7 @@
  */
 if (!defined('NV_ADMIN')) die('Stop!!!');
 
+$submenu['package_news'] = $lang_module['package_news'];
 $submenu['content'] = $lang_module['content_add'];
 $submenu['queue'] = $lang_module['queue'];
 $submenu['auction'] = $lang_module['auction_list'];

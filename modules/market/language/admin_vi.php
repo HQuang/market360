@@ -496,3 +496,6 @@ $lang_module['error_required_website'] = 'Lỗi: bạn cần nhập dữ liệu 
 $lang_module['package_select'] = 'Chọn gói đăng tin';
 $lang_module['kodutien'] = '<strong>Cảnh báo!</strong> Tài khoản của bạn hiện tại <strong>%sđ</strong> không đủ tiền để thanh toán.';
 $lang_module['kodutien_js'] = 'Cảnh báo! Tài khoản của bạn hiện tại %sđ không đủ tiền để thanh toán.';
+$lang_module['package_news'] = 'Tin theo gói';
+$lang_module['refresh_confirm'] = 'Bạn có chắc chắn muốn làm mới tin này?';
+$lang_module['refresh_success'] = 'Làm mới tin thành công!';

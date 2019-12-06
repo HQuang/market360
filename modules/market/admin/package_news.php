@@ -103,7 +103,7 @@ if ($nv_Request->isset_request('change_queue', 'post')) {
 
 $row = array();
 $error = array();
-$base_url = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name;
+$base_url = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op;
 $per_page = 20;
 $page = $nv_Request->get_int('page', 'post,get', 1);
 $queue = $nv_Request->get_int('queue', 'post,get', 0);
@@ -114,60 +114,18 @@ require_once NV_ROOTDIR . '/modules/location/location.class.php';
 $location = new Location();
 
 $array_search = array(
-    'q' => $nv_Request->get_title('q', 'get'),
-    'catid' => $nv_Request->get_int('catid', 'get', 0),
-    'from' => $nv_Request->get_title('from', 'get', ''),
-    'to' => $nv_Request->get_title('to', 'get', ''),
-    'typeid' => $nv_Request->get_int('typeid', 'get', - 1),
-    'status' => $nv_Request->get_int('status', 'get', - 1),
     'userid' => $nv_Request->get_int('userid', 'get', 0),
+    'package' => $nv_Request->get_int('package', 'get', 0),
 );
-
-if (! empty($array_search['q'])) {
-    $base_url .= '&q=' . $array_search['q'];
-    $where .= ' AND (title LIKE "%' . $array_search['q'] . '%" OR
-        code LIKE "%' . $array_search['q'] . '%" OR
-        alias LIKE "%' . $array_search['q'] . '%" OR
-        content LIKE "%' . $array_search['q'] . '%" OR
-        note LIKE "%' . $array_search['q'] . '%" OR
-        contact_fullname LIKE "%' . $array_search['q'] . '%" OR
-        contact_email LIKE "%' . $array_search['q'] . '%" OR
-        contact_phone LIKE "%' . $array_search['q'] . '%" OR
-        contact_address LIKE "%' . $array_search['q'] . '%"
-    )';
-    $join = ' INNER JOIN ' . NV_PREFIXLANG . '_' . $module_data . '_detail t2 on t1.id=t2.id';
-}
-
-if (! empty($array_search['catid'])) {
-    $base_url .= '&catid=' . $array_search['catid'];
-    $where .= ' AND catid IN (' . implode(',', nv_GetCatidInParent($array_search['catid'])) . ')';
-}
-
-if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $array_search['from'], $m)) {
-    $base_url .= '&from=' . $array_search['from'];
-    $from = mktime(0, 0, 0, $m[2], $m[1], $m[3]);
-    $where .= ' AND addtime >= ' . $from;
-}
-
-if (preg_match('/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $array_search['to'], $m)) {
-    $base_url .= '&to=' . $array_search['to'];
-    $to = mktime(23, 59, 59, $m[2], $m[1], $m[3]);
-    $where .= ' AND addtime <= ' . $to;
-}
-
-if ($array_search['typeid'] >= 0) {
-    $base_url .= '&typeid=' . $array_search['typeid'];
-    $where .= ' AND typeid=' . $array_search['typeid'];
-}
-
-if ($array_search['status'] >= 0) {
-    $base_url .= '&status=' . $array_search['status'];
-    $where .= ' AND status=' . $array_search['status'];
-}
 
 if (! empty($array_search['userid'])) {
     $base_url .= '&userid=' . $array_search['userid'];
     $where .= ' AND userid=' . $array_search['userid'];
+}
+
+if (! empty($array_search['package'])) {
+    $base_url .= '&package=' . $array_search['package'];
+    $where .= ' AND package=' . $array_search['package'];
 }
 
 if ($queue) {
@@ -330,7 +288,7 @@ $db->sqlreset()
     ->select('COUNT(*)')
     ->from(NV_PREFIXLANG . '_' . $module_data . '_rows t1')
     ->join($join)
-    ->where('1=1' . $where);
+    ->where('1=1 AND autopost=1 ' . $where);
 
 $sth = $db->prepare($db->sql());
 
@@ -369,6 +327,7 @@ if (! empty($generate_page)) {
 }
 
 while ($view = $sth->fetch()) {
+    $view['package'] = "<a href='" . $base_url . "&package=" . $view['package'] . "' >" . $array_packages[$view['package']]['title'] . "</a>";
     $view['ck_status_admin'] = $view['status_admin'] == 1 ? 'checked="checked"' : '';
     $view['type'] = ! empty($view['typeid']) ? $array_type[$view['typeid']]['title'] : '';
     $view['area'] = $location->locationString($view['area_p'], $view['area_d'], $view['area_w']);
@@ -406,43 +365,15 @@ while ($view = $sth->fetch()) {
     $xtpl->parse('main.loop');
 }
 
-if (! empty($array_market_cat)) {
-    foreach ($array_market_cat as $catid => $value) {
-        $value['space'] = '';
-        if ($value['lev'] > 0) {
-            for ($i = 1; $i <= $value['lev']; $i ++) {
-                $value['space'] .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-            }
-        }
-        $value['selected'] = $catid == $array_search['catid'] ? ' selected="selected"' : '';
-
-        $xtpl->assign('CAT', $value);
-        $xtpl->parse('main.cat');
-    }
-}
-
-if (! empty($array_type)) {
-    foreach ($array_type as $type) {
-        $type['selected'] = $type['id'] == $array_search['typeid'] ? 'selected="selected"' : '';
-        $xtpl->assign('TYPE', $type);
-        $xtpl->parse('main.type');
-    }
-}
-
-$array_status = array(
-    1 => $lang_module['status_1'],
-    0 => $lang_module['status_0'],
-    2 => $lang_module['status_2']
-);
-foreach ($array_status as $index => $value) {
-    $sl = $array_search['status'] == $index ? 'selected="selected"' : '';
-    $xtpl->assign('STATUS', array(
-        'index' => $index,
-        'value' => $value,
-        'selected' => $sl
+foreach ($array_packages as $v_pk => $k_pk){
+    $xtpl->assign('PACKAGE', array(
+        'id' => $v_pk,
+        'title' => $k_pk['title'],
+        'selected' => $array_search['package'] == $v_pk ? 'selected="selected"' : ''
     ));
-    $xtpl->parse('main.status');
+    $xtpl->parse('main.package');
 }
+
 if ($queue) {
     $array_action['is_queue'] = $lang_module['is_queue'];
 }
