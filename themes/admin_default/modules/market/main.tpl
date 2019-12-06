@@ -122,7 +122,7 @@
 					<td>{VIEW.area}</td>
 					<td class="text-center"><input type="checkbox" name="status" id="change_status_{VIEW.id}" value="{VIEW.id}" {VIEW.ck_status_admin} onclick="nv_change_status({VIEW.id});" /></td>
 					<td class="text-center" style="white-space: nowrap">
-						<!-- BEGIN: refresh --><a href="javascript:void(0);" class="btn btn-default btn-xs" onclick="nv_refresh({VIEW.id}); return !1;" title="{LANG.config_refresh}"><i class="fa fa-refresh"></i></a><!-- END: refresh --> 
+						<!-- BEGIN: refresh --><a href="javascript:void(0);" class="btn btn-default btn-xs" onclick="nv_refresh({VIEW.id}, '{VIEW.checkss}'); return !1;" title="{LANG.config_refresh}"><i class="fa fa-refresh"></i></a><!-- END: refresh --> 
 						<a class="btn btn-default btn-xs" href="{VIEW.link_edit}" title="{LANG.edit}"><i class="fa fa-edit"></i></a>
 						<a class="btn btn-default btn-xs" href="{VIEW.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);" title="{LANG.delete}"><em class="fa fa-trash-o"></em></a>
 					</td>
@@ -152,6 +152,7 @@
 	var post_facebook_success = '{LANG.post_facebook_success}';
 	var notification_is_queue = '{LANG.notification_is_queue}';
 	var error_unknow = '{LANG.error_unknow}';
+	var lang_refresh_confirm = '{LANG.refresh_confirm}';
 	
 	$(document).ready(function() {
 		$('.select2').select2({
