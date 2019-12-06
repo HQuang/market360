@@ -45,33 +45,5 @@
         <!-- END: group_content -->
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('.sale_type_1').owlCarousel({
-            loop : false,
-            nav : true,
-            autoplay : true,
-            dots : false,
-            autoplayTimeout : 35000,
-            animateOut : 'fadeOut',
-            autoHeight : true,
-            navText : [ "<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>" ],
-            responsive : {
-                0 : {
-                    autoWidth : true
-                },
-                480 : {
-                    items : 2
-                },
-                768 : {
-                    items : 3
-                },
-                1200 : {
-                    items : 4
-                }
-            }
-        });
-    });
-    $(".carousel-inner .carousel-item").first().addClass("active");
-</script>
+<script>$(document).ready(function(){$(".sale_type_1").owlCarousel({loop:!1,nav:!0,autoplay:!0,dots:!1,autoplayTimeout:35e3,animateOut:"fadeOut",autoHeight:!0,navText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],responsive:{0:{autoWidth:!0},480:{items:2},768:{items:3},1200:{items:4}}})}),$(".carousel-inner .carousel-item").first().addClass("active");</script>
 <!-- END: main -->
