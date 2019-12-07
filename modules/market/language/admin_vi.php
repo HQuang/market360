@@ -499,3 +499,5 @@ $lang_module['kodutien_js'] = 'Cảnh báo! Tài khoản của bạn hiện tạ
 $lang_module['package_news'] = 'Tin theo gói';
 $lang_module['refresh_confirm'] = 'Bạn có chắc chắn muốn làm mới tin này?';
 $lang_module['refresh_success'] = 'Làm mới tin thành công!';
+$lang_module['nv_is_queue_confirm'] = 'Bạn thực sự muốn làm mới tin?';
+$lang_module['nv_is_queue_confirm'] = 'Lỗi, bạn không thể làm mới tin này!';

@@ -153,6 +153,9 @@
 	var notification_is_queue = '{LANG.notification_is_queue}';
 	var error_unknow = '{LANG.error_unknow}';
 	var lang_refresh_confirm = '{LANG.refresh_confirm}';
+	var lang_status_2 = '{LANG.status_2}';
+	var nv_is_queue_confirm = '{LANG.nv_is_queue_confirm}';
+	var nv_is_queue_confirm_2 = '{LANG.nv_is_queue_confirm_2}';
 	
 	$(document).ready(function() {
 		$('.select2').select2({

@@ -171,7 +171,7 @@ if (! empty($array_search['userid'])) {
 }
 
 if ($queue) {
-    $base_url .= ' &amp;queue=1';
+    $base_url .= '&amp;queue=1';
     $where .= ' AND (is_queue=1 OR is_queue_edit=1)';
 } else {
     $where .= ' AND is_queue=0';
