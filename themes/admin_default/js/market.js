@@ -96,6 +96,22 @@ function nv_list_action(action, url_action, del_confirm_no_post) {
                 }
             });
         }
+    } else if (action == 'is_queue') {
+        if (confirm(nv_is_queue_confirm)) {
+            $.ajax({
+                type : 'POST',
+                url : url_action,
+                data : 'change_queue=1&listall=' + listall,
+                success : function(data) {
+                    var r_split = data.split('_');
+                    if (r_split[0] == 'OK') {
+                        window.location.href = window.location.href;
+                    } else {
+                        alert(nv_is_queue_confirm_2);
+                    }
+                }
+            });
+        }
     } else if (confirm(nv_is_change_act_confirm[0])) {
         $('#ajax_loader').css('display', 'block');
         $.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=crawler&nocache=' + new Date().getTime(), 'change_status=1&action=' + action + '&listid=' + listall, function(res) {
@@ -112,7 +128,7 @@ function nv_list_action(action, url_action, del_confirm_no_post) {
                     } else {
                         $('#rows_' + value).removeAttr('class');
                         $('#rows_' + value).addClass('success');
-                        $('#status_' + value).html(LANG['status_2']);
+                        $('#status_' + value).html(lang_status_2);
                         $('#action_' + value).html('<a href="#" data-id="{VIEW.id}" class="action" data-action="acept" data-toggle="tooltip" data-placement="top" title="" data-original-title="{LANG.action_acept}"><em class="fa fa-save fa-lg fa-point">&nbsp;</em></a>');
                     }
                     $('input[type=checkbox]').prop('checked', false);

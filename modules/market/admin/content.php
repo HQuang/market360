@@ -420,9 +420,6 @@ if ($nv_Request->isset_request('submit', 'post')) {
         ));
     }
 
-
-    die('11');
-
     $query_field = array();
     if (isset($array_market_cat[$row['catid']]) and $array_market_cat[$row['catid']]['form'] != '') {
         require NV_ROOTDIR . '/modules/' . $module_file . '/fields.check.php';
