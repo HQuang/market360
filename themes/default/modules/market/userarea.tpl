@@ -98,8 +98,8 @@
 						</td>
 						<td class="text-center">
 							<!-- BEGIN: refresh_allow -->
-								<a href="javascript:void(0)" onclick="nv_refresh({VIEW.id}, '{VIEW.checkss}'); return !1;" title="{LANG.refresh}" class="btn btn-default btn-xs"><em class="fa fa-refresh"></em></a>
 								<!-- BEGIN: refresh -->
+								<a href="javascript:void(0)" onclick="nv_refresh({VIEW.id}, '{VIEW.checkss}'); return !1;" title="{LANG.refresh}" class="btn btn-default btn-xs"><em class="fa fa-refresh"></em></a>
 								<!-- END: refresh -->
 								<!-- BEGIN: refresh_label -->
 								<button class="btn btn-default btn-xs" disabled="disabled" title="{LANG.refresh}"><em class="fa fa-refresh"></em></button>

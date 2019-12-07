@@ -235,11 +235,11 @@ while ($view = $sth->fetch()) {
         if ($array_config['refresh_allow']) {
             $count_refresh = nv_count_refresh($module_name);
             $count_refresh_free = nv_count_refresh_free($module_name);
-//             if ($count_refresh + $count_refresh_free > 0) {
-//                 $xtpl->parse('main.loop.refresh_allow.refresh');
-//             } else {
-//                 $xtpl->parse('main.loop.refresh_allow.refresh_label');
-//             }
+            if ($count_refresh + $count_refresh_free > 0) {
+                $xtpl->parse('main.loop.refresh_allow.refresh');
+            } else {
+                $xtpl->parse('main.loop.refresh_allow.refresh_label');
+            }
             $xtpl->parse('main.loop.refresh_allow');
         }
 

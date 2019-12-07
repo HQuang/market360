@@ -196,7 +196,7 @@ if ($nv_Request->isset_request('refresh', 'post')) {
         die('NO_' . $lang_module['error_unknow']);
     }
 
-    list ($refresh_time, $title, $code, $price_info) = $db->query('SELECT refresh_time, title, code, price_info FROM ' . NV_PREFIXLANG . '_' . $module_data . '_rows WHERE id=' . $id)->fetch(3);
+    list ($refresh_time, $title, $code) = $db->query('SELECT refresh_time, title, code FROM ' . NV_PREFIXLANG . '_' . $module_data . '_rows WHERE id=' . $id)->fetch(3);
     $refresh_timelimit_sec = $array_config['refresh_timelimit'] * 60;
     if (((NV_CURRENTTIME - $refresh_time)) <= $refresh_timelimit_sec) {
         $count = nv_convertfromSec($refresh_timelimit_sec - NV_CURRENTTIME + $refresh_time);
@@ -250,42 +250,7 @@ if ($nv_Request->isset_request('refresh', 'post')) {
             die('OK_' . $lang_module['refresh_success']);
         } else {
 
-            if ($price_info > 0) {
-                if ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $price_info) {
-                    die('NO_' . sprintf($lang_module['kodutien_js'], $wallet->my_money($admin_info['userid'])['money_total']));
-                }
-            }
-
-            if ($price_info > 0) {
-                $wallet->update($price_info, 'VND', $user_info['userid'], 'Làm mới tin');
-            }
-
-            $currentdate = mktime(23, 59, 59, date('m'), date('d'), date('Y'));
-            try {
-                $db->query('INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_refresh(userid, count, free, free_time) VALUES(' . $user_info['userid'] . ', ' . $count_refresh . ', ' . ($array_config['refresh_free'] - 1) . ', ' . $currentdate . ')');
-            } catch (Exception $e) {
-                $refresh = $db->query('SELECT free, free_time FROM ' . NV_PREFIXLANG . '_' . $module_data . '_refresh WHERE userid=' . $user_info['userid'])->fetch();
-                if ($refresh['free_time'] == $currentdate) {
-                    $free = $refresh['free'] - 1;
-                } else {
-                    $free = $array_config['refresh_free'] - 1;
-                }
-                $db->exec('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_refresh SET free=' . $free . ', free_time=' . $currentdate . ' WHERE userid=' . $user_info['userid']);
-            }
-
-            // Cập nhật thời gian sắp xếp
-            $db->query('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_rows SET ordertime=' . NV_CURRENTTIME . ', refresh_time = ' . NV_CURRENTTIME . ' WHERE id=' . $id);
-
-            // Đăng lại facebook
-            nv_add_fb_queue($id);
-
-            // ghi lịch sử
-            nv_user_logs('[' . $user_info['username'] . '] ' . $lang_module['refresh'] . ' [' . $code . '] ' . $title);
-
-            die('OK_' . $lang_module['refresh_success']);
-
-
-//             die('NO_' . $lang_module['refresh_error']);
+            die('NO_' . $lang_module['refresh_error']);
         }
     }
 
