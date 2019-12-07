@@ -23,11 +23,12 @@ $(function() {
 
             $.ajax({
                 type : "POST",
-                url : nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=taikhoan&' + nv_fc_variable + '=ws&nocache=' + new Date().getTime(),
-                data : 'product_id=' + product_id + '&product_title=' + $(this).attr('data_title') + '&module_send=' + nv_module_name + '&money=' + $(this).attr('data_money') + '&money_unit=' + $(this).attr('data_money_unit') + '&tokenkey=' + $(this).attr('data_tokenkey'),
+                url : nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=market&' + nv_fc_variable + '=ajax&nocache=' + new Date().getTime(),
+                data : 'buy_refresh_new=1&number='+number+'&checksum='+$(this).data('checksum')+'&product_id=' + product_id + '&product_title=' + $(this).attr('data_title') + '&module_send=' + nv_module_name + '&money=' + $(this).attr('data_money') + '&money_unit=' + $(this).attr('data_money_unit') + '&tokenkey=' + $(this).attr('data_tokenkey'),
                 success : function(result) {
                     if (result.status != 200) {
-                        alert(result.message)
+                        alert(result.message);
+                        window.location.reload(true);
                     } else {
                         if (mod == 'refresh') {
                             $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ajax&nocache=' + new Date().getTime(), 'buy_refresh=1&id=' + product_id + '&number=' + number + '&checksum=' + checksum, function(res) {

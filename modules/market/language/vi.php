@@ -170,6 +170,7 @@ if (! defined('NV_MAINFILE'))
     $lang_module['buy'] = 'Mua';
     $lang_module['payment'] = 'Thanh toán';
     $lang_module['refresh_success'] = 'Mua lượt làm mới tin thành công. Bạn có %d lượt làm mới tin.';
+    $lang_module['refresh_success_news'] = 'Mua lượt làm mới tin thành công. Bạn có %d lượt làm mới tin.';
     $lang_module['payment_confirm'] = 'Bạn có chắc chắn muốn tiếp tục thanh toán?';
     $lang_module['payment_error'] = 'Bạn cần thanh toán để tiếp tục!';
     $lang_module['payment_refresh_note'] = 'Hệ thống sẽ tự động đăng lại tin của bạn sau khi thanh toán thành công';

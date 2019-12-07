@@ -292,6 +292,44 @@ if ($nv_Request->isset_request('refresh', 'post')) {
     die('NO_' . $lang_module['error_unknow']);
 }
 
+if ($nv_Request->isset_request('buy_refresh_new', 'post')) {
+    $id = $nv_Request->get_int('id', 'post', 0);
+    $number = $nv_Request->get_int('number', 'post', 0);
+    $money = $nv_Request->get_int('money', 'post', 0);
+    $checksum = $nv_Request->get_title('checksum', 'post', '');
+
+    if (!defined('NV_IS_USER') or empty($checksum) or empty($number)) {
+        die('NO_' . $lang_module['error_unknow']);
+    }
+
+//     if ($checksum == md5($global_config['sitekey'] . '-' . $user_info['userid'] . '-' . $id . '-' . $number)) {
+    if ($number AND $checksum) {
+        $count = nv_count_refresh($module_name);
+
+        if ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $money) {
+            die(json_encode(array(
+                'message' => sprintf($lang_module['kodutien_js'], $wallet->my_money($admin_info['userid'])['money_total'])
+            )));
+        }else{
+            $wallet->update($money, 'VND', $user_info['userid'], 'Mua lượt làm mới tin');
+        }
+        try {
+            // thêm thành viên vào bảng _refresh, nếu có rồi thì cập nhật
+            $db->query('INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_refresh(userid, count) VALUES(' . $user_info['userid'] . ', ' . $number . ')');
+        } catch (Exception $e) {
+            $db->query('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_refresh SET count=count + ' . $number . ' WHERE userid=' . $user_info['userid']);
+        }
+        $nv_Cache->delMod($module_name);
+
+        die(json_encode(array(
+            'message' => sprintf($lang_module['refresh_success_news'], intval($count) + $number)
+        )));
+    }
+    die(json_encode(array(
+        'message' => $lang_module['error_unknow']
+    )));
+}
+
 if ($nv_Request->isset_request('buy_refresh', 'post')) {
     $id = $nv_Request->get_int('id', 'post', 0);
     $number = $nv_Request->get_int('number', 'post', 0);
