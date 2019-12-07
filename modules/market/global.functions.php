@@ -498,7 +498,7 @@ function nv_load_pricetype($row, $template)
 
 function nv_load_price_info($row, $template)
 {
-    global $lang_module, $array_post_type, $wallet, $admin_info;
+    global $lang_module, $array_post_type, $wallet, $user_info;
 
     $row['price_per_day'] = number_format($array_post_type[$row['post_type']]['price']);
     $row['days_calculate'] = ($row['exptime'] - $row['starttime'])/86400;
@@ -506,13 +506,13 @@ function nv_load_price_info($row, $template)
     $row['price_total'] = number_format($array_post_type[$row['post_type']]['price'] * $row['days_calculate']);
     $row['price_total_input'] = $array_post_type[$row['post_type']]['price'] * $row['days_calculate'];
 
-    $lang_module['kodutien'] = sprintf($lang_module['kodutien'], $wallet->my_money($admin_info['userid'])['money_total']);
+    $lang_module['kodutien'] = sprintf($lang_module['kodutien'], $wallet->my_money($user_info['userid'])['money_total']);
     $xtpl = new XTemplate('content.tpl', $template);
     $xtpl->assign('LANG', $lang_module);
     $xtpl->assign('PRICE_INFO', $row);
 
     if (!empty($row['price_total_input'])) {
-        if ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $row['price_total_input']) {
+        if ($wallet->my_money($user_info['userid'])['money_current'] < 0 OR $wallet->my_money($user_info['userid'])['money_current'] < $row['price_total_input']) {
             $xtpl->parse('price_info.kodutien');
         }
     }
