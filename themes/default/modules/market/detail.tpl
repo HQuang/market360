@@ -101,19 +101,19 @@
                             <!-- END: loop -->
                         </div>
                         <!-- END: faci -->
-                        <!-- BEGIN: field -->
                         <div class="row">
-                            <div class="col-xs-24">
+                            <!-- BEGIN: field -->
+                            <div class="col-sm-8 col-xs-12">
                                 <h3 class="title">{FIELD.title}</h3>
-                            </div>
-                            <div class="col-xs-24 box-utility">
-                                <div class="thumbnail">
-                                    <img src="" alt="">
+                                <div class=" box-utility">
+                                    <div class="thumbnail">
+                                        <img src="" alt="">
+                                    </div>
+                                    <span>{FIELD.value}</span>
                                 </div>
-                                <span>{FIELD.value}</span>
                             </div>
+                            <!-- END: field -->
                         </div>
-                        <!-- END: field -->
                     </div>
                     <!-- BEGIN: admin_keywords -->
                     <link rel="stylesheet" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/select2.min.css">
