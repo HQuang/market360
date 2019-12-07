@@ -28,7 +28,7 @@ $(function() {
                 success : function(result) {
                     if (result.status != 200) {
                         alert(result.message);
-                        window.location.reload(true);
+//                        window.location.reload(true);
                     } else {
                         if (mod == 'refresh') {
                             $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ajax&nocache=' + new Date().getTime(), 'buy_refresh=1&id=' + product_id + '&number=' + number + '&checksum=' + checksum, function(res) {

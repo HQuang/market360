@@ -271,9 +271,9 @@ if ($nv_Request->isset_request('buy_refresh_new', 'post')) {
     if ($number AND $checksum) {
         $count = nv_count_refresh($module_name);
 
-        if ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $money) {
+        if ($wallet->my_money($user_info['userid'])['money_current'] < 0 OR $wallet->my_money($user_info['userid'])['money_current'] < $money) {
             die(json_encode(array(
-                'message' => sprintf($lang_module['kodutien_js'], $wallet->my_money($admin_info['userid'])['money_total'])
+                'message' => sprintf($lang_module['kodutien_js'], $wallet->my_money($user_info['userid'])['money_total'])
             )));
         }else{
             $wallet->update($money, 'VND', $user_info['userid'], 'Mua lượt làm mới tin');
@@ -565,7 +565,7 @@ if ($nv_Request->isset_request('load_packages_info', 'post')) {
     $row = array();
     $row['id'] = $nv_Request->get_int('id', 'post', 0);
 
-    $lang_module['kodutien'] = sprintf($lang_module['kodutien'], $wallet->my_money($admin_info['userid'])['money_total']);
+    $lang_module['kodutien'] = sprintf($lang_module['kodutien'], $wallet->my_money($user_info['userid'])['money_total']);
 
     $template = NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file;
     $xtpl = new XTemplate('content.tpl', $template);
@@ -581,7 +581,7 @@ if ($nv_Request->isset_request('load_packages_info', 'post')) {
     }
 
     if (!empty($array_packages[$row['id']]['price'])) {
-        if ($wallet->my_money($admin_info['userid'])['money_current'] < 0 OR $wallet->my_money($admin_info['userid'])['money_current'] < $array_packages[$row['id']]['price']) {
+        if ($wallet->my_money($user_info['userid'])['money_current'] < 0 OR $wallet->my_money($user_info['userid'])['money_current'] < $array_packages[$row['id']]['price']) {
             $xtpl->parse('table_packages.kodutien');
         }
     }
