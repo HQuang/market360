@@ -103,7 +103,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
         try {
             if (empty($row['id'])) {
                 $data_insert = array();
-                $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_crawler_items (title, url, groups_id, typeid, catid, area_p, area_d, area_w, queue, save_image, auto_getkeyword, auto_keyword, save_limit, auto_homeimage, remove_link, autolink, addtime, updatetime, status) VALUES (:title, :url, :groups_id, :typeid, :catid, :area_p, :area_d, area_w, :queue, :save_image, :auto_getkeyword, :auto_keyword, :save_limit, :auto_homeimage, :remove_link, :autolink, ' . NV_CURRENTTIME . ', 0, 1)';
+                $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_crawler_items (title, url, groups_id, typeid, catid, area_p, area_d, area_w, queue, save_image, auto_getkeyword, auto_keyword, save_limit, auto_homeimage, remove_link, autolink, addtime, updatetime, status) VALUES (:title, :url, :groups_id, :typeid, :catid, :area_p, :area_d, :area_w, :queue, :save_image, :auto_getkeyword, :auto_keyword, :save_limit, :auto_homeimage, :remove_link, :autolink, ' . NV_CURRENTTIME . ', 0, 1)';
                 $data_insert['title'] = $row['title'];
                 $data_insert['url'] = $row['url'];
                 $data_insert['groups_id'] = $row['groups_id'];

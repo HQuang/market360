@@ -17,6 +17,7 @@
     </div>
 </section>
 <!-- END: breadcrumbs -->
+[CONTENT_ONE]
 {MODULE_CONTENT}
 {FILE "footer_extended.tpl"} {FILE "footer_only.tpl"}
 <!-- END: main -->

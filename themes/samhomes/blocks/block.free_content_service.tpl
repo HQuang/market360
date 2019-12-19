@@ -1,6 +1,6 @@
 <!-- BEGIN: main -->
 <!-- BEGIN: loop -->
-<div class="col-sm-18 col-md-6">
+<div class="col-sm-12 col-md-6">
     <div class="item">
         <div class="image">
             <img src="{ROW.image}" alt="{ROW.title}" />
