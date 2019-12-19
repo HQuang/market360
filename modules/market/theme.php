@@ -359,10 +359,6 @@ function nv_theme_market_viewgrid($array_data, $page = '')
 
             $xtpl->assign('ROW', $data);
 
-            //             if (!is_array($block_cat[$data['groupid']])) {
-            //                 $block_cat[$data['groupid']] = $cat;
-            //                 $xtpl->assign('BLOCKCAT', $block_cat[$data['groupid']]);
-            //             }
 
             if ($data['count_image'] > 1) {
                 $xtpl->parse('main.loop.count_image');
@@ -492,6 +488,15 @@ function nv_theme_market_viewlist_simple($array_data, $page = '')
             }
             if ($data['count_image'] > 1) {
                 $xtpl->parse('main.loop.count_image');
+
+            }
+            if (!empty($data['custom_field'])) {
+                foreach ($data['custom_field'] as $field) {
+                    if (!empty($field['value']) and in_array(3, $field['show_locations'])) {
+                        $xtpl->assign('FIELD', $field);
+                        $xtpl->parse('main.loop.field');
+                    }
+                }
             }
 
             if ($data['contact_fullname'] or $data['contact_email'] or $data['contact_phone'] or $data['contact_address']) {
@@ -516,6 +521,7 @@ function nv_theme_market_viewlist_simple($array_data, $page = '')
 
             $xtpl->parse('main.loop');
         }
+
 
         if (!empty($page)) {
             $xtpl->assign('PAGE', $page);
@@ -579,10 +585,12 @@ function nv_theme_market_detail($array_data, $rows_other, $array_keyword)
     if (!empty($array_data['images'])) {
         foreach ($array_data['images'] as $image) {
             $xtpl->assign('IMAGE', $image);
-            $xtpl->parse('main.image.loop');
+
             $xtpl->parse('main.image1.loop');
+            $xtpl->parse('main.image1.loop1');
+            $xtpl->parse('main.image1.loop2');
         }
-        $xtpl->parse('main.image');
+
         $xtpl->parse('main.image1');
     } else {
         $xtpl->parse('main.image2');
