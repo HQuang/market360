@@ -27,6 +27,7 @@ while ($row = $result->fetch()) {
     $array_template[$row['id']] = array(
         'id' => $row['id'],
         'title' => $row["title"],
+        'icon' => $row["icon"],
         'alias' => $row["alias"]
     );
 }
@@ -191,6 +192,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     }
 
     $dataform['title'] = $nv_Request->get_title('title', 'post', '');
+    $dataform['icon'] = $nv_Request->get_title('icon', 'post', '');
     $dataform['description'] = $nv_Request->get_title('description', 'post', '');
 
     $dataform['field_type'] = nv_substr($nv_Request->get_title('field_type', 'post', '', 0, $preg_replace), 0, 50);
@@ -353,6 +355,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     }
 
     if (empty($error)) {
+
         $type_date = nv_get_data_type($dataform);
         if (empty($dataform['fid'])) {
             // Them truong du lieu moi
@@ -361,10 +364,10 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 $weight = intval($weight) + 1;
 
                 $sql = "INSERT INTO " . NV_PREFIXLANG . '_' . $module_data . "_field
-                    (field,listtemplate, show_locations, weight, field_type, field_choices, sql_choices, match_type,
+                    (field, icon, listtemplate, show_locations, weight, field_type, field_choices, sql_choices, match_type,
                     match_regex, func_callback, min_length, max_length,
                      class, language, default_value) VALUES
-                    ('" . $dataform['field'] . "', '" . $dataform['listtemplate'] . "', '" . $dataform['show_locations'] . "', " . $weight . ", '" . $dataform['field_type'] . "', '" . $dataform['field_choices'] . "', '" . $dataform['sql_choices'] . "', '" . $dataform['match_type'] . "',
+                    ('" . $dataform['field'] . "', '" . $dataform['icon'] . "', '" . $dataform['listtemplate'] . "', '" . $dataform['show_locations'] . "', " . $weight . ", '" . $dataform['field_type'] . "', '" . $dataform['field_choices'] . "', '" . $dataform['sql_choices'] . "', '" . $dataform['match_type'] . "',
                     '" . $dataform['match_regex'] . "', '" . $dataform['func_callback'] . "',
                     " . $dataform['min_length'] . ", " . $dataform['max_length'] . ",
                     '" . $dataform['class'] . "', '" . serialize($language) . "', :default_value)";
@@ -380,7 +383,11 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 }
             }
         } elseif ($dataform['max_length'] <= 4294967296) {
+
+
+
             try {
+
                 $query = "UPDATE " . NV_PREFIXLANG . '_' . $module_data . "_field SET";
 
                 if ($text_fields == 1) {
@@ -389,6 +396,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
                 }
 
                 $query .= " max_length=" . $dataform['max_length'] . ", min_length=" . $dataform['min_length'] . ",
+                icon = '" . $dataform['icon'] . "',
                 listtemplate = '" . $dataform['listtemplate'] . "',
                 show_locations = '" . $dataform['show_locations'] . "',
                 field_choices='" . $dataform['field_choices'] . "',
@@ -719,6 +727,8 @@ $array_show_locations = array(
     4 => $lang_module['field_show_topic'],
     5 => $lang_module['field_show_cat'],
     6 => $lang_module['field_show_other_data'],
+    7 => $lang_module['field_show_search'],
+    8 => $lang_module['field_show_group'],
 );
 
 $explode_show_location = explode(',', $dataform['show_locations']);
